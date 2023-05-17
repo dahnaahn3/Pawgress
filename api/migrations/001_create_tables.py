@@ -1,19 +1,20 @@
 steps = [
     [
         """
-        CREATE TABLE customers (
+        CREATE TABLE users (
             id SERIAL PRIMARY KEY NOT NULL,
             first_name VARCHAR(150) NOT NULL,
             last_name VARCHAR(150) NOT NULL,
             address VARCHAR(250) NOT NULL,
             email VARCHAR(150) NOT NULL,
             phone_number VARCHAR(20) NOT NULL,
+            role VARCHAR(50) NOT NULL DEFAULT 'customer',
             hashed_password VARCHAR(250) NOT NULL
         );
         """,
 
         """
-        DROP TABLE customers;
+        DROP TABLE users;
         """,
     ],
     [
@@ -27,28 +28,14 @@ steps = [
             picture VARCHAR(1000),
             size VARCHAR(5) NOT NULL,
             weight SMALLINT NOT NULL,
-            diet TEXT NOT NULL
-
+            diet TEXT NOT NULL,
+            owner_id SMALLINT,
+            FOREIGN KEY (owner_id) REFERENCES users(id)
         );
         """,
 
         """
         DROP TABLE pets;
-        """,
-    ],
-    [
-        """
-        CREATE TABLE trainers (
-            id SERIAL PRIMARY KEY NOT NULL,
-            first_name VARCHAR(150) NOT NULL,
-            last_name VARCHAR(150) NOT NULL,
-            trainer_id VARCHAR(50) UNIQUE NOT NULL,
-            phone VARCHAR(20) NOT NULL
-        );
-        """,
-
-        """
-        DROP TABLE trainers;
         """,
     ],
     [
