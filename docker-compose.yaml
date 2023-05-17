@@ -1,13 +1,20 @@
-# volumes:
+volumes:
+  pawgress-db:
+    external: true
+
 services:
   fastapi:
     build:
-      context: sample_service
+      context: api
       dockerfile: Dockerfile.dev
     ports:
       - 8000:8000
     volumes:
-      - ./sample_service:/app
+      - ./api:/app
+    environment:
+      SIGNING_KEY: generatethis
+      DATABASE_URL: postgresql://pawgress:pawgress@db/pawgress
+      WAIT_HOST: db:5432
 
   ghi:
     image: node:lts-bullseye
@@ -22,4 +29,15 @@ services:
       NODE_ENV: development
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
-      REACT_APP_SAMPLE_SERVICE_API_HOST: ${REACT_APP_SAMPLE_SERVICE_API_HOST}
+      # REACT_APP_SAMPLE_SERVICE_API_HOST: ${REACT_APP_SAMPLE_SERVICE_API_HOST}
+
+  db:
+    image: postgres:latest
+    volumes:
+      - pawgress-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: pawgress
+      POSTGRES_USER: pawgress
+      POSTGRES_DB: pawgress
+    ports:
+      - 15432:5432
