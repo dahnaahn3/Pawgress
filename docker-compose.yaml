@@ -11,10 +11,13 @@ services:
       - 8000:8000
     volumes:
       - ./api:/app
+    depends_on:
+      - db
     environment:
       SIGNING_KEY: generatethis
       DATABASE_URL: postgresql://pawgress:pawgress@db/pawgress
       WAIT_HOST: db:5432
+      WAIT_TIMEOUT: 240
 
   ghi:
     image: node:lts-bullseye
