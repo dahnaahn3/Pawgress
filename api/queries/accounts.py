@@ -34,16 +34,16 @@ class AccountQueries:
         return account_dict
 
 
-    def create(self, customers: AccountIn,
+    def create(self, users: AccountIn,
         hashed_password: str) -> AccountOutWithPassword:
         try:
-            print("USER",customers)
+            print("USER",users)
             print("HASHED",hashed_password)
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        INSERT INTO customers
+                        INSERT INTO users
                             (
                             first_name,
                             last_name,
@@ -64,11 +64,11 @@ class AccountQueries:
                         hashed_password
                         """,
                         [
-                            customers.first_name,
-                            customers.last_name,
-                            customers.address,
-                            customers.email,
-                            customers.phone_number,
+                            users.first_name,
+                            users.last_name,
+                            users.address,
+                            users.email,
+                            users.phone_number,
                             hashed_password
                         ]
                     )
@@ -77,19 +77,11 @@ class AccountQueries:
                     print("ID GOTTEN",id)
                     return AccountOutWithPassword(
                         id=id,
-                        email = customers.email,
-                        password = customers.password,
-                        first_name = customers.first_name,
-                        last_name=customers.last_name,
+                        email = users.email,
+                        password = users.password,
+                        first_name = users.first_name,
+                        last_name=users.last_name,
                         hashed_password=hashed_password
-
-                        # id=id,
-                        # first_name = customers.first_name,
-                        # last_name = customers.last_name,
-                        # address = customers.address,
-                        # email = customers.email,
-                        # phone_number = customers.phone_number,
-                        # hashed_password=password
                     )
         except Exception as e:
             return AccountOutWithPassword(message="could not create user. Error:" + str(e))
@@ -107,7 +99,7 @@ class AccountQueries:
                         id,
                         email,
                         hashed_password
-                        FROM customers
+                        FROM users
                         WHERE email = %s
                         """,
                         [email],
