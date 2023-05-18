@@ -3,21 +3,16 @@ volumes:
     external: true
 
 services:
-  fastapi:
-    build:
-      context: api
-      dockerfile: Dockerfile.dev
-    ports:
-      - 8000:8000
+  db:
+    image: postgres:latest
     volumes:
-      - ./api:/app
-    depends_on:
-      - db
+      - pawgress-db:/var/lib/postgresql/data
     environment:
-      SIGNING_KEY: generatethis
-      DATABASE_URL: postgresql://pawgress:pawgress@db/pawgress
-      WAIT_HOST: db:5432
-      WAIT_TIMEOUT: 240
+      POSTGRES_PASSWORD: pawgress
+      POSTGRES_USER: pawgress
+      POSTGRES_DB: pawgress
+    ports:
+      - 15432:5432
 
   ghi:
     image: node:lts-bullseye
@@ -34,13 +29,19 @@ services:
       PUBLIC_URL: http://localhost:3000
       # REACT_APP_SAMPLE_SERVICE_API_HOST: ${REACT_APP_SAMPLE_SERVICE_API_HOST}
 
-  db:
-    image: postgres:latest
-    volumes:
-      - pawgress-db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: pawgress
-      POSTGRES_USER: pawgress
-      POSTGRES_DB: pawgress
+  fastapi:
+    build:
+      context: api
+      dockerfile: Dockerfile.dev
     ports:
-      - 15432:5432
+      - 8000:8000
+    volumes:
+      - ./api:/app
+    depends_on:
+      - db
+    environment:
+      SIGNING_KEY: generatethis
+      DATABASE_URL: postgresql://pawgress:pawgress@db/pawgress
+      WAIT_HOST: db:5432
+      WAIT_TIMEOUT: 600
+      WAIT_BEFORE_HOSTS: 20
