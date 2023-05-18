@@ -1,13 +1,15 @@
 from pydantic import BaseModel
 from queries.pool import pool
 
+
 class AccountIn(BaseModel):
-    first_name : str
-    last_name : str
-    address : str
-    email : str
-    phone_number : str
-    password : str
+    first_name: str
+    last_name: str
+    address: str
+    email: str
+    phone_number: str
+    password: str
+
 
 class AccountOut(BaseModel):
     id: str
@@ -15,6 +17,7 @@ class AccountOut(BaseModel):
     password: str
     first_name: str
     last_name: str
+
 
 class AccountOutWithPassword(AccountOut):
     hashed_password: str
@@ -29,16 +32,16 @@ class AccountQueries:
         account_dict = {
             "user_id": record[0],
             "email": record[1],
-            "hashed_password": record[2]
+            "hashed_password": record[2],
         }
         return account_dict
 
-
-    def create(self, users: AccountIn,
-        hashed_password: str) -> AccountOutWithPassword:
+    def create(
+        self, users: AccountIn, hashed_password: str
+    ) -> AccountOutWithPassword:
         try:
-            print("USER",users)
-            print("HASHED",hashed_password)
+            print("USER", users)
+            print("HASHED", hashed_password)
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     result = db.execute(
@@ -69,28 +72,29 @@ class AccountQueries:
                             users.address,
                             users.email,
                             users.phone_number,
-                            hashed_password
-                        ]
+                            hashed_password,
+                        ],
                     )
                     print("insert worked????")
                     id = result.fetchone()[0]
-                    print("ID GOTTEN",id)
+                    print("ID GOTTEN", id)
                     return AccountOutWithPassword(
                         id=id,
-                        email = users.email,
-                        password = users.password,
-                        first_name = users.first_name,
+                        email=users.email,
+                        password=users.password,
+                        first_name=users.first_name,
                         last_name=users.last_name,
-                        hashed_password=hashed_password
+                        hashed_password=hashed_password,
                     )
         except Exception as e:
-            return AccountOutWithPassword(message="could not create user. Error:" + str(e))
-
+            return AccountOutWithPassword(
+                message="could not create user. Error:" + str(e)
+            )
 
     def get(self, email: str) -> AccountOutWithPassword:
         try:
             print("is trying get somehow?")
-            print("email",email)
+            print("email", email)
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     result = db.execute(
@@ -105,7 +109,7 @@ class AccountQueries:
                         [email],
                     )
                     record = result.fetchone()
-                    print("record found",record)
+                    print("record found", record)
                     if record is None:
                         return None
                     return self.record_to_account_out(record)
