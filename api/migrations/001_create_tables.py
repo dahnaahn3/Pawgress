@@ -19,7 +19,7 @@ steps = [
     [
         """
         CREATE TABLE pets (
-            id SERIAL PRIMARY KEY NOT NULL,
+            pet_id SERIAL PRIMARY KEY NOT NULL,
             name VARCHAR(150) NOT NULL,
             breed VARCHAR(250) NOT NULL,
             gender VARCHAR(1) NOT NULL,
@@ -63,6 +63,32 @@ steps = [
         """,
         """
         DROP TABLE classes;
+        """,
+    ],
+    [
+        """
+        CREATE TABLE reservations (
+            reservation_id SERIAL PRIMARY KEY NOT NULL,
+            start_datetime TIMESTAMP NOT NULL,
+            end_datetime TIMESTAMP NOT NULL
+        );
+        """,
+        """
+        DROP TABLE reservations;
+        """,
+    ],
+    [
+        """
+        CREATE TABLE pet_reservations (
+            reservation_id SERIAL NOT NULL,
+            pet_id SERIAL NOT NULL,
+            PRIMARY KEY(reservation_id, pet_id),
+            FOREIGN KEY (reservation_id) REFERENCES reservations(reservation_id),
+            FOREIGN KEY (pet_id) REFERENCES pets(pet_id)
+        );
+        """,
+        """
+        DROP TABLE pet_reservations;
         """,
     ],
 ]
