@@ -9,7 +9,6 @@ from fastapi import (
     Request,
 )
 
-
 router = APIRouter()
 
 
@@ -42,14 +41,22 @@ def get_all_classes(
         response.status_code = 400
         return {"message": "Error occurred while retrieving classes"}
 
-@router.get("/classes/{class_id}", response_model=Optional[ClassOut])
+@router.get("/classes/{class_id}", response_model=Union[ClassOut, Error])
 def get_one_class(
     class_id: int,
+    response: Response,
     repo: ClassQueries = Depends(),
 ) -> Optional[ClassOut]:
-    result = repo.get_one_class(class_id)
-    if result is not None:
-        return result
+    try:
+        result = repo.get_one_class(class_id)
+        if result:
+            return result
+        else:
+            response.status_code = 404
+            return {"message": "class does not exist"}
+    except Exception:
+        response.status_code = 400
+        return {"message" "error occured when trying to retrieve class details"}
 
 @router.put("/classes/{class_id}", response_model=Union[ClassOut, Error])
 def update_class(
@@ -68,7 +75,6 @@ def update_class(
     except Exception:
         response.status_code = 400
         return {"message": "updating class unsuccessful"}
-    return result
 
 @router.delete("/classes/{class_id}")
 def delete_class(
