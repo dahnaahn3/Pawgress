@@ -9,8 +9,8 @@ from fastapi import (
 from typing import Union
 
 from pydantic import BaseModel
-from queries.pets import PetIn, PetOut, PetQueries, Error
-
+from queries.pets import PetIn, PetOut, PetQueries
+from queries.common import Error
 router = APIRouter()
 
 

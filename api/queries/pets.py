@@ -1,10 +1,7 @@
 from pydantic import BaseModel
-from queries.pool import pool
+from .pool import pool
+from .common import Error
 from typing import Union, Optional
-
-
-class Error(BaseModel):
-    message: str
 
 
 class PetIn(BaseModel):
