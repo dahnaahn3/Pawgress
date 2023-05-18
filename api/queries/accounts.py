@@ -1,22 +1,26 @@
 from pydantic import BaseModel
 from queries.pool import pool
+from typing import Union
+from queries.common import Error
 
 
 class AccountIn(BaseModel):
     first_name: str
     last_name: str
     address: str
-    email: str
     phone_number: str
+    email: str
     password: str
 
 
 class AccountOut(BaseModel):
     id: str
-    email: str
-    password: str
     first_name: str
     last_name: str
+    address: str
+    phone_number: str
+    email: str
+    password: str
 
 
 class AccountOutWithPassword(AccountOut):
@@ -31,10 +35,14 @@ class AccountQueries:
     def record_to_account_out(self, record) -> AccountOutWithPassword:
         account_dict = {
             "user_id": record[0],
-            "email": record[1],
-            "hashed_password": record[2],
+            "email": record[5],
+            "hashed_password": record[6],
         }
         return account_dict
+
+    def user_in_and_out(self, user_id: int, user: AccountIn):
+        inserted_data = user.dict()
+        return AccountOut(id=user_id, **inserted_data)
 
     def create(
         self, users: AccountIn, hashed_password: str
@@ -51,8 +59,8 @@ class AccountQueries:
                             first_name,
                             last_name,
                             address,
-                            email,
                             phone_number,
+                            email,
                             hashed_password
                             )
                         VALUES
@@ -62,16 +70,16 @@ class AccountQueries:
                         first_name,
                         last_name,
                         address,
-                        email,
                         phone_number,
+                        email,
                         hashed_password
                         """,
                         [
                             users.first_name,
                             users.last_name,
                             users.address,
-                            users.email,
                             users.phone_number,
+                            users.email,
                             hashed_password,
                         ],
                     )
@@ -84,12 +92,44 @@ class AccountQueries:
                         password=users.password,
                         first_name=users.first_name,
                         last_name=users.last_name,
+                        address=users.address,
+                        phone_number=users.phone_number,
                         hashed_password=hashed_password,
                     )
         except Exception as e:
             return AccountOutWithPassword(
                 message="could not create user. Error:" + str(e)
             )
+
+    def update(
+        self, user_id: int, user: AccountIn
+    ) -> Union[AccountOut, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        UPDATE user
+                        SET name = first_name = %s
+                            , last_name = %s
+                            , address = %s
+                            , email = %s
+                            , phone_number = %s
+                            , password = %s
+                        WHERE id = %s
+                        """,
+                        user.first_name,
+                        user.last_name,
+                        user.address,
+                        user.email,
+                        user.phone_number,
+                        user.hashed_password,
+                        user_id,
+                    )
+
+                    return self.user_in_and_out(user_id, user)
+        except Exception:
+            return {"message": "Could not update"}
 
     def get(self, email: str) -> AccountOutWithPassword:
         try:
@@ -101,6 +141,10 @@ class AccountQueries:
                         """
                         SELECT
                         id,
+                        first_name,
+                        last_name,
+                        address,
+                        phone_number,
                         email,
                         hashed_password
                         FROM users
