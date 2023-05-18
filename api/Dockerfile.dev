@@ -12,3 +12,4 @@ WORKDIR /app
 # to be run automatically, delete the previous CMD line and
 # uncomment this CMD line
 CMD /wait && python -m migrations up && uvicorn main:app --reload --host 0.0.0.0
+# CMD /wait && sleep 60 && python -m migrations up && uvicorn main:app --reload --host 0.0.0.0
