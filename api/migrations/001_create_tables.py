@@ -12,7 +12,6 @@ steps = [
             hashed_password VARCHAR(250) NOT NULL
         );
         """,
-
         """
         DROP TABLE users;
         """,
@@ -29,11 +28,10 @@ steps = [
             size VARCHAR(5) NOT NULL,
             weight SMALLINT NOT NULL,
             diet TEXT NOT NULL,
-            owner_id SMALLINT,
+            owner_id SMALLINT NOT NULL,
             FOREIGN KEY (owner_id) REFERENCES users(id)
         );
         """,
-
         """
         DROP TABLE pets;
         """,
@@ -46,12 +44,10 @@ steps = [
             occupied BOOL DEFAULT 'f'
         );
         """,
-
         """
         DROP TABLE rooms;
         """,
     ],
-
     [
         """
         CREATE TABLE classes (
