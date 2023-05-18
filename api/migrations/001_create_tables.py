@@ -51,14 +51,14 @@ steps = [
     [
         """
         CREATE TABLE classes (
-            id SERIAL PRIMARY KEY NOT NULL,
+            class_id SERIAL PRIMARY KEY NOT NULL,
             name VARCHAR(100) NOT NULL,
-            description TEXT NOT NULL,
             category VARCHAR(50) NOT NULL,
             attendees SMALLINT DEFAULT 0,
             max_attendees SMALLINT NOT NULL,
             start_datetime TIMESTAMP NOT NULL,
-            end_datetime TIMESTAMP NOT NULL
+            end_datetime TIMESTAMP NOT NULL,
+            description TEXT NOT NULL
         );
         """,
         """

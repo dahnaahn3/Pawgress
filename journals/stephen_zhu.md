@@ -26,5 +26,15 @@ Today, I worked on:
 *Setting up Database Tables, getting Docker running, and connecting Beekeeper Studio
 
 Jesse, Jennifer, Dahna and I worked together on finalizing our database tables and what datatypes we were going to need in the migrations folder for when we startup the application for backend.
+Dahna and I pair programmed the authentication for our create, login, logout.
 
-I was reminded today that extra "," break code as usual, and also to include a WAIT_HOST in the yml file is necessary precaution otherwise the container's will throw errors when starting for first time.
+I was reminded today that extra "," break code as usual, and also to include a WAIT_HOST in the yml file is necessary precaution otherwise the container's will throw errors when starting for first time.  For some reason the return code didn't like us using a dot annotation for getting the dictionary
+
+## May 17, 2023
+Today, I worked on:
+
+*Finalizing user for authentication, fixing docker container issues, creating first endpoint as a group, starting and finishing backend endpoints for a 'classes' table
+
+Jesse, Jennifer, Dahna and I worked together on our first endpoint as a group for creating pets.  We solved our docker container issues where some of us would occasionally have containers not run because of the delayed startup for the database container.  I started and completed the first solo backend endpoint for the 'classes' database for the trainer side of the user.
+
+I learned there're many exceptions to be used to catch errors to find what went wrong, sometimes using if, try and except statements properly will get the correct responses when exceptions dont work.
