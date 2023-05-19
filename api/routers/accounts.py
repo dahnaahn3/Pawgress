@@ -9,18 +9,19 @@ from fastapi import (
 )
 from jwtdown_fastapi.authentication import Token
 from authenticator import authenticator
+from typing import List, Union
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 
 from queries.accounts import (
     AccountIn,
     AccountOut,
+    UserOut,
     AccountQueries,
     DuplicateAccountError,
 )
 
 from queries.common import Error
-from typing import Union
 
 
 class AccountForm(BaseModel):
@@ -88,14 +89,47 @@ async def create_account(
     return AccountToken(account=account, **token.dict())
 
 
-@router.put("/api/accounts/{user_id}", response_model=AccountOut | Error)
-async def update_account(
-    user_id: int,
-    user: AccountIn,
-    repo: AccountQueries = Depends(),
-) -> Union[Error, AccountOut]:
+@router.get("/api/accounts", response_model=Union[List[UserOut], Error])
+def get_all_users(response: Response, repo: AccountQueries = Depends()):
     try:
-        user = repo.update(user_id, user)
+        result = repo.get_all()
     except Exception:
-        return {"message": "could not be updated"}
-    return user
+        response.status_code = 400
+        return {"message": "Error occurred while retrieving users"}
+    return result
+
+
+@router.get("/api/accounts/{user_id}", response_model=Union[UserOut, Error])
+def get_one_user(
+    user_id: int, response: Response, repo: AccountQueries = Depends()
+):
+    try:
+        result = repo.get_user(user_id)
+        if result:
+            return result
+        else:
+            response.status_code = 404
+            return {"message": "user does not exist"}
+    except Exception:
+        response.status_code = 400
+        return {
+            "message": "error occurred when trying to retrieve user details"
+        }
+
+
+@router.delete("/accounts/{user_id}")
+def delete_user(
+    user_id: int,
+    response: Response,
+    repo: AccountQueries = Depends(),
+):
+    try:
+        result = repo.delete(user_id)
+        if result == "User does not exist":
+            response.status_code = 404
+            return {"message": "User does not exist"}
+        else:
+            return {"message": "Successfully removed class"}
+    except Exception:
+        response.status_code = 400
+        return {"message": "error occurred when trying to delete user"}

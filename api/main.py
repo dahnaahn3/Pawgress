@@ -10,7 +10,6 @@ app.include_router(accounts.router)
 app.include_router(pets.router)
 app.include_router(classes.router)
 
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[os.environ.get("CORS_HOST", "http://localhost:3000")],
