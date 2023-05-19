@@ -3,7 +3,6 @@ from .pool import pool
 from .common import Error
 from typing import Union, Optional, List
 from datetime import date
-from fastapi import HTTPException
 
 
 class ClassIn(BaseModel):
@@ -84,7 +83,7 @@ class ClassQueries:
         except Exception as e:
             raise e
 
-    def get_one_class(self, class_id: int) -> Optional[ClassOut]:
+    def get_one_class(self, class_id: int) -> ClassOut:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -105,10 +104,8 @@ class ClassQueries:
                         [class_id]
                     )
                     record = result.fetchone()
-            if record is not None:
-                return self.record_to_class_out(record)
-            else:
-                raise HTTPException(status_code=404, detail="class does not exist")
+                    if record is not None:
+                        return self.record_to_class_out(record)
         except Exception as e:
             raise e
 
