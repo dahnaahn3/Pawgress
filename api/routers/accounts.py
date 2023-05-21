@@ -16,6 +16,7 @@ from pydantic import BaseModel, ValidationError
 from queries.accounts import (
     AccountIn,
     AccountOut,
+    AccountOutWithPassword,
     UserInWithoutPassword,
     UserOut,
     AccountQueries,
@@ -126,8 +127,7 @@ def update_user(
     repo: AccountQueries = Depends(),
 ):
     try:
-        print("I AM WORKING")
-        result = repo.update(user_id, user)
+        result = repo.update_details(user_id, user)
         if result:
             return result
         else:
@@ -135,7 +135,30 @@ def update_user(
             return {"message": "user does not exist"}
     except Exception:
         response.status_code = 400
-        return {"message": "updating user was unsuccessful"}
+        return {"message": "updating user details was unsuccessful"}
+
+
+@router.put(
+    "/api/accounts/{user_id}/password", response_model=Union[str, Error]
+)
+def update_user_password(
+    user_id: int,
+    password: str,
+    response: Response,
+    repo: AccountQueries = Depends(),
+):
+    try:
+        hashed_password = authenticator.hash_password(password)
+        result = repo.update_password(user_id, hashed_password)
+
+        if result:
+            return result
+        else:
+            response.status_code = 404
+            return {"message": "user does not exist"}
+    except Exception:
+        response.status_code = 400
+        return {"message": "updating user password was unsuccessful"}
 
 
 @router.delete("/accounts/{user_id}")

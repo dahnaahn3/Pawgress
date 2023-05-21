@@ -185,7 +185,9 @@ class AccountQueries:
         except Exception as e:
             raise e
 
-    def update(self, user_id: int, user: AccountIn) -> Union[UserOut, Error]:
+    def update_details(
+        self, user_id: int, user: AccountIn
+    ) -> Union[UserOut, Error]:
         try:
             print("I AM TRYING TO UPDATE")
             with pool.connection() as conn:
@@ -210,6 +212,28 @@ class AccountQueries:
                         ],
                     )
                     return self.user_in_and_out(user_id, user)
+        except Exception as e:
+            print(e)
+            raise e
+
+    def update_password(self, user_id: int, hashed_password: str) -> str:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        UPDATE users
+                        SET hashed_password = %s
+
+                        WHERE id = %s
+                        """,
+                        [
+                            hashed_password,
+                            user_id,
+                        ],
+                    )
+                    success = "This was successful"
+                    return success
         except Exception as e:
             print(e)
             raise e
