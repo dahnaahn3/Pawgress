@@ -14,6 +14,14 @@ class AccountIn(BaseModel):
     password: str
 
 
+class UserInWithoutPassword(BaseModel):
+    first_name: str
+    last_name: str
+    address: str
+    email: str
+    phone_number: str
+
+
 class AccountOut(BaseModel):
     id: str
     email: str
@@ -175,6 +183,37 @@ class AccountQueries:
                     result = db.fetchone()
                     return self.record_to_user_out(result)
         except Exception as e:
+            raise e
+
+    def update(self, user_id: int, user: AccountIn) -> Union[UserOut, Error]:
+        try:
+            print("I AM TRYING TO UPDATE")
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        UPDATE users
+                        SET first_name = %s
+                        , last_name = %s
+                        , address = %s
+                        , email = %s
+                        , phone_number = %s
+                        , hashed_password = %s
+                        WHERE id = %s
+                        """,
+                        [
+                            user.first_name,
+                            user.last_name,
+                            user.address,
+                            user.email,
+                            user.phone_number,
+                            user.password,
+                            user_id,
+                        ],
+                    )
+                    return self.user_in_and_out(user_id, user)
+        except Exception as e:
+            print(e)
             raise e
 
     def delete(self, user_id: int) -> str:

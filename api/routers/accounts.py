@@ -16,6 +16,7 @@ from pydantic import BaseModel, ValidationError
 from queries.accounts import (
     AccountIn,
     AccountOut,
+    UserInWithoutPassword,
     UserOut,
     AccountQueries,
     DuplicateAccountError,
@@ -115,6 +116,26 @@ def get_one_user(
         return {
             "message": "error occurred when trying to retrieve user details"
         }
+
+
+@router.put("/api/accounts/{user_id}", response_model=Union[UserOut, Error])
+def update_user(
+    user_id: int,
+    user: AccountIn,
+    response: Response,
+    repo: AccountQueries = Depends(),
+):
+    try:
+        print("I AM WORKING")
+        result = repo.update(user_id, user)
+        if result:
+            return result
+        else:
+            response.status_code = 404
+            return {"message": "user does not exist"}
+    except Exception:
+        response.status_code = 400
+        return {"message": "updating user was unsuccessful"}
 
 
 @router.delete("/accounts/{user_id}")
