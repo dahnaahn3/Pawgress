@@ -198,7 +198,6 @@ class AccountQueries:
                         , address = %s
                         , email = %s
                         , phone_number = %s
-                        , hashed_password = %s
                         WHERE id = %s
                         """,
                         [
@@ -207,7 +206,6 @@ class AccountQueries:
                             user.address,
                             user.email,
                             user.phone_number,
-                            user.password,
                             user_id,
                         ],
                     )

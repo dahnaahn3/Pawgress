@@ -121,7 +121,7 @@ def get_one_user(
 @router.put("/api/accounts/{user_id}", response_model=Union[UserOut, Error])
 def update_user(
     user_id: int,
-    user: AccountIn,
+    user: UserInWithoutPassword,
     response: Response,
     repo: AccountQueries = Depends(),
 ):
