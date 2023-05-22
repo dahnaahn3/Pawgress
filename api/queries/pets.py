@@ -17,7 +17,7 @@ class PetIn(BaseModel):
 
 
 class PetOut(BaseModel):
-    id: int
+    pet_id: int
     name: str
     breed: str
     gender: str
@@ -49,7 +49,7 @@ class PetQueries:
                             )
                         VALUES
                             (%s, %s, %s, %s, %s, %s, %s, %s)
-                        RETURNING id;
+                        RETURNING pet_id;
                         """,
                         [
                             pets.name,
@@ -83,6 +83,6 @@ class PetQueries:
         }
         return pet_dict
 
-    def pet_in_to_out(self, id: int, pet: PetIn):
+    def pet_in_to_out(self, pet_id: int, pet: PetIn):
         data = pet.dict()
-        return PetOut(id=id, **data)
+        return PetOut(pet_id=pet_id, **data)
