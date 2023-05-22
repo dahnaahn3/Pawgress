@@ -85,11 +85,8 @@ steps = [
     [
         """
         CREATE TABLE pet_reservations (
-            reservation_id SERIAL NOT NULL,
-            pet_id SERIAL NOT NULL,
-            PRIMARY KEY(reservation_id, pet_id),
-            FOREIGN KEY (reservation_id) REFERENCES reservations(reservation_id),
-            FOREIGN KEY (pet_id) REFERENCES pets(pet_id)
+            reservation_id SMALLINT REFERENCES reservations(reservation_id),
+            pet_id SMALLINT REFERENCES pets(pet_id)
         );
         """,
         """
