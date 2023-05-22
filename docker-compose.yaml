@@ -44,4 +44,4 @@ services:
       DATABASE_URL: postgresql://pawgress:pawgress@db/pawgress
       WAIT_HOST: db:5432
       WAIT_TIMEOUT: 600
-      WAIT_BEFORE_HOSTS: 20
+      WAIT_BEFORE: 20

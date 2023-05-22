@@ -70,7 +70,10 @@ steps = [
         CREATE TABLE reservations (
             reservation_id SERIAL PRIMARY KEY NOT NULL,
             start_datetime TIMESTAMP NOT NULL,
-            end_datetime TIMESTAMP NOT NULL
+            end_datetime TIMESTAMP NOT NULL,
+            category VARCHAR(50) NOT NULL,
+            customer_id SMALLINT NOT NULL,
+            FOREIGN KEY (customer_id) REFERENCES users(id)
         );
         """,
         """
