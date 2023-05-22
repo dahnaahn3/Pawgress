@@ -10,6 +10,7 @@ class ReservationIn(BaseModel):
     end_datetime: datetime
     category: str
     customer_id: int
+    pet_id: int
 
 
 class ReservationOut(BaseModel):
@@ -18,6 +19,7 @@ class ReservationOut(BaseModel):
     end_datetime: datetime
     category: str
     customer_id: int
+    pet_id: int
 
 
 class ReservationQueries:
@@ -48,8 +50,24 @@ class ReservationQueries:
                         ],
                     )
                     id = result.fetchone()[0]
+                    result = db.execute(
+                        """
+                        INSERT INTO pet_reservations
+                            (
+                            reservation_id,
+                            pet_id
+                            )
+                        VALUES
+                            (%s, %s);
+                        """,
+                        [
+                            reservation.customer_id,
+                            reservation.pet_id,
+                        ],
+                    )
                     return self.reservation_in_to_out(id, reservation)
         except Exception as e:
+            print(e)
             raise e
 
     def list_reservations(self) -> Union[List[ReservationOut], Error]:
