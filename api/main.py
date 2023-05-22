@@ -10,7 +10,6 @@ app.include_router(accounts.router)
 app.include_router(pets.router)
 app.include_router(classes.router)
 app.include_router(rooms.router)
-
 app.include_router(reservations.router)
 
 app.add_middleware(
