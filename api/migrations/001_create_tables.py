@@ -39,9 +39,11 @@ steps = [
     [
         """
         CREATE TABLE rooms (
-            id SERIAL PRIMARY KEY NOT NULL,
+            room_id SERIAL PRIMARY KEY NOT NULL,
             room_number VARCHAR(10) NOT NULL,
-            occupied BOOL DEFAULT 'f'
+            occupied BOOL DEFAULT 'f',
+            pet_id SMALLINT NOT NULL,
+            FOREIGN KEY (pet_id) REFERENCES pets(id)
         );
         """,
         """

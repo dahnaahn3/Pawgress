@@ -60,8 +60,6 @@ class AccountQueries:
         self, users: AccountIn, hashed_password: str
     ) -> AccountOutWithPassword:
         try:
-            print("USER", users)
-            print("HASHED", hashed_password)
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     result = db.execute(
@@ -95,9 +93,7 @@ class AccountQueries:
                             hashed_password,
                         ],
                     )
-                    print("insert worked????")
                     id = result.fetchone()[0]
-                    print("ID GOTTEN", id)
                     return AccountOutWithPassword(
                         id=id,
                         email=users.email,
@@ -113,8 +109,6 @@ class AccountQueries:
 
     def get(self, email: str) -> AccountOutWithPassword:
         try:
-            print("is trying get somehow?")
-            print("email", email)
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     result = db.execute(
@@ -129,7 +123,7 @@ class AccountQueries:
                         [email],
                     )
                     record = result.fetchone()
-                    print("record found", record)
+
                     if record is None:
                         return None
                     return self.record_to_account_out(record)
