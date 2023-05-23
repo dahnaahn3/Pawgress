@@ -77,12 +77,15 @@ class ReservationQueries:
                     reservations = db.execute(
                         """
                         SELECT
-                            reservation_id,
-                            start_datetime,
-                            end_datetime,
-                            category,
-                            customer_id
+                            reservations.reservation_id,
+                            reservations.start_datetime,
+                            reservations.end_datetime,
+                            reservations.category,
+                            reservations.customer_id,
+                            pet_reservations.pet_id
                         FROM reservations
+                        INNER JOIN pet_reservations
+                        ON reservations.reservation_id = pet_reservations.reservation_id
                         ORDER BY start_datetime;
                         """
                     )
