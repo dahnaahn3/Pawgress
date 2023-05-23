@@ -43,7 +43,7 @@ steps = [
             room_number VARCHAR(10) NOT NULL,
             occupied BOOL DEFAULT 'f',
             pet_id SMALLINT NOT NULL,
-            FOREIGN KEY (pet_id) REFERENCES pets(id)
+            FOREIGN KEY (pet_id) REFERENCES pets(pet_id)
         );
         """,
         """
