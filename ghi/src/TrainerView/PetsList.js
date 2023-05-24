@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
 function PetsList() {
       const [pets, setPets] = useState([]);
@@ -17,7 +18,10 @@ function PetsList() {
         fetchData();
       }, []);
       return (
-        <div className="overflow-x-auto" style={{ paddingLeft: "20rem", marginTop: "-50rem"}}>
+        <div
+          className="overflow-x-auto"
+          style={{ paddingLeft: "20rem", marginTop: "-50rem" }}
+        >
           <header class="px-5 py-4 border-b border-gray-100">
             <h2 class="font-semibold text-gray-800">
               Our friends with four legs 🐾
@@ -42,9 +46,18 @@ function PetsList() {
                 return pets.map((pet) => {
                   if (user.id === pet.owner_id) {
                     let owner = `${user.first_name} ${user.last_name}`;
+
                     return (
                       <tr key={pet.id}>
-                        <td className="px-3 py-2">{pet.name}</td>
+                        <td
+                          style={{ textDecoration: "underline" }}
+                          className="px-3 py-2"
+                        >
+                          <NavLink to={`${pet.pet_id}`} key={pet.pet_id}>
+                            {pet.name}
+                          </NavLink>
+                        </td>
+
                         <td className="px-3 py-2">{pet.breed}</td>
                         <td className="px-3 py-2">{pet.gender}</td>
                         <td className="px-3 py-2">{pet.age}</td>
@@ -67,6 +80,7 @@ function PetsList() {
               })}
             </tbody>
           </table>
+          <Outlet />
         </div>
       );
 }

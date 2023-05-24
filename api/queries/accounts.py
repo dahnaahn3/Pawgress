@@ -27,7 +27,6 @@ class UserInWithoutPassword(BaseModel):
 class AccountOut(BaseModel):
     id: str
     email: str
-    password: str
     first_name: str
     last_name: str
     role: str
@@ -53,12 +52,15 @@ class UserOut(BaseModel):
 
 class AccountQueries:
     def record_to_account_out(self, record) -> AccountOutWithPassword:
-        account_dict = {
-            "user_id": record[0],
-            "email": record[1],
-            "hashed_password": record[2],
-        }
-        return account_dict
+        account = AccountOutWithPassword(
+            id=record[0],
+            first_name=record[1],
+            last_name=record[2],
+            email=record[3],
+            role=record[4],
+            hashed_password=record[5],
+        )
+        return account
 
     def create(
         self, users: AccountIn, hashed_password: str
@@ -81,14 +83,7 @@ class AccountQueries:
                         VALUES
                             (%s, %s, %s, %s, %s, %s, %s)
                         RETURNING
-                        id,
-                        first_name,
-                        last_name,
-                        address,
-                        email,
-                        phone_number,
-                        role,
-                        hashed_password
+                        id;
                         """,
                         [
                             users.first_name,
@@ -104,7 +99,6 @@ class AccountQueries:
                     return AccountOutWithPassword(
                         id=id,
                         email=users.email,
-                        password=users.password,
                         first_name=users.first_name,
                         last_name=users.last_name,
                         role=users.role,
@@ -123,7 +117,10 @@ class AccountQueries:
                         """
                         SELECT
                         id,
+                        first_name,
+                        last_name,
                         email,
+                        role,
                         hashed_password
                         FROM users
                         WHERE email = %s
@@ -146,7 +143,7 @@ class AccountQueries:
             "address": record[3],
             "email": record[4],
             "phone_number": record[5],
-            "role": record[6]
+            "role": record[6],
         }
 
     def user_in_and_out(self, user_id: int, user: AccountIn):

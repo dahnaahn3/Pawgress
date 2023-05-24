@@ -61,7 +61,7 @@ class ReservationQueries:
                             (%s, %s);
                         """,
                         [
-                            reservation.customer_id,
+                            id,
                             reservation.pet_id,
                         ],
                     )
@@ -74,24 +74,29 @@ class ReservationQueries:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
-                    reservations = db.execute(
+                    db.execute(
                         """
                         SELECT
-                            reservation_id,
-                            start_datetime,
-                            end_datetime,
-                            category,
-                            customer_id
+                            reservations.reservation_id,
+                            reservations.start_datetime,
+                            reservations.end_datetime,
+                            reservations.category,
+                            reservations.customer_id,
+                            pet_reservations.pet_id
                         FROM reservations
+                        INNER JOIN pet_reservations
+                        ON reservations.reservation_id = pet_reservations.reservation_id
                         ORDER BY start_datetime;
                         """
                     )
-                    # reservations = db.fetchall()
+                    reservations = db.fetchall()
+                    print(reservations)
                     return [
                         self.reservation_to_reservation_out(reservation)
                         for reservation in reservations
                     ]
         except Exception as e:
+            print("Error!!!", e)
             raise e
 
     def reservation_in_to_out(
@@ -107,4 +112,5 @@ class ReservationQueries:
             end_datetime=reservation[2],
             category=reservation[3],
             customer_id=reservation[4],
+            pet_id=reservation[5],
         )
