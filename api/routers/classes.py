@@ -12,7 +12,7 @@ from fastapi import (
 router = APIRouter()
 
 
-@router.post("/classes", response_model=Union[ClassOut, Error])
+@router.post("/api/classes", response_model=Union[ClassOut, Error])
 def create_class(
     classes: ClassIn,
     response: Response,
@@ -25,7 +25,7 @@ def create_class(
         return {"message": "could not create class"}
     return result
 
-@router.get("/classes", response_model=Union[List[ClassOut], Error])
+@router.get("/api/classes", response_model=Union[List[ClassOut], Error])
 def get_all_classes(
     response: Response,
     repo: ClassQueries = Depends(),
@@ -41,7 +41,7 @@ def get_all_classes(
         response.status_code = 400
         return {"message": "Error occurred while retrieving classes"}
 
-@router.get("/classes/{class_id}", response_model=Union[ClassOut, Error])
+@router.get("/api/classes/{class_id}", response_model=Union[ClassOut, Error])
 def get_one_class(
     class_id: int,
     response: Response,
@@ -58,7 +58,7 @@ def get_one_class(
         response.status_code = 400
         return {"message" "error occured when trying to retrieve class details"}
 
-@router.put("/classes/{class_id}", response_model=Union[ClassOut, Error])
+@router.put("/api/classes/{class_id}", response_model=Union[ClassOut, Error])
 def update_class(
     class_id: int,
     classes: ClassIn,
@@ -76,7 +76,7 @@ def update_class(
         response.status_code = 400
         return {"message": "updating class unsuccessful"}
 
-@router.delete("/classes/{class_id}")
+@router.delete("/api/classes/{class_id}")
 def delete_class(
     class_id: int,
     response: Response,

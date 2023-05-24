@@ -5,7 +5,7 @@ function TrainingClass() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = "http://localhost:8000/classes";
+      const url = "http://localhost:8000/api/classes";
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
