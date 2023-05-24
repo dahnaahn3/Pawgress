@@ -1,0 +1,33 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+.form-container {
+    @apply flex items-center justify-center p-12
+}
+
+.secondary-container {
+    @apply mx-auto w-full max-w-[550px]
+}
+
+.form-wrap {
+    @apply -mx-3 flex flex-wrap
+}
+
+.form-input-container {
+    @apply w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base
+    font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md;
+}
+
+.label-container {
+    @apply w-full px-3 sm:w-1/2;
+}
+
+.label-css {
+    @apply mb-3 block text-base font-medium text-[#07074D];
+}
+
+.submit-button {
+    @apply rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none;
+}
