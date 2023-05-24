@@ -13,6 +13,7 @@ import TrainingClass from "./TrainerView/TrainingClass";
 import TrainerList from "./TrainerView/TrainerList";
 import TrainingBoardingHistory from "./TrainerView/TrainingBoardingHistory";
 
+
 function App() {
   const { token, logout } = useToken();
   const { user } = useUser(token);

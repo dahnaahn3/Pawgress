@@ -2,15 +2,15 @@ from pydantic import BaseModel
 from .pool import pool
 from .common import Error
 from typing import Union, Optional, List
-from datetime import date
+from datetime import datetime
 
 
 class ClassIn(BaseModel):
     name: str
     category: str
     max_attendees: int
-    start_datetime: date
-    end_datetime: date
+    start_datetime: datetime
+    end_datetime: datetime
     description: str
 
 
@@ -20,8 +20,8 @@ class ClassOut(BaseModel):
     category: str
     attendees: Optional[int]
     max_attendees: int
-    start_datetime: date
-    end_datetime: date
+    start_datetime: datetime
+    end_datetime: datetime
     description: str
 
 

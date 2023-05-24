@@ -1,5 +1,11 @@
 function Mainpage() {
-  return <p> this is where the main page goes</p>;
+  return (
+    <>
+      <div>
+        <p> this is where the main page goes</p>
+      </div>
+    </>
+  );
 }
 
 export default Mainpage;
