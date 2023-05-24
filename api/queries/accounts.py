@@ -25,7 +25,6 @@ class UserInWithoutPassword(BaseModel):
 class AccountOut(BaseModel):
     id: str
     email: str
-    password: str
     first_name: str
     last_name: str
 
@@ -49,12 +48,14 @@ class UserOut(BaseModel):
 
 class AccountQueries:
     def record_to_account_out(self, record) -> AccountOutWithPassword:
-        account_dict = {
-            "user_id": record[0],
-            "email": record[1],
-            "hashed_password": record[2],
-        }
-        return account_dict
+        account = AccountOutWithPassword(
+            id=record[0],
+            first_name=record[1],
+            last_name=record[2],
+            email=record[3],
+            hashed_password=record[4],
+        )
+        return account
 
     def create(
         self, users: AccountIn, hashed_password: str
@@ -76,13 +77,7 @@ class AccountQueries:
                         VALUES
                             (%s, %s, %s, %s, %s, %s)
                         RETURNING
-                        id,
-                        first_name,
-                        last_name,
-                        address,
-                        email,
-                        phone_number,
-                        hashed_password
+                        id;
                         """,
                         [
                             users.first_name,
@@ -97,7 +92,6 @@ class AccountQueries:
                     return AccountOutWithPassword(
                         id=id,
                         email=users.email,
-                        password=users.password,
                         first_name=users.first_name,
                         last_name=users.last_name,
                         hashed_password=hashed_password,
@@ -115,6 +109,8 @@ class AccountQueries:
                         """
                         SELECT
                         id,
+                        first_name,
+                        last_name,
                         email,
                         hashed_password
                         FROM users
