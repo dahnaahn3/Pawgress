@@ -22,7 +22,23 @@ My Ah-Ha moment was we had to use an if statement with one of our status code me
 [Today, I worked on:
 - The team took on individual endpoints, solo work today
 - Completed POST, PUT, GET, DELETE API end points for the rooms table
-- Completed the GET, PUT, DELETE API end points for the pet table 
+- Completed the GET, PUT, DELETE API end points for the pet table
 
 Ah ha moment: making sure to double check over capital vs lower letters
+]
+
+## May 22 2023
+[Today, I worked on:
+- Creating table views of the Pets and Rooms
+- Pulling data from API endpoints
+
+Ah ha moment: Using the Promise.all to pull from multiple API endpoints
+]
+
+## May 23 2023
+[Today, I worked on:
+- Creating all the pages for the trainer view
+- Creating all the tables needed and specific pet detail view
+
+Ah ha moment: Using templates for all tables and detailed views
 ]

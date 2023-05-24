@@ -95,6 +95,7 @@ class ReservationQueries:
                         for reservation in reservations
                     ]
         except Exception as e:
+            print("Error!!!", e)
             raise e
 
     def reservation_in_to_out(
@@ -110,4 +111,5 @@ class ReservationQueries:
             end_datetime=reservation[2],
             category=reservation[3],
             customer_id=reservation[4],
+            pet_id=reservation[5]
         )
