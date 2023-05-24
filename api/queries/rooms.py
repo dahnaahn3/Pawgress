@@ -7,13 +7,13 @@ from queries.common import Error
 class RoomIn(BaseModel):
     room_number: str
     occupied: bool
-    pet_id: int
+    pet_id: Optional[int]
 
 class RoomOut(BaseModel):
     room_id: int
     room_number: str
     occupied: bool
-    pet_id: int
+    pet_id: Optional[int]
 
 class RoomQueries:
     def create_room(self, room: RoomIn) -> Union[RoomOut, Error]:
