@@ -41,7 +41,7 @@ function ClassForm () {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data ={};
+        const data = {};
         data.name = name;
         data.category = category;
         data.attendees = attendees;
@@ -49,7 +49,7 @@ function ClassForm () {
         data.start_datetime = start;
         data.end_datetime = end;
         data.description = description;
-        console.log(start)
+
         const classUrl = 'http://localhost:8000/api/classes'
         const fetchConfig = {
             method: "post",
@@ -113,7 +113,6 @@ function ClassForm () {
             </div>
         </div>
     );
-
-}
+};
 
 export default ClassForm;

@@ -12,7 +12,9 @@ import PetsList from "./TrainerView/PetsList";
 import TrainingClass from "./TrainerView/TrainingClass";
 import TrainerList from "./TrainerView/TrainerList";
 import TrainingBoardingHistory from "./TrainerView/TrainingBoardingHistory";
+import BoardingForm from "./CustomerView/BoardingForm";
 
+import PetDetail from "./TrainerView/PetDetail";
 
 function App() {
   const { token, logout } = useToken();
@@ -32,6 +34,10 @@ function App() {
       )}
 
       <Routes>
+        <Route path="/customers" element={<CustomerHome />} />
+        <Route path="reservation/" element={<BoardingForm />} />
+        <Route path="/signup" element={<Auth />} />
+        <Route path="/signin" element={<Auth />} />
         <Route path="/" element={<Mainpage />} />
         <Route path="/customers" element={<CustomerHome />} />
         <Route path="/signup" element={<Auth />} />
@@ -39,6 +45,7 @@ function App() {
         <Route path="trainer/" element={<TrainerHome />}>
           <Route path="rooms/" element={<RoomsList />} />
           <Route path="pets/" element={<PetsList />} />
+          <Route path="pets/:pet_id/" element={<PetDetail />} />
           <Route path="training/" element={<TrainingClass />} />
           <Route path="trainers/" element={<TrainerList />} />
           <Route path="history/" element={<TrainingBoardingHistory />} />
