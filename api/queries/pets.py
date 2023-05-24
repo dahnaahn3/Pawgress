@@ -74,7 +74,7 @@ class PetQueries:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT id, name, breed, gender, age, picture, size, weight, diet, owner_id
+                        SELECT pet_id, name, breed, gender, age, picture, size, weight, diet, owner_id
                         FROM pets
                         ORDER BY name;
                         """
@@ -92,9 +92,9 @@ class PetQueries:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT id, name, breed, gender, age, picture, size, weight, diet, owner_id
+                        SELECT pet_id, name, breed, gender, age, picture, size, weight, diet, owner_id
                         FROM pets
-                        WHERE id = %s
+                        WHERE pet_id = %s
                         """,
                         [pet_id]
                     )
@@ -112,7 +112,7 @@ class PetQueries:
                     db.execute(
                         """
                         DELETE FROM pets
-                        WHERE id = %s
+                        WHERE pet_id = %s
                         """,
                         [pet_id]
                     )
@@ -136,7 +136,7 @@ class PetQueries:
                         weight = %s,
                         diet = %s,
                         owner_id = %s
-                        WHERE id = %s
+                        WHERE pet_id = %s
                         """,
                         [
                             pet.name,
@@ -157,7 +157,7 @@ class PetQueries:
 
     def record_to_pet_out(self, record) -> PetOut:
         pet_dict = {
-            "id": record[0],
+            "pet_id": record[0],
             "name": record[1],
             "breed": record[2],
             "gender": record[3],

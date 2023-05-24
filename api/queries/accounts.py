@@ -11,6 +11,7 @@ class AccountIn(BaseModel):
     address: str
     email: str
     phone_number: str
+    role: str
     password: str
 
 
@@ -20,6 +21,7 @@ class UserInWithoutPassword(BaseModel):
     address: str
     email: str
     phone_number: str
+    role: str
 
 
 class AccountOut(BaseModel):
@@ -28,6 +30,7 @@ class AccountOut(BaseModel):
     password: str
     first_name: str
     last_name: str
+    role: str
 
 
 class AccountOutWithPassword(AccountOut):
@@ -45,6 +48,7 @@ class UserOut(BaseModel):
     address: str
     email: str
     phone_number: str
+    role: str
 
 
 class AccountQueries:
@@ -71,10 +75,11 @@ class AccountQueries:
                             address,
                             email,
                             phone_number,
+                            role,
                             hashed_password
                             )
                         VALUES
-                            (%s, %s, %s, %s, %s, %s)
+                            (%s, %s, %s, %s, %s, %s, %s)
                         RETURNING
                         id,
                         first_name,
@@ -82,6 +87,7 @@ class AccountQueries:
                         address,
                         email,
                         phone_number,
+                        role,
                         hashed_password
                         """,
                         [
@@ -90,6 +96,7 @@ class AccountQueries:
                             users.address,
                             users.email,
                             users.phone_number,
+                            users.role,
                             hashed_password,
                         ],
                     )
@@ -100,6 +107,7 @@ class AccountQueries:
                         password=users.password,
                         first_name=users.first_name,
                         last_name=users.last_name,
+                        role=users.role,
                         hashed_password=hashed_password,
                     )
         except Exception as e:
@@ -138,6 +146,7 @@ class AccountQueries:
             "address": record[3],
             "email": record[4],
             "phone_number": record[5],
+            "role": record[6]
         }
 
     def user_in_and_out(self, user_id: int, user: AccountIn):
@@ -150,7 +159,7 @@ class AccountQueries:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, first_name, last_name, address, email, phone_number
+                        SELECT id, first_name, last_name, address, email, phone_number, role
                         FROM users
                         ORDER BY last_name;
                         """
@@ -168,7 +177,7 @@ class AccountQueries:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, first_name, last_name, address, email, phone_number
+                        SELECT id, first_name, last_name, address, email, phone_number, role
                         FROM users
                         WHERE id = %s
                         """,
@@ -202,6 +211,7 @@ class AccountQueries:
                             user.address,
                             user.email,
                             user.phone_number,
+                            user.role,
                             user_id,
                         ],
                     )
