@@ -1,19 +1,23 @@
-import { Routes, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import Auth from "./Auth";
 import "./App.css";
 import useUser from "./useUser";
 
-import TrainerHome from "./Trainer/TrainerHome.js";
-import CustomerHome from "./Customer/CustomerHome.js";
+import TrainerHome from "./TrainerView/TrainerHome";
+import CustomerHome from "./CustomerView/CustomerHome";
+import RoomsList from "./TrainerView/RoomsList";
+import Mainpage from "./MainPageView/Mainpage";
+import PetsList from "./TrainerView/PetsList";
+import TrainingClass from "./TrainerView/TrainingClass";
+import TrainerList from "./TrainerView/TrainerList";
+import TrainingBoardingHistory from "./TrainerView/TrainingBoardingHistory";
 
 function App() {
   const { token, logout } = useToken();
   const { user } = useUser(token);
   return (
     <div className="flex">
-      {/* <TrainerHome /> */}
-
       {user ? (
         <>
           hi {user.first_name}
@@ -25,11 +29,19 @@ function App() {
           <NavLink to="/signup">sign up</NavLink>
         </>
       )}
+
       <Routes>
-        <Route path="/" element={<CustomerHome />} />
+        <Route path="/" element={<Mainpage />} />
         <Route path="/customers" element={<CustomerHome />} />
         <Route path="/signup" element={<Auth />} />
         <Route path="/signin" element={<Auth />} />
+        <Route path="trainer/" element={<TrainerHome />}>
+          <Route path="rooms/" element={<RoomsList />} />
+          <Route path="pets/" element={<PetsList />} />
+          <Route path="training/" element={<TrainingClass />} />
+          <Route path="trainers/" element={<TrainerList />} />
+          <Route path="history/" element={<TrainingBoardingHistory />} />
+        </Route>
       </Routes>
     </div>
   );
