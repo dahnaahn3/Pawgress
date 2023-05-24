@@ -61,7 +61,7 @@ class ReservationQueries:
                             (%s, %s);
                         """,
                         [
-                            reservation.customer_id,
+                            id,
                             reservation.pet_id,
                         ],
                     )
@@ -74,7 +74,7 @@ class ReservationQueries:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
-                    reservations = db.execute(
+                    db.execute(
                         """
                         SELECT
                             reservations.reservation_id,
@@ -89,7 +89,8 @@ class ReservationQueries:
                         ORDER BY start_datetime;
                         """
                     )
-                    # reservations = db.fetchall()
+                    reservations = db.fetchall()
+                    print(reservations)
                     return [
                         self.reservation_to_reservation_out(reservation)
                         for reservation in reservations
@@ -111,5 +112,5 @@ class ReservationQueries:
             end_datetime=reservation[2],
             category=reservation[3],
             customer_id=reservation[4],
-            pet_id=reservation[5]
+            pet_id=reservation[5],
         )
