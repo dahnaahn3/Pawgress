@@ -28,7 +28,7 @@ function Auth() {
     if (isSignIn) {
       login(formData.username, formData.password);
     } else {
-      register(formData, `${process.env.REACT_APP_API_HOST}/api/users`);
+      register(formData, `${process.env.REACT_APP_API_HOST}/api/accounts`);
     }
   };
 
