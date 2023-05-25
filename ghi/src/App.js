@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route, NavLink } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import Auth from "./Auth";
 import "./App.css";
@@ -13,6 +13,10 @@ import TrainingClass from "./TrainerView/TrainingClass";
 import TrainerList from "./TrainerView/TrainerList";
 import TrainingBoardingHistory from "./TrainerView/TrainingBoardingHistory";
 import BoardingForm from "./CustomerView/BoardingForm";
+import CustomerProfile from "./CustomerView/CustomerProfile";
+import LandingPage from "./CustomerView/LandingPage";
+import PetProfile from "./CustomerView/PetProfile";
+import EditPet from "./CustomerView/EditPet";
 
 import PetDetail from "./TrainerView/PetDetail";
 
@@ -39,6 +43,15 @@ function App() {
         <Route path="/signup" element={<Auth />} />
         <Route path="/signin" element={<Auth />} />
         <Route path="/" element={<Mainpage />} />
+        <Route path="/customers" element={<CustomerHome />} />
+        <Route path="/customers/:user_id/" element={<LandingPage />} />
+        <Route
+          path="/customers/:user_id/profile"
+          element={<CustomerProfile />}
+        />
+        <Route path="/customers/:user_id/edit" element={<CustomerProfile />} />
+        <Route path="/customers/:user_id/:pet_id/" element={<PetProfile />} />
+        <Route path="/customers/:user_id/:pet_id/edit" element={<EditPet />} />
         <Route path="trainer/" element={<TrainerHome />}>
           <Route path="rooms/" element={<RoomsList />} />
           <Route path="pets/" element={<PetsList />} />

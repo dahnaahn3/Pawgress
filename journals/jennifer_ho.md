@@ -1,3 +1,20 @@
+## May 23, 2023
+
+[Today, I worked on:
+
+- Jesse and I worked through how to creating the front-
+  end auth
+
+We spent the whole day troubleshooting what could be wrong
+with the front-end that prevented the sign in functionality
+from working - we saw a multitude of errors from CORS to
+TypeErrors to Validation Errors... it ended up being a
+backend issue. Lesson to learn - if you have a validation
+error, it's likely related to the routers and the strict
+validation of pydantic models! Also, be aware that not all
+errors show you the source of the problem - be smart
+]
+
 ## May 22, 2023
 
 [Today, I worked on:
