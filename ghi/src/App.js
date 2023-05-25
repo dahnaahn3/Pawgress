@@ -42,9 +42,14 @@ function App() {
         <Route path="/signin" element={<Auth />} />
         <Route path="/" element={<Mainpage />} />
         <Route path="/customers" element={<CustomerHome />} />
-        <Route path="/customers/:user_id/home" element={<LandingPage />} />
-        <Route path="/customers/:user_id/profile" element={<CustomerProfile />} />
+        <Route path="/customers/:user_id/" element={<LandingPage />} />
+        <Route
+          path="/customers/:user_id/profile"
+          element={<CustomerProfile />}
+        />
         <Route path="/customers/:user_id/edit" element={<CustomerProfile />} />
+        <Route path="/customers/:pet_id/" />
+        <Route path="/customers/:pet_id/edit" />
         <Route path="trainer/" element={<TrainerHome />}>
           <Route path="rooms/" element={<RoomsList />} />
           <Route path="pets/" element={<PetsList />} />

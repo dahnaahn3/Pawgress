@@ -12,7 +12,6 @@ function formatDateTime(dateTime) {
 
 function LandingPage() {
   const [pet, setPets] = useState([]);
-  const [reservations, setReservations] = useState([]);
   const [boardings, setBoardings] = useState([]);
   const [trainings, setTrainings] = useState([]);
 
@@ -113,7 +112,7 @@ function LandingPage() {
               </tr>
             </thead>
             <tbody>
-              {boardings?.map((training) => {
+              {trainings?.map((training) => {
                 return (
                   <tr
                     class="border-b hover:bg-gray-50"

@@ -36,11 +36,7 @@ function CustomerProfileEdit() {
     fetchData();
   }, []);
 
-  return (
-    <div>
-      <p> Customer profile </p>
-    </div>
-  );
+  return <p>This page is working</p>;
 }
 
 export default CustomerProfileEdit;
