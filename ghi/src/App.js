@@ -13,12 +13,15 @@ import TrainingClass from "./TrainerView/TrainingClass";
 import TrainerList from "./TrainerView/TrainerList";
 import TrainingBoardingHistory from "./TrainerView/TrainingBoardingHistory";
 import BoardingForm from "./CustomerView/BoardingForm";
+import RoomForm from "./TrainerView/RoomForm";
 import CustomerProfile from "./CustomerView/CustomerProfile";
 import LandingPage from "./CustomerView/LandingPage";
 import PetProfile from "./CustomerView/PetProfile";
 import EditPet from "./CustomerView/EditPet";
-
+import SignupForm from './MainPageView/SignupForm';
 import PetDetail from "./TrainerView/PetDetail";
+import ClassForm from "./TrainerView/ClassForm";
+import PetForm from "./MainPageView/PetForm";
 
 function App() {
   const { token, logout } = useToken();
@@ -32,12 +35,14 @@ function App() {
         </>
       ) : (
         <>
-          <NavLink to="/signin">sign in</NavLink>
-          <NavLink to="/signup">sign up</NavLink>
+          {/* <NavLink to="/signin">sign in</NavLink>
+          <NavLink to="/signup">sign up</NavLink> */}
         </>
       )}
+      {/* <BrowserRouter> */}
 
       <Routes>
+        <Route path="/signup" element={<SignupForm />} />
         <Route path="/customers" element={<CustomerHome />} />
         <Route path="reservation/" element={<BoardingForm />} />
         <Route path="/signup" element={<Auth />} />
@@ -54,9 +59,12 @@ function App() {
         <Route path="/customers/:user_id/:pet_id/edit" element={<EditPet />} />
         <Route path="trainer/" element={<TrainerHome />}>
           <Route path="rooms/" element={<RoomsList />} />
+          <Route path="rooms/form" element={<RoomForm />} />
           <Route path="pets/" element={<PetsList />} />
+          <Route path="pets/form/" element={<PetForm/>} />
           <Route path="pets/:pet_id/" element={<PetDetail />} />
           <Route path="training/" element={<TrainingClass />} />
+          <Route path="training/form/" element={<ClassForm />} />
           <Route path="trainers/" element={<TrainerList />} />
           <Route path="history/" element={<TrainingBoardingHistory />} />
         </Route>

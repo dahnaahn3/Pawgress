@@ -23,11 +23,13 @@ function PetDetail() {
 
   let genderIcon;
   let gender=pets.gender
-  if (gender === "m") {
+  if (gender === "M") {
     genderIcon = "https://img.icons8.com/parakeet/48/male.png";
-  } else if (gender === "f") {
+  } else if (gender === "F") {
     genderIcon = "https://img.icons8.com/parakeet/48/female.png";
   }
+
+
 
     let owner = ""; // Initialize owner variable outside the loop
     users.map((user) => {
@@ -36,11 +38,20 @@ function PetDetail() {
       }
     });
 
+    // let photo;
+    // if(pets.picture !== null){
+    //   photo = pets.picture;
+    // }else{photo =
+    //   "https://t4.ftcdn.net/jpg/02/43/94/71/360_F_243947197_D6Hr9GQUCVhtsCKBLaPBHUL1HwyhOL4S.jpg";}
+
+
+
   return (
-    <div style={{ paddingLeft: "30rem", marginTop: "-50rem" }}>
+    <div style={{ paddingLeft: "20rem", marginTop: "-60rem" }}>
       <div className="min-h-screen flex justify-center items-center">
         <div className="max-w-xs container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
           <div>
+
             <Link to="/trainer/pets" >
               <span className="text-white text-xs font-bold rounded-lg bg-green-500 inline-block mt-4 ml-25 py-1.5 px-4 cursor-pointer">
                 Back to list
@@ -54,6 +65,7 @@ function PetDetail() {
               {pets.breed}
             </p>
           </div>
+
           <img className="w-full cursor-pointer" src={pets.picture} alt="" />
           <div className="flex p-4 justify-between">
             <div className="flex items-center space-x-2">
