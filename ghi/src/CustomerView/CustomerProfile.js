@@ -41,7 +41,7 @@ function CustomerProfile() {
   }, []);
 
   return (
-    <body class="w-full">
+    <div class="w-full">
       <div class="max-w-lg mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
         <img
           class="w-32 h-32 rounded-full mx-auto"
@@ -73,28 +73,67 @@ function CustomerProfile() {
             </div>
 
             <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none mt-3">
-              <p className="text-md text-gray-600">Pets</p>
+              <h3 class="text-lg font-semibold">Pets</h3>
               {pets.map((pet) => (
-                <a
-                  key={pet.id}
-                  href={`/customers/${user_id}/${pet.pet_id}`}
-                  className="flex items-center mt-2"
-                >
-                  <img
-                    className="w-8 h-8 rounded-full mr-2"
-                    src={pet.picture}
-                    alt="Pet"
-                  />
-                  <p className="text-base font-medium text-navy-700 dark:text-white">
-                    {pet.name}
-                  </p>
-                </a>
+                <div class="w-full mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
+                  <a
+                    href={`/customers/${user_id}/${pet.pet_id}`}
+                    className="flex items-center mt-2"
+                  >
+                    <img
+                      className="w-8 h-8 rounded-full mr-2"
+                      src={pet.picture}
+                      alt="Pet"
+                    />
+                    <p className="text-base font-medium text-navy-700 dark:text-white">
+                      {pet.name}
+                    </p>
+                  </a>
+                  <div className="mt-5">
+                    <div className="max-w-[700px] mx-auto mt-3">
+                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none">
+                        <p className="text-md text-gray-600">Breed</p>
+                        <p className="text-base font-medium text-navy-700">
+                          {pet.breed}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none mt-3">
+                        <p className="text-md text-gray-600">Gender</p>
+                        <p className="text-base font-medium text-navy-700">
+                          {pet.gender}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none mt-3">
+                        <p className="text-md text-gray-600">Age</p>
+                        <p className="text-base font-medium text-navy-700">
+                          {pet.age}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none mt-3">
+                        <p className="text-md text-gray-600">Size</p>
+                        <p className="text-base font-medium text-navy-700">
+                          {pet.size}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none mt-3">
+                        <p className="text-md text-gray-600">Weight</p>
+                        <p className="text-base font-medium text-navy-700">
+                          {pet.weight}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         </div>
       </div>
-    </body>
+    </div>
   );
 }
 
