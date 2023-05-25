@@ -13,15 +13,18 @@ import TrainingClass from "./TrainerView/TrainingClass";
 import TrainerList from "./TrainerView/TrainerList";
 import TrainingBoardingHistory from "./TrainerView/TrainingBoardingHistory";
 import BoardingForm from "./CustomerView/BoardingForm";
+import TrainingForm from "./CustomerView/TrainingForm";
+import PetDetail from "./TrainerView/PetDetail";
+import TrainingHistory from "./CustomerView/TrainingHistory";
 import RoomForm from "./TrainerView/RoomForm";
 import CustomerProfile from "./CustomerView/CustomerProfile";
 import LandingPage from "./CustomerView/LandingPage";
 import PetProfile from "./CustomerView/PetProfile";
 import EditPet from "./CustomerView/EditPet";
-import SignupForm from './MainPageView/SignupForm';
-import PetDetail from "./TrainerView/PetDetail";
+import SignupForm from "./MainPageView/SignupForm";
 import ClassForm from "./TrainerView/ClassForm";
 import PetForm from "./MainPageView/PetForm";
+import BoardingHistory from "./CustomerView/BoardingHistory";
 
 function App() {
   const { token, logout } = useToken();
@@ -44,7 +47,16 @@ function App() {
       <Routes>
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/customers" element={<CustomerHome />} />
-        <Route path="reservation/" element={<BoardingForm />} />
+        <Route path="customers/training/" element={<TrainingForm />} />
+        <Route path="customers/boarding/" element={<BoardingForm />} />
+        <Route
+          path="customers/training/history/"
+          element={<TrainingHistory />}
+        />
+        <Route
+          path="customers/boarding/history/"
+          element={<BoardingHistory />}
+        />
         <Route path="/signup" element={<Auth />} />
         <Route path="/signin" element={<Auth />} />
         <Route path="/" element={<Mainpage />} />
@@ -61,7 +73,7 @@ function App() {
           <Route path="rooms/" element={<RoomsList />} />
           <Route path="rooms/form" element={<RoomForm />} />
           <Route path="pets/" element={<PetsList />} />
-          <Route path="pets/form/" element={<PetForm/>} />
+          <Route path="pets/form/" element={<PetForm />} />
           <Route path="pets/:pet_id/" element={<PetDetail />} />
           <Route path="training/" element={<TrainingClass />} />
           <Route path="training/form/" element={<ClassForm />} />
