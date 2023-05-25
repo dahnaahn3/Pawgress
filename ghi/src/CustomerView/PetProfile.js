@@ -19,6 +19,7 @@ function PetProfile() {
 
     if (petResponse.ok) {
       const petData = await petResponse.json();
+      console.log(petData);
       setPet(petData);
     } else {
       console.log("Error fetching data");
@@ -37,6 +38,7 @@ function PetProfile() {
           src={pet.picture}
           alt="Profile picture"
         />
+        <div> </div>
         <h2 class="text-center text-2xl font-semibold mt-3">{pet.name}</h2>
         <div className="mt-5">
           <h3 className="text-xl font-semibold ml-3">Details</h3>

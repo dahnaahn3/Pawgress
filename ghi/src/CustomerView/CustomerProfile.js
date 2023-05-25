@@ -42,51 +42,55 @@ function CustomerProfile() {
   }, []);
 
   return (
-    <div class="w-full">
-      <div class="max-w-lg mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
+    <div className="w-full">
+      <div className="max-w-lg mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
         <img
-          class="w-32 h-32 rounded-full mx-auto"
+          className="w-32 h-32 rounded-full mx-auto"
           src="https://picsum.photos/200"
           alt="Profile picture"
         />
-        <h2 class="text-center text-2xl font-semibold mt-3">
+        <h2 className="text-center text-2xl font-semibold mt-3">
           {user.first_name} {user.last_name}
         </h2>
-        <p class="text-center text-gray-600 mt-1">Proud pet owner!</p>
-        <div class="mt-5">
-          <h3 class="text-xl font-semibold ml-3">Details</h3>
-          <div class="max-w-[700px] mx-auto mt-3">
-            <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-              <p class="text-md text-gray-600">Address</p>
-              <p class="text-base font-medium text-navy-700">{user.address}</p>
+        <p className="text-center text-gray-600 mt-1">Proud pet owner!</p>
+        <div className="mt-5">
+          <h3 className="text-xl font-semibold ml-3">Details</h3>
+          <div className="max-w-[700px] mx-auto mt-3">
+            <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+              <p className="text-md text-gray-600">Address</p>
+              <p className="text-base font-medium text-navy-700">
+                {user.address}
+              </p>
             </div>
 
-            <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none mt-3">
-              <p class="text-md text-gray-600">Email</p>
-              <p class="text-base font-medium text-navy-700">{user.email}</p>
+            <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none mt-3">
+              <p className="text-md text-gray-600">Email</p>
+              <p className="text-base font-medium text-navy-700">
+                {user.email}
+              </p>
             </div>
 
-            <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none mt-3">
-              <p class="text-md text-gray-600">Phone Number</p>
-              <p class="text-base font-medium text-navy-700">
+            <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none mt-3">
+              <p className="text-md text-gray-600">Phone Number</p>
+              <p className="text-base font-medium text-navy-700">
                 {user.phone_number}
               </p>
             </div>
 
             <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none mt-3">
-              <h3 class="text-lg font-semibold">Pets</h3>
+              <h3 className="text-lg font-semibold">Pets</h3>
               {pets.map((pet) => (
-                <div class="w-full mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
+                <div className="w-full mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
                   <a
                     href={`/customers/${user_id}/${pet.pet_id}`}
                     className="flex items-center mt-2"
                   >
                     <img
-                      className="w-8 h-8 rounded-full mr-2"
+                      className="w-20 h-20 rounded-full mr-2"
                       src={pet.picture}
                       alt="Pet"
                     />
-                    <p className="text-base font-medium text-navy-700 dark:text-white">
+                    <p className="text-center text-2xl font-semibold mt-3">
                       {pet.name}
                     </p>
                   </a>
