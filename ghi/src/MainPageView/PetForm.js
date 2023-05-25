@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 function PetForm () {
     const [name, setName] = useState('');
@@ -11,7 +12,7 @@ function PetForm () {
     const [diet, setDiet] = useState('');
     const [owner, setOwner] = useState('');
     const [owners, setOwners] = useState([]);
-
+    const navigation = useNavigate()
     const nameChange = (event) => {
         const valueName = event.target.value;
         setName(valueName);
@@ -94,7 +95,7 @@ function PetForm () {
             setDiet('');
             setOwner('');
             setOwners([]);
-
+            navigation('/trainer/pets')
             fetchData();
 
         }
@@ -113,7 +114,7 @@ function PetForm () {
     }, []);
 
     return (
-        <div className="form-container">
+        <div className="form-container" style={{marginTop: "-55rem"}}>
             <div className="secondary-container">
                 <form onSubmit={handleSubmit} id="create-user-form">
                 <div className="mb-5">

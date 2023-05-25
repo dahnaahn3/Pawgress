@@ -1,0 +1,15 @@
+.contactbutton{
+    background-color: #0b2c64;
+    color: #eef2fa;
+    border: none;
+    border-radius: 8px;
+    width: 100px;
+    height: 45px;
+    transition: .3s;
+  }
+
+  .contactbutton:hover {
+    background-color: #9fbbe7;
+    box-shadow: 0 0 0 5px #3b83f65f;
+    color: #fff;
+  }

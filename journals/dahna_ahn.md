@@ -42,3 +42,13 @@ Ah ha moment: Using the Promise.all to pull from multiple API endpoints
 
 Ah ha moment: Using templates for all tables and detailed views
 ]
+
+## May 24 2023
+[Today, I worked on:
+- Adding NavLinks to all the pages on trainers side
+- Adding a button that leads to forms on trainer side
+- Worked on the main page styling
+- Started research on how to make popups with Tailwind CSS
+
+Ah ha moment: The outlet tag should be used in parent route elements to render their child route elements.
+]
