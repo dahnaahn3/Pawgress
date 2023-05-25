@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 function PetForm () {
     const [name, setName] = useState('');
     const [breed, setBreed] = useState('');
-    const [gender, setGender] = useState('0');
+    const [gender, setGender] = useState('');
     const [age, setAge] = useState('');
     const [picture, setPicture] = useState('');
     const [size, setSize] = useState('');
@@ -61,7 +61,7 @@ function PetForm () {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data ={};
+        const data = {};
         data.name = name;
         data.breed = breed;
         data.gender = gender;
