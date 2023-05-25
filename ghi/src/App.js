@@ -15,7 +15,7 @@ import TrainingBoardingHistory from "./TrainerView/TrainingBoardingHistory";
 import BoardingForm from "./CustomerView/BoardingForm";
 import CustomerProfile from "./CustomerView/CustomerProfile";
 import LandingPage from "./CustomerView/LandingPage";
-import PetProfile from "./CustomerView/PetProfiles";
+import PetProfile from "./CustomerView/PetProfile";
 
 import PetDetail from "./TrainerView/PetDetail";
 
