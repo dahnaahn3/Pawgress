@@ -11,10 +11,6 @@ function RoomForm () {
         const valueRoom = event.target.value;
         setRoom(valueRoom);
     }
-    const occChange = (event) => {
-        const valueOcc = event.target.value;
-        setOccupancy(valueOcc);
-    }
 
     const petChange = (event) => {
         const valuePet = event.target.value;
@@ -42,7 +38,7 @@ function RoomForm () {
 
             setRoom('');
             setOccupancy(false);
-            setPet(null);
+            setPet(null)
             setPets([]);
 
             fetchData();
@@ -61,7 +57,7 @@ function RoomForm () {
     useEffect (() => {
         fetchData();
     }, []);
-
+    
     return (
         <div className="form-container">
             <div className="secondary-container">
@@ -71,11 +67,11 @@ function RoomForm () {
                     <input required onChange={roomChange} type="text" name="room_number" id="room_number" placeholder="Room Number" className="form-input-container" value={room}/>
                 </div>
                     <div className="mb-5">
-                        <select onChange={petChange} name="owner_id" id="owner_id" placeholder="Choose an owner" className="form-input-container" value={pet || ''}>
+                        <select onChange={petChange} name="pet_id" id="pet_id" placeholder="Choose a Pet" className="form-input-container" value={pet !== null ? pet : ''}>
                             <option value="">Optional</option>
                             {pets && pets.map((pet) => {
                                 return (
-                                    <option key={pet.id} value={pet.id}>
+                                    <option key={pet.pet_id} value={pet.pet_id}>
                                         {pet.name}
                                     </option>
                                 )
