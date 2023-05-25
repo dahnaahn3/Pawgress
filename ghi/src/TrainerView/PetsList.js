@@ -26,6 +26,11 @@ function PetsList() {
             <h2 class="font-semibold text-gray-800">
               Our friends with four legs 🐾
             </h2>
+            <NavLink to="./form">
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                Create a new pet
+              </button>
+            </NavLink>
           </header>
           <table class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
             <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">

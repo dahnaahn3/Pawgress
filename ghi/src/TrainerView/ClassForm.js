@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 function ClassForm () {
     const [name, setName] = useState('');
@@ -9,6 +10,7 @@ function ClassForm () {
     const [end, setEnd] = useState('');
     const [description, setDescription] = useState('');
 
+    const navigate = useNavigate()
     const nameChange = (event) => {
         const valueName = event.target.value;
         setName(valueName);
@@ -69,49 +71,119 @@ function ClassForm () {
             setStart('');
             setEnd('');
             setDescription('');
+            navigate('/trainer/training')
 
         }
     }
     return (
-        <div className="form-container">
-            <div className="secondary-container">
-                <form onSubmit={handleSubmit} id="create-user-form">
-                <div className="mb-5">
-                    <label htmlFor="name" className="label-css">Class Name</label>
-                    <input required onChange={nameChange} type="text" name="name" id="name" placeholder="Class Name" className="form-input-container" value={name}/>
-                </div>
-                <div className="form-wrap">
-                    <div className="label-container">
-                    <div className="mb-5">
-                        <label htmlFor="category" className="label-css">Category</label>
-                        <input required onChange={categoryChange} type="text" name="category" id="category" placeholder="...  ...  ..." className="form-input-container" value={category}/>
-                    </div>
-                    </div>
-                    <div className="label-container">
-                    <div className="mb-5">
-                        <label htmlFor="max_attendees" className="label-css">Max Attendees</label>
-                        <input required onChange={maxAttendeeChange} type="number" name="max_attendees" id="max_attendees" placeholder="Max Attendees" className="form-input-container" value={maxAttendees}/>
-                    </div>
-                    </div>
-                </div>
-                <div className="mb-5">
-                    <label htmlFor="start_datetime" className="label-css">Start Date/Time</label>
-                    <input required onChange={startChange} type="datetime-local" name="start_datetime" id="start_datetime" placeholder="datetiem" className="form-input-container" value={start}/>
-                </div>
-                <div className="mb-5">
-                    <label htmlFor="end_datetime" className="label-css">End Date/Time</label>
-                    <input required onChange={endChange} type="datetime-local" name="end_datetime" id="end_datetime" placeholder="datetime" className="form-input-container" value={end}/>
-                </div>
-                <div className="mb-5">
-                    <label htmlFor="description" className="label-css">Description</label>
-                    <input required onChange={descChange} type="text" name="description" id="description" placeholder="Treats are Great" className="form-input-container" value={description}/>
-                </div>
-                <div>
-                    <button className="submit-button">Submit</button>
-                </div>
-                </form>
+      <div
+        className="form-container"
+        style={{ paddingLeft: "20rem", marginTop: "-50rem" }}
+      >
+        <div className="secondary-container">
+          <form onSubmit={handleSubmit} id="create-user-form">
+            <div className="mb-5">
+              <label htmlFor="name" className="label-css">
+                Class Name
+              </label>
+              <input
+                required
+                onChange={nameChange}
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Class Name"
+                className="form-input-container"
+                value={name}
+              />
             </div>
+            <div className="form-wrap">
+              <div className="label-container">
+                <div className="mb-5">
+                  <label htmlFor="category" className="label-css">
+                    Category
+                  </label>
+                  <input
+                    required
+                    onChange={categoryChange}
+                    type="text"
+                    name="category"
+                    id="category"
+                    placeholder="...  ...  ..."
+                    className="form-input-container"
+                    value={category}
+                  />
+                </div>
+              </div>
+              <div className="label-container">
+                <div className="mb-5">
+                  <label htmlFor="max_attendees" className="label-css">
+                    Max Attendees
+                  </label>
+                  <input
+                    required
+                    onChange={maxAttendeeChange}
+                    type="number"
+                    name="max_attendees"
+                    id="max_attendees"
+                    placeholder="Max Attendees"
+                    className="form-input-container"
+                    value={maxAttendees}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="mb-5">
+              <label htmlFor="start_datetime" className="label-css">
+                Start Date/Time
+              </label>
+              <input
+                required
+                onChange={startChange}
+                type="datetime-local"
+                name="start_datetime"
+                id="start_datetime"
+                placeholder="datetiem"
+                className="form-input-container"
+                value={start}
+              />
+            </div>
+            <div className="mb-5">
+              <label htmlFor="end_datetime" className="label-css">
+                End Date/Time
+              </label>
+              <input
+                required
+                onChange={endChange}
+                type="datetime-local"
+                name="end_datetime"
+                id="end_datetime"
+                placeholder="datetime"
+                className="form-input-container"
+                value={end}
+              />
+            </div>
+            <div className="mb-5">
+              <label htmlFor="description" className="label-css">
+                Description
+              </label>
+              <input
+                required
+                onChange={descChange}
+                type="text"
+                name="description"
+                id="description"
+                placeholder="Treats are Great"
+                className="form-input-container"
+                value={description}
+              />
+            </div>
+            <div>
+              <button className="submit-button">Submit</button>
+            </div>
+          </form>
         </div>
+      </div>
     );
 };
 

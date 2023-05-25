@@ -38,3 +38,42 @@ Today, I worked on:
 Jesse, Jennifer, Dahna and I worked together on our first endpoint as a group for creating pets.  We solved our docker container issues where some of us would occasionally have containers not run because of the delayed startup for the database container.  I started and completed the first solo backend endpoint for the 'classes' database for the trainer side of the user.
 
 I learned there're many exceptions to be used to catch errors to find what went wrong, sometimes using if, try and except statements properly will get the correct responses when exceptions dont work.
+
+## May 18, 2023
+Today, I worked on:
+
+*Minor fixes to classes endpoint, Looking up Tailwind CSS
+
+I made minor changes to the code blocks in classes queries to make the code more uniform after confirming everything worked.  The changes included changing some of the error respones from HTTPExceptions to "if and else" statements. I started doing some research on how to use Tailwind CSS for our frontend design.
+
+## May 19, 2023 - May 21, 2023
+The following days I worked on:
+
+*template for Customer and Trainer home page layout
+
+I worked on setting up the Home page for both customer and trainer navigation.  Did some research and tried putting together a skeleton of the sidebar navigation and top navitation
+
+## May 22, 2023
+Today, I worked on:
+
+*Adding Finishing touches to the basic skeleton of the Frontend Trainer/Customer home page views, and started the ClassForm
+
+I worked on using tempalates as reference on how I wanted the ui to look for both trainer and customer home pages, and applied to my already created template.  Then I started working on the ClassForm for creating classes.
+
+## May 23, 2023
+Today, I worked on:
+
+*Finishing touches on ClassForm, started PetForm
+
+I worked on fixing up some text error and syntax errors on the ClassForm and submitted early in the morning.  The I started working on the PetForm.
+
+I had some challenges on the PetForms fetch call for getting the owner to show up in the drop down selection... will continue next day.
+
+## May 24, 2023
+Today, I worked on:
+
+*Working on PetForm, and RoomForm for the Frontend.
+
+I worked on fixing the problems that were on the PetForm trying to fetch the owner data and displaying it.  Also completed the RoomForm to create rooms with and without a pet assigned so many rooms could be created for visual purposes.  Jesse helped in solving the issue of my .map() issue not getting the the pets name to input properly.
+
+I learned that with doing SQL it's different from django where I didn't have to apply the name of the table or keyword that was used as the ForeignKey when calling for the referenced table for example applying the .user after setting an attribute to the json response.
