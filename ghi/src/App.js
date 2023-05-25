@@ -16,6 +16,7 @@ import BoardingForm from "./CustomerView/BoardingForm";
 import CustomerProfile from "./CustomerView/CustomerProfile";
 import LandingPage from "./CustomerView/LandingPage";
 import PetProfile from "./CustomerView/PetProfile";
+import EditPet from "./CustomerView/EditPet";
 
 import PetDetail from "./TrainerView/PetDetail";
 
@@ -50,7 +51,7 @@ function App() {
         />
         <Route path="/customers/:user_id/edit" element={<CustomerProfile />} />
         <Route path="/customers/:user_id/:pet_id/" element={<PetProfile />} />
-        <Route path="/customers/:pet_id/edit" />
+        <Route path="/customers/:user_id/:pet_id/edit" element={<EditPet />} />
         <Route path="trainer/" element={<TrainerHome />}>
           <Route path="rooms/" element={<RoomsList />} />
           <Route path="pets/" element={<PetsList />} />

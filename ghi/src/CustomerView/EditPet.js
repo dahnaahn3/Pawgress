@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 // import useToken from "@galvanize-inc/jwtdown-for-react";
 // import useUser from "./useUser";
 
-function CustomerProfilePetEdit() {
+function EditPet() {
   const [user, setUser] = useState([]);
   const [pet, setPets] = useState([]);
 
@@ -38,9 +38,9 @@ function CustomerProfilePetEdit() {
 
   return (
     <div>
-      <p> Customer profile</p>
+      <p> We are editing a pet</p>
     </div>
   );
 }
 
-export default CustomerProfilePetEdit;
+export default EditPet;
