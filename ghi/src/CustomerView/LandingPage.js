@@ -3,6 +3,13 @@ import { useParams } from "react-router-dom";
 // import useToken from "@galvanize-inc/jwtdown-for-react";
 // import useUser from "./useUser";
 
+function formatDateTime(dateTime) {
+  return new Date(dateTime).toLocaleString([], {
+    dateStyle: "short",
+    timeStyle: "short",
+  });
+}
+
 function LandingPage() {
   const [pet, setPets] = useState([]);
   const [reservations, setReservations] = useState([]);
@@ -60,27 +67,66 @@ function LandingPage() {
 
   return (
     <>
-      <div class="bg-white">
-        <div class="overflow-x-auto border-x border-t">
-          <table class="table-auto w-full">
+      <div class="w-full">
+        <div class="border-t">
+          <h4 class="mb-2 mt-0 text-2xl font-medium leading-tight text-primary">
+            Upcoming Boardings
+          </h4>
+          <table class="table-auto w-full border-x">
             <thead class="border-b">
               <tr class="bg-gray-100">
                 <th class="text-left p-4 font-medium">Name</th>
-                <th class="text-left p-4 font-medium">Email</th>
-                <th class="text-left p-4 font-medium">Role</th>
+                <th class="text-left p-4 font-medium">Start Time</th>
+                <th class="text-left p-4 font-medium">End Time</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="border-b hover:bg-gray-50">
-                <td class="p-4">Prof. Lucie Waters</td>
-                <td class="p-4">basic@example.com</td>
-                <td class="p-4">Administrator</td>
+              {boardings?.map((boarding) => {
+                return (
+                  <tr
+                    class="border-b hover:bg-gray-50"
+                    key={boarding.reservation_id}
+                  >
+                    <td class="p-4">{boarding.pet_id}</td>
+                    <td class="p-4">
+                      {formatDateTime(boarding.start_datetime)}
+                    </td>
+                    <td class="p-4">{formatDateTime(boarding.end_datetime)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+
+          <div className="my-8" />
+
+          <h4 class="mb-2 mt-0 text-2xl font-medium leading-tight text-primary">
+            Upcoming Trainings
+          </h4>
+
+          <table class="table-auto w-full border-x">
+            <thead class="border-b">
+              <tr class="bg-gray-100">
+                <th class="text-left p-4 font-medium">Name</th>
+                <th class="text-left p-4 font-medium">Start Time</th>
+                <th class="text-left p-4 font-medium">End Time</th>
               </tr>
-              <tr class="border-b hover:bg-gray-50">
-                <td class="p-4">Anahi Bashirian (You)</td>
-                <td class="p-4">admin@example.com</td>
-                <td class="p-4">Super Administrator</td>
-              </tr>
+            </thead>
+            <tbody>
+              {boardings?.map((training) => {
+                return (
+                  <tr
+                    class="border-b hover:bg-gray-50"
+                    key={training.reservation_id}
+                  >
+                    <td class="p-4">{training.pet_id}</td>
+                    <td class="p-4">
+                      {formatDateTime(training.start_datetime)}
+                    </td>
+                    <td class="p-4">{formatDateTime(training.end_datetime)}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
