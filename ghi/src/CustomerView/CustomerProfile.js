@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { BiEditAlt } from "react-icons/bi";
 // import useToken from "@galvanize-inc/jwtdown-for-react";
 // import useUser from "./useUser";
 
@@ -127,6 +128,13 @@ function CustomerProfile() {
                       </div>
                     </div>
                   </div>
+                  <a
+                    href={`/customers/${user_id}/${pet.pet_id}/edit`}
+                    className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
+                  >
+                    <BiEditAlt />
+                    <span>Edit</span>
+                  </a>
                 </div>
               ))}
             </div>
