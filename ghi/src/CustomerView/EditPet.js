@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import useToken from "@galvanize-inc/jwtdown-for-react";
-// import useUser from "./useUser";
+import { useNavigate } from "react-router-dom";
 
 function EditPet() {
+  const navigate = useNavigate();
+
   const [pet, setPet] = useState([]);
   const [formData, setFormData] = useState({
-    Name: "",
-    Breed: "",
-    Gender: "",
-    Age: "",
-    Picture: "",
-    Size: "",
-    Weight: "",
-    Diet: "",
+    name: "",
+    breed: "",
+    gender: "",
+    age: "",
+    picture: "",
+    size: "",
+    weight: "",
+    diet: "",
   });
 
   // put this in the NAV
@@ -28,6 +29,7 @@ function EditPet() {
 
     if (petResponse.ok) {
       const petData = await petResponse.json();
+      console.log(petData);
       setPet(petData);
     } else {
       console.log("Error fetching data");
@@ -38,139 +40,186 @@ function EditPet() {
     fetchData();
   }, []);
 
-  const handleFormSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Determine the fields that have changed
     const updatedFields = {};
     for (const key in formData) {
-      if (formData[key] !== pet[key]) {
+      if (formData[key] !== "") {
         updatedFields[key] = formData[key];
+      } else {
+        updatedFields[key] = pet[key];
       }
     }
+    updatedFields["pet_id"] = pet_id;
+    updatedFields["owner_id"] = user_id;
 
     // If no fields have changed
-    if (Object.keys(updatedFields).length === 0) {
+    if (updatedFields.length === 0) {
       alert("No changes have been made.");
       return;
+    } else {
+      const url = `http://localhost:8000/api/pets/${pet_id}`;
+
+      const fetchOptions = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedFields),
+      };
+
+      const response = await fetch(url, fetchOptions);
+      if (response.ok) {
+        setFormData({
+          Name: "",
+          Breed: "",
+          Gender: "",
+          Age: "",
+          Picture: "",
+          Size: "",
+          Weight: "",
+          Diet: "",
+        });
+        navigate(`/customers/${user_id}/${pet_id}`);
+      }
     }
   };
 
-  const onChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  const handleFormChange = (e) => {
+    const value = e.target.value;
+    const inputName = e.target.name;
+
+    setFormData({ ...formData, [inputName]: value });
   };
 
   return (
-    <p> This is the edit page </p>
-    // <div className="form-container">
-    //   <div className="secondary-container">
-    //     <form onSubmit={handleSubmit} id="create-user-form">
-    //       <div className="mb-5">
-    //         <label htmlFor="name" className="label-css">
-    //           Class Name
-    //         </label>
-    //         <input
-    //           required
-    //           onChange={nameChange}
-    //           type="text"
-    //           name="name"
-    //           id="name"
-    //           placeholder="Class Name"
-    //           className="form-input-container"
-    //           value={name}
-    //         />
-    //       </div>
-    //       <div className="form-wrap">
-    //         <div className="label-container">
-    //           <div className="mb-5">
-    //             <label htmlFor="category" className="label-css">
-    //               Category
-    //             </label>
-    //             <input
-    //               required
-    //               onChange={categoryChange}
-    //               type="text"
-    //               name="category"
-    //               id="category"
-    //               placeholder="...  ...  ..."
-    //               className="form-input-container"
-    //               value={category}
-    //             />
-    //           </div>
-    //         </div>
-    //         <div className="label-container">
-    //           <div className="mb-5">
-    //             <label htmlFor="max_attendees" className="label-css">
-    //               Max Attendees
-    //             </label>
-    //             <input
-    //               required
-    //               onChange={maxAttendeeChange}
-    //               type="number"
-    //               name="max_attendees"
-    //               id="max_attendees"
-    //               placeholder="Max Attendees"
-    //               className="form-input-container"
-    //               value={maxAttendees}
-    //             />
-    //           </div>
-    //         </div>
-    //       </div>
-    //       <div className="mb-5">
-    //         <label htmlFor="start_datetime" className="label-css">
-    //           Start Date/Time
-    //         </label>
-    //         <input
-    //           required
-    //           onChange={startChange}
-    //           type="datetime-local"
-    //           name="start_datetime"
-    //           id="start_datetime"
-    //           placeholder="datetiem"
-    //           className="form-input-container"
-    //           value={start}
-    //         />
-    //       </div>
-    //       <div className="mb-5">
-    //         <label htmlFor="end_datetime" className="label-css">
-    //           End Date/Time
-    //         </label>
-    //         <input
-    //           required
-    //           onChange={endChange}
-    //           type="datetime-local"
-    //           name="end_datetime"
-    //           id="end_datetime"
-    //           placeholder="datetime"
-    //           className="form-input-container"
-    //           value={end}
-    //         />
-    //       </div>
-    //       <div className="mb-5">
-    //         <label htmlFor="description" className="label-css">
-    //           Description
-    //         </label>
-    //         <input
-    //           required
-    //           onChange={descChange}
-    //           type="text"
-    //           name="description"
-    //           id="description"
-    //           placeholder="Treats are Great"
-    //           className="form-input-container"
-    //           value={description}
-    //         />
-    //       </div>
-    //       <div>
-    //         <button className="submit-button">Submit</button>
-    //       </div>
-    //     </form>
-    //   </div>
-    // </div>
+    <div className="form-container">
+      <div className="secondary-container">
+        <form
+          onSubmit={handleSubmit}
+          id="update-pet-form"
+          className="update-user-form"
+        >
+          <div className="mb-5">
+            <label htmlFor="name" className="label-css">
+              Pet Name
+            </label>
+            <input
+              onChange={handleFormChange}
+              type="text"
+              name="name"
+              id="name"
+              placeholder={pet.name}
+              className="form-input-container"
+              value={formData.name}
+            />
+          </div>
+          <div className="mb-5">
+            <label htmlFor="breed" className="label-css">
+              Breed
+            </label>
+            <input
+              onChange={handleFormChange}
+              type="text"
+              name="breed"
+              id="breed"
+              placeholder={pet.breed}
+              className="form-input-container"
+              value={formData.breed}
+            />
+          </div>
+          <div className="mb-5">
+            <label htmlFor="gender" className="label-css">
+              Gender
+            </label>
+            <input
+              onChange={handleFormChange}
+              type="text"
+              name="gender"
+              id="gender"
+              placeholder={pet.gender}
+              className="form-input-container"
+              value={formData.gender}
+            />
+          </div>
+          <div className="mb-5">
+            <label htmlFor="age" className="label-css">
+              Age
+            </label>
+            <input
+              onChange={handleFormChange}
+              type="number"
+              name="age"
+              id="age"
+              placeholder={pet.age}
+              className="form-input-container"
+              value={formData.age}
+            />
+          </div>
+          <div className="mb-5">
+            <label htmlFor="picture" className="label-css">
+              Picture
+            </label>
+            <input
+              onChange={handleFormChange}
+              type="text"
+              name="picture"
+              id="picture"
+              placeholder={pet.picture}
+              className="form-input-container"
+              value={formData.picture}
+            />
+          </div>
+          <div className="mb-5">
+            <label htmlFor="size" className="label-css">
+              Size
+            </label>
+            <input
+              onChange={handleFormChange}
+              type="text"
+              name="size"
+              id="size"
+              placeholder={pet.size}
+              className="form-input-container"
+              value={formData.size}
+            />
+          </div>
+          <div className="mb-5">
+            <label htmlFor="weight" className="label-css">
+              Weight (lbs.)
+            </label>
+            <input
+              onChange={handleFormChange}
+              type="number"
+              name="weight"
+              id="weight"
+              placeholder={pet.weight}
+              className="form-input-container"
+              value={formData.weight}
+            />
+          </div>
+          <div className="mb-5">
+            <label htmlFor="diet" className="label-css">
+              Diet
+            </label>
+            <input
+              onChange={handleFormChange}
+              type="text"
+              name="diet"
+              id="diet"
+              placeholder={pet.diet}
+              className="form-input-container"
+              value={formData.diet}
+            />
+          </div>
+          <div>
+            <button className="submit-button">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
 
