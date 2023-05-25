@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 // import useUser from "./useUser";
 
 function CustomerProfile() {
-  const [customer, setCustomer] = useState([]);
+  const [user, setUser] = useState([]);
+  const [pet, setPets] = useState([]);
 
   // put this in the NAV
   // const { token, logout } = useToken();
@@ -12,12 +13,22 @@ function CustomerProfile() {
 
   const { user_id } = useParams();
   const fetchData = async () => {
-    const url = `http://localhost:8000/api/accounts/${user_id}/`;
-    const response = await fetch(url);
-    if (response.ok) {
-      const data = await response.json();
-      console.log(data);
-      setCustomer(data);
+    const userURL = `http://localhost:8000/api/accounts/${user_id}/`;
+    const petsURL = "http://localhost:8000/api/pets";
+
+    const [userResponse, petsResponse] = await Promise.all([
+      fetch(userURL),
+      fetch(petsURL),
+    ]);
+
+    if (userResponse.ok && petsResponse.ok) {
+      const userData = await userResponse.json();
+      const petsData = await petsResponse.json();
+      console.log(userData, petsData);
+      setUser(userData);
+      setPets(petsData);
+    } else {
+      console.log("Error fetching data");
     }
   };
 
@@ -27,7 +38,7 @@ function CustomerProfile() {
 
   return (
     <div>
-      <p> WHEREEE </p>
+      <p> Customer profile </p>
     </div>
   );
 }
