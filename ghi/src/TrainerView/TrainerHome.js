@@ -1,13 +1,18 @@
+import useToken from "@galvanize-inc/jwtdown-for-react";
+import useUser from '../useUser';
 import { HiListBullet, HiOutlineUserGroup } from 'react-icons/hi2';
 import { HiOutlineClipboardDocumentList } from 'react-icons/hi2';
 import { RiHistoryFill } from 'react-icons/ri';
 import { TiMortarBoard } from 'react-icons/ti';
-import { MdOutlineInventory2 } from 'react-icons/md';
 import { NavLink, Outlet } from 'react-router-dom';
 import { GrLogout } from 'react-icons/gr';
 
 
 const TrainerHome = () => {
+
+  const { token, logout } = useToken();
+  const { user } = useUser(token);
+
     return (
       <>
         <div x-data="setup()">
@@ -19,18 +24,12 @@ const TrainerHome = () => {
               </div>
               <div className="tr-header-right">
                 <div className="tr-welcome-container">
-                  <p>Welcome Trainer!</p>
+                  <p>Welcome Trainer !</p>
                 </div>
                 <ul className="nav-right-main">
                   <li style={{marginRight:"10rem"}}>
                     <a href="#" className="tr-nav-container">
                       <span className="tr-nav-flex">
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                          ></path>
                         <GrLogout />
                       </span>
                       Logout

@@ -1,6 +1,5 @@
 import { Routes, Route, NavLink } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
-import Auth from "./Auth";
 import "./App.css";
 import useUser from "./useUser";
 
@@ -21,7 +20,8 @@ import CustomerProfile from "./CustomerView/CustomerProfile";
 import LandingPage from "./CustomerView/LandingPage";
 import PetProfile from "./CustomerView/PetProfile";
 import EditPet from "./CustomerView/EditPet";
-import SignupForm from "./MainPageView/SignupForm";
+import SignupForm from './MainPageView/SignupForm';
+import Auth from "./MainPageView/Auth";
 import ClassForm from "./TrainerView/ClassForm";
 import PetForm from "./MainPageView/PetForm";
 import BoardingHistory from "./CustomerView/BoardingHistory";
@@ -45,6 +45,10 @@ function App() {
       {/* <BrowserRouter> */}
 
       <Routes>
+        <Route path="/signin" element={<Auth />} />
+        <Route path="/signup" element={<SignupForm />} />
+        <Route path="/customers" element={<CustomerHome />} />
+        <Route path="reservation/" element={<BoardingForm />} />
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/customers" element={<CustomerHome />} />
         <Route path="customers/training/" element={<TrainingForm />} />
@@ -57,15 +61,10 @@ function App() {
           path="customers/boarding/history/"
           element={<BoardingHistory />}
         />
-        <Route path="/signup" element={<Auth />} />
-        <Route path="/signin" element={<Auth />} />
         <Route path="/" element={<Mainpage />} />
         <Route path="/customers" element={<CustomerHome />} />
         <Route path="/customers/:user_id/" element={<LandingPage />} />
-        <Route
-          path="/customers/:user_id/profile"
-          element={<CustomerProfile />}
-        />
+        <Route path="/customers/:user_id/profile" element={<CustomerProfile />} />
         <Route path="/customers/:user_id/edit" element={<CustomerProfile />} />
         <Route path="/customers/:user_id/:pet_id/" element={<PetProfile />} />
         <Route path="/customers/:user_id/:pet_id/edit" element={<EditPet />} />
