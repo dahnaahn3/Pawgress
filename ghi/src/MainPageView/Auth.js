@@ -11,7 +11,7 @@ function Auth() {
 
   useEffect(() => {
     if (token) {
-      navigate("/");
+      navigate("/customers");
     }
   }, [token]);
 

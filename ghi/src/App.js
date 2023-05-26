@@ -1,7 +1,5 @@
 import { Routes, Route, NavLink } from "react-router-dom";
-import useToken from "@galvanize-inc/jwtdown-for-react";
 import "./App.css";
-import useUser from "./useUser";
 
 import TrainerHome from "./TrainerView/TrainerHome";
 import CustomerHome from "./CustomerView/CustomerHome";
@@ -25,27 +23,11 @@ import Auth from "./MainPageView/Auth";
 import ClassForm from "./TrainerView/ClassForm";
 import PetForm from "./MainPageView/PetForm";
 import BoardingHistory from "./CustomerView/BoardingHistory";
-import EditCustomer from "./CustomerView/EditCustomer";
-import EditPassword from "./CustomerView/EditPassword";
+
 
 function App() {
-  const { token, logout } = useToken();
-  const { user } = useUser(token);
   return (
     <div className="flex">
-      {user ? (
-        <>
-          hi {user.first_name}
-          <button onClick={logout}>sign out</button>
-        </>
-      ) : (
-        <>
-          {/* <NavLink to="/signin">sign in</NavLink>
-          <NavLink to="/signup">sign up</NavLink> */}
-        </>
-      )}
-      {/* <BrowserRouter> */}
-
       <Routes>
         <Route path="/signin" element={<Auth />} />
         <Route path="/signup" element={<SignupForm />} />
@@ -55,23 +37,13 @@ function App() {
         <Route path="/customers" element={<CustomerHome />} />
         <Route path="customers/training/" element={<TrainingForm />} />
         <Route path="customers/boarding/" element={<BoardingForm />} />
-        <Route
-          path="customers/training/history/"
-          element={<TrainingHistory />}
-        />
-        <Route
-          path="customers/boarding/history/"
-          element={<BoardingHistory />}
-        />
+        <Route path="customers/training/history/" element={<TrainingHistory />} />
+        <Route path="customers/boarding/history/" element={<BoardingHistory />} />
         <Route path="/" element={<Mainpage />} />
         <Route path="/customers" element={<CustomerHome />} />
         <Route path="/customers/:user_id/" element={<LandingPage />} />
-        <Route
-          path="/customers/:user_id/profile"
-          element={<CustomerProfile />}
-        />
-        <Route path="/customers/:user_id/edit" element={<EditCustomer />} />
-        <Route path="/customers/:user_id/editpw" element={<EditPassword />} />
+        <Route path="/customers/:user_id/profile" element={<CustomerProfile />} />
+        <Route path="/customers/:user_id/edit" element={<CustomerProfile />} />
         <Route path="/customers/:user_id/:pet_id/" element={<PetProfile />} />
         <Route path="/customers/:user_id/:pet_id/edit" element={<EditPet />} />
         <Route path="trainer/" element={<TrainerHome />}>
