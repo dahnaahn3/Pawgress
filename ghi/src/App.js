@@ -25,6 +25,8 @@ import Auth from "./MainPageView/Auth";
 import ClassForm from "./TrainerView/ClassForm";
 import PetForm from "./MainPageView/PetForm";
 import BoardingHistory from "./CustomerView/BoardingHistory";
+import EditCustomer from "./CustomerView/EditCustomer";
+import EditPassword from "./CustomerView/EditPassword";
 
 function App() {
   const { token, logout } = useToken();
@@ -64,8 +66,12 @@ function App() {
         <Route path="/" element={<Mainpage />} />
         <Route path="/customers" element={<CustomerHome />} />
         <Route path="/customers/:user_id/" element={<LandingPage />} />
-        <Route path="/customers/:user_id/profile" element={<CustomerProfile />} />
-        <Route path="/customers/:user_id/edit" element={<CustomerProfile />} />
+        <Route
+          path="/customers/:user_id/profile"
+          element={<CustomerProfile />}
+        />
+        <Route path="/customers/:user_id/edit" element={<EditCustomer />} />
+        <Route path="/customers/:user_id/editpw" element={<EditPassword />} />
         <Route path="/customers/:user_id/:pet_id/" element={<PetProfile />} />
         <Route path="/customers/:user_id/:pet_id/edit" element={<EditPet />} />
         <Route path="trainer/" element={<TrainerHome />}>

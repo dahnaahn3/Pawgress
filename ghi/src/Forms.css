@@ -31,6 +31,10 @@
   @apply rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none;
 }
 
+.update-pet-form input::placeholder {
+  color: #5a5a5ac7;
+}
+
 .update-user-form input::placeholder {
   color: #5a5a5ac7;
 }

@@ -140,7 +140,9 @@ def update_user_password(
     repo: AccountQueries = Depends(),
 ):
     try:
+        print("I AM TRYING TO CREATE HASHED PASSWORD")
         hashed_password = authenticator.hash_password(password)
+        print("I CREATED A HASHED")
         result = repo.update_password(user_id, hashed_password)
 
         if result:
