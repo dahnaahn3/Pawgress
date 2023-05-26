@@ -1,3 +1,17 @@
+## May 24, 2023
+
+[Today, I worked on:
+
+- Worked through React hot loading issues
+- Created the customer landing page, customer profile page,
+  and pet profile pages
+
+I had to troubleshoot React not hot loading. A fix to another
+problem was deleting the node_modules and re-running the container,
+but that triggered the change in React. I was able to solve it by
+adding a file called .env with "FAST_REFRESH=false" as the content.
+]
+
 ## May 23, 2023
 
 [Today, I worked on:

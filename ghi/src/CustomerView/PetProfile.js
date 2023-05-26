@@ -66,7 +66,7 @@ function PetProfile() {
             </div>
 
             <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none mt-3">
-              <p className="text-md text-gray-600">Weight</p>
+              <p className="text-md text-gray-600">Weight (lbs.)</p>
               <p className="text-base font-medium text-navy-700">
                 {pet.weight}
               </p>
