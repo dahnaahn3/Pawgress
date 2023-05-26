@@ -52,3 +52,11 @@ Ah ha moment: Using templates for all tables and detailed views
 
 Ah ha moment: The outlet tag should be used in parent route elements to render their child route elements.
 ]
+
+## May 25 2023
+[Today, I worked on:
+- Adding static pages onto the main page
+- Creating an about the team page
+
+Ah ha moment: The outlet tag should be used in parent route elements to render their child route elements.
+]
