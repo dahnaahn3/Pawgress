@@ -26,6 +26,7 @@ import ClassForm from "./TrainerView/ClassForm";
 import PetForm from "./MainPageView/PetForm";
 import BoardingHistory from "./CustomerView/BoardingHistory";
 import EditCustomer from "./CustomerView/EditCustomer";
+import EditPassword from "./CustomerView/EditPassword";
 
 function App() {
   const { token, logout } = useToken();
@@ -68,7 +69,7 @@ function App() {
           element={<CustomerProfile />}
         />
         <Route path="/customers/:user_id/edit" element={<EditCustomer />} />
-        <Route path="/customers/:user_id/editpw" } />
+        <Route path="/customers/:user_id/editpw" element={<EditPassword />} />
         <Route path="/customers/:user_id/:pet_id/" element={<PetProfile />} />
         <Route path="/customers/:user_id/:pet_id/edit" element={<EditPet />} />
         <Route path="trainer/" element={<TrainerHome />}>

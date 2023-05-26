@@ -189,7 +189,6 @@ class AccountQueries:
         self, user_id: int, user: AccountIn
     ) -> Union[UserOut, Error]:
         try:
-            print("I AM TRYING TO UPDATE")
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     db.execute(
@@ -220,6 +219,7 @@ class AccountQueries:
 
     def update_password(self, user_id: int, hashed_password: str) -> str:
         try:
+            print("I AM TRYING CONNECT TO DB")
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     db.execute(
