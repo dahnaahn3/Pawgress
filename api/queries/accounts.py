@@ -200,6 +200,7 @@ class AccountQueries:
                         , address = %s
                         , email = %s
                         , phone_number = %s
+                        , role = %s
                         WHERE id = %s
                         """,
                         [

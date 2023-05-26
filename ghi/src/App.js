@@ -25,6 +25,7 @@ import SignupForm from "./MainPageView/SignupForm";
 import ClassForm from "./TrainerView/ClassForm";
 import PetForm from "./MainPageView/PetForm";
 import BoardingHistory from "./CustomerView/BoardingHistory";
+import EditCustomer from "./CustomerView/EditCustomer";
 
 function App() {
   const { token, logout } = useToken();
@@ -66,7 +67,7 @@ function App() {
           path="/customers/:user_id/profile"
           element={<CustomerProfile />}
         />
-        <Route path="/customers/:user_id/edit" element={<CustomerProfile />} />
+        <Route path="/customers/:user_id/edit" element={<EditCustomer />} />
         <Route path="/customers/:user_id/:pet_id/" element={<PetProfile />} />
         <Route path="/customers/:user_id/:pet_id/edit" element={<EditPet />} />
         <Route path="trainer/" element={<TrainerHome />}>
