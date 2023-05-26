@@ -175,6 +175,13 @@ function EditCustomer() {
               value={formData.phone_number}
             />
           </div>
+          <div className="mb-5">
+            <a href="/customers/${user_id}/editpw">
+              <button className="w-full border-blue-900 hover:border-[#003087] hover:border-[2px] border-[1px] rounded-3xl p-3 text-[#0070ba] font-bold transition duration-200">
+                Edit Password
+              </button>
+            </a>
+          </div>
           <div>
             <button className="submit-button">Save</button>
           </div>

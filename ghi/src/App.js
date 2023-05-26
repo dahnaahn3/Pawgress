@@ -68,6 +68,7 @@ function App() {
           element={<CustomerProfile />}
         />
         <Route path="/customers/:user_id/edit" element={<EditCustomer />} />
+        <Route path="/customers/:user_id/editpw" } />
         <Route path="/customers/:user_id/:pet_id/" element={<PetProfile />} />
         <Route path="/customers/:user_id/:pet_id/edit" element={<EditPet />} />
         <Route path="trainer/" element={<TrainerHome />}>
