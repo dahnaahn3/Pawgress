@@ -17,9 +17,18 @@ const TrainerHome = () => {
   const { user } = useUser(token);
   const navigate = useNavigate();
 
+  const loggingOut = () => {
+    localStorage.removeItem('token');
+    logout();
+  }
+
+  if (token) {
+    localStorage.setItem('token', token)
+  }
+
   useEffect(() => {
     const savedToken = localStorage.getItem('token');
-
+    console.log(savedToken)
     if (!token && !savedToken) {
         navigate("/");
     } else {
@@ -39,6 +48,7 @@ const TrainerHome = () => {
 
 
   return (
+
     <>
       <div>
         <div className="tr-container-left">
@@ -54,7 +64,7 @@ const TrainerHome = () => {
 
               <ul className="nav-right-main">
                 <li style={{marginRight:"10rem"}}>
-                  <NavLink to="/" onClick={logout} className="tr-nav-container">
+                  <NavLink to="/" onClick={loggingOut} className="tr-nav-container">
                     <span className="tr-nav-flex">
                         <path
                           stroke-linecap="round"

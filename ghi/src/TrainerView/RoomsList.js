@@ -32,7 +32,7 @@ function RoomsList(){
       <header className="px-3 py-4 border-b border-gray-100">
         <h2 className="font-semibold text-gray-800">Rooms 🐾</h2>
         <NavLink to="./form">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
             Create a new room
           </button>
         </NavLink>
