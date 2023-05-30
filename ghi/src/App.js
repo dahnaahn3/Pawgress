@@ -1,4 +1,4 @@
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import TrainerHome from "./TrainerView/TrainerHome";
@@ -34,22 +34,19 @@ function App() {
   return (
     <div className="flex">
       <Routes>
+        <Route path="/" element={<Mainpage />} />
         <Route path="/signin" element={<Auth />} />
         <Route path="/signup" element={<SignupForm />} />
+        <Route path="/signup" element={<SignupForm />} />
+        <Route path="/meettheteam" element={<Meettheteam />} />
         <Route path="/customers" element={<CustomerHome />} />
         <Route path="reservation/" element={<BoardingForm />} />
-        <Route path="/signup" element={<SignupForm />} />
-        <Route path="/customers" element={<CustomerHome />} />
         <Route path="customers/training/" element={<TrainingForm />} />
         <Route path="customers/boarding/" element={<BoardingForm />} />
         <Route path="customers/training/history/" element={<TrainingHistory />} />
         <Route path="customers/boarding/history/" element={<BoardingHistory />} />
-        <Route path="/" element={<Mainpage />} />
         <Route path="/trainingservices" element={<Trainingservice />} />
         <Route path="/boardingservices" element={<Boardingservice />} />
-        <Route path="/meettheteam" element={<Meettheteam />} />
-
-        <Route path="/customers" element={<CustomerHome />} />
         <Route path="/customers/:user_id/" element={<LandingPage />} />
         <Route
           path="/customers/:user_id/profile"

@@ -4,14 +4,44 @@ import { RiHistoryFill } from 'react-icons/ri';
 import { BsHouse } from 'react-icons/bs';
 import { HiOutlineUser } from 'react-icons/hi';
 import { GrLogout } from 'react-icons/gr';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../useUser";
 
 
+
 const CustomerHome = () => {
-    const { token, logout } = useToken();
+    const { token, setToken } = useAuthContext();
+    const { logout } = useToken();
     const { user } = useUser(token);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const savedToken = localStorage.getItem('token');
+
+        if (!token && !savedToken) {
+            navigate("/");
+        } else {
+            const currentToken = token || savedToken;
+
+            if (!token) {
+                setToken(currentToken);
+            }
+        }
+    }, [token, navigate, setToken]);
+
+    useEffect(() => {
+        if (!token) {
+            navigate("/");
+        } else if (token && user && user.role === "trainer") {
+            navigate("/trainer");
+        } else {
+            navigate("/customers");
+        }
+    }, [token, navigate, user]);
+
 
     return (
         <div>
@@ -23,7 +53,7 @@ const CustomerHome = () => {
             </NavLink>
                 <div className="cs-header-right">
                     <div className="cs-welcome-container">
-                        <p>Welcome {user && user.first_name}!</p>
+                        <p>Welcome {user && `${user.first_name} ${user.last_name}`}!</p>
                     </div>
 
                     <ul className="nav-right-main">

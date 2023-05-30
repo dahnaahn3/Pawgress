@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { BiEditAlt } from "react-icons/bi";
-// import useToken from "@galvanize-inc/jwtdown-for-react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 // import useUser from "./useUser";
 
 function CustomerProfile() {

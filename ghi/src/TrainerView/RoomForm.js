@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function RoomForm() {
   const [room, setRoom] = useState("");
@@ -7,7 +8,8 @@ function RoomForm() {
   const [pet, setPet] = useState(null);
   const [pets, setPets] = useState([]);
 
-  const navigation = useNavigate()
+  const navigate = useNavigate()
+  const { token } = useToken();
 
   const roomChange = (event) => {
     const valueRoom = event.target.value;
@@ -42,7 +44,7 @@ function RoomForm() {
       setOccupancy(false);
       setPet(null);
       setPets([]);
-      navigation('/trainer/rooms')
+      navigate('/trainer/rooms')
 
       fetchData();
     }
@@ -59,6 +61,10 @@ function RoomForm() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  if (!token) {
+    return null;
+  }
 
   return (
     <div
