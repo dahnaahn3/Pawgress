@@ -15,8 +15,6 @@ import useUser from "../useUser";
 const CustomerHome = () => {
     const { token, setToken } = useAuthContext();
     const { logout } = useToken();
-    const { token, setToken } = useAuthContext();
-    const { logout } = useToken();
     const { user } = useUser(token);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -70,7 +68,6 @@ const CustomerHome = () => {
             </NavLink>
                 <div className="cs-header-right">
                     <div className="cs-welcome-container">
-                        <p>Welcome {user && `${user.first_name} ${user.last_name}`}!</p>
                         <p>Welcome {user && `${user.first_name} ${user.last_name}`}!</p>
                     </div>
 
