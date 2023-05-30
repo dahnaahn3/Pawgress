@@ -1,0 +1,69 @@
+
+.card {
+    width: 30rem;
+    height: 25rem;
+    background-size: cover;
+    background-color: rgb(33, 52, 120);
+    border-radius: 30px;
+    background-position: center;
+    overflow: hidden;
+    position: relative;
+    margin-left: 100px;
+
+}
+
+/*  Assigning properties to inner
+    content of card  */
+.card__inner {
+    background-color: rgba(43, 43, 43, 0.9);
+    color: #fff;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 1;
+    opacity: 0;
+    padding: 1rem 1.3rem 1rem 1rem;
+    transition: all 0.4s ease 0s;
+}
+
+/*  On hovering card opacity
+    of content must be 1*/
+.card:hover .card__inner {
+    opacity: 1;
+}
+
+/*  General property for heading
+    and paragraph*/
+.card__inner h2 {
+    margin-top: 1rem;
+}
+
+.card__inner p {
+    overflow-y: scroll;
+    height: 100%;
+    padding-right: 1rem;
+    font-weight: 200;
+    line-height: 2.5rem;
+    margin-top: 1rem;
+}
+
+.classtitle{
+    text-align: center;
+    color: white;
+    margin-top: 4px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.classsubtitle{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+
+.dogphoto{
+    height: 300px;
+    width:500px
+}

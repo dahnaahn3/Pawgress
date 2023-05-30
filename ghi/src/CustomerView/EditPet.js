@@ -73,14 +73,14 @@ function EditPet() {
       const response = await fetch(url, fetchOptions);
       if (response.ok) {
         setFormData({
-          Name: "",
-          Breed: "",
-          Gender: "",
-          Age: "",
-          Picture: "",
-          Size: "",
-          Weight: "",
-          Diet: "",
+          name: "",
+          breed: "",
+          gender: "",
+          age: "",
+          picture: "",
+          size: "",
+          weight: "",
+          diet: "",
         });
         navigate(`/customers/${user_id}/${pet_id}`);
       }
@@ -100,7 +100,7 @@ function EditPet() {
         <form
           onSubmit={handleSubmit}
           id="update-pet-form"
-          className="update-user-form"
+          className="update-pet-form"
         >
           <div className="mb-5">
             <label htmlFor="name" className="label-css">
@@ -215,7 +215,7 @@ function EditPet() {
             />
           </div>
           <div>
-            <button className="submit-button">Submit</button>
+            <button className="submit-button">Save</button>
           </div>
         </form>
       </div>

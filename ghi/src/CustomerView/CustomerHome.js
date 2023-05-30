@@ -4,101 +4,117 @@ import { RiHistoryFill } from 'react-icons/ri';
 import { BsHouse } from 'react-icons/bs';
 import { HiOutlineUser } from 'react-icons/hi';
 import { GrLogout } from 'react-icons/gr';
+import { NavLink } from 'react-router-dom';
+import useToken from "@galvanize-inc/jwtdown-for-react";
+import useUser from "../useUser";
 
 
 const CustomerHome = () => {
+    const { token, logout } = useToken();
+    const { user } = useUser(token);
+
     return (
-        <>
-
-<div x-data="setup()">
-    <div className="cs-container-left">
-        <div className="cs-container-right">
-            <div className="cs-header-left">
-                <img className="logo-icon" src="/WhitePawIcon.png" />
-                <span className="home-title">Pawgress</span>
-            </div>
-            <div className="cs-header-right">
-            <div className="cs-welcome-container">
-                <p>Welcome Customer_name!</p>
-            </div>
-            <ul className="nav-right-main">
-            <li>
-                <a href="#" className="cs-nav-container">
-                    <span className="cs-nav-format">
-                    <HiOutlineUser />
-                    </span>
-                    Profile
-                </a>
-                </li>
-                <li>
-                <a href="#" className="cs-nav-container">
-                    <span className="cs-nav-flex">
-                    <GrLogout />
-                    </span>
-                    Logout
-                </a>
-                </li>
-            </ul>
-            </div>
-        </div>
-
-        <div className="cs-sidebar-container">
-            <div className="cs-sidebar-flex">
-            <ul className="cs-sidebar-set">
-                <li className="hidden-text">
-                <div className="title-container">
-                    <div className="cs-sidebar-title">Upcoming</div>
-                </div>
-                </li>
-                <li>
-                <a href="#" className="cs-container">
-                    <span className="cs-row">
-                    <BsHouse size="30"/>
-                    </span>
-                    <span className="cs-sidebar-text">Make Boarding Reservation</span>
-                </a>
-                </li>
-                <li>
-                <a href="#" className="cs-container">
-                    <span className="cs-row">
-                    <HiOutlineUserGroup size="30"/>
-                    </span>
-                    <span className="cs-sidebar-text">Upcoming Classes Signup</span>
-                </a>
-                </li>
-                <li className="hidden-text">
-                <div className="title-container">
-                    <div className="cs-sidebar-title">Animal Trail</div>
-                </div>
-                </li>
-                <li>
-                <a href="#" className="cs-container">
-                    <span className="cs-row">
-                    <HiOutlineClipboardDocumentList size="25"/>
-                    </span>
-                    <span className="cs-sidebar-text">Boarding History</span>
-                </a>
-                </li>
-                <li>
-                <a href="#" className="cs-container">
-                    <span className="cs-row">
-                    <RiHistoryFill size="25"/>
-                    </span>
-                    <span className="cs-sidebar-text">Training History</span>
-                </a>
-                </li>
-            </ul>
-            <p className="footer-copyright">Copyright @2023 by Pawgress</p>
-            </div>
-        </div>
-
         <div>
-            {/* Create Data Card/Table Card/displays here */}
+        <div className="cs-container-left">
+            <div className="cs-container-right">
+            <NavLink to="/" className="cs-header-left">
+                <img className="logo-icon" src="/WhitePawIcon.png" alt="Logo" />
+                <span className="home-title">Pawgress</span>
+            </NavLink>
+                <div className="cs-header-right">
+                    <div className="cs-welcome-container">
+                        <p>Welcome {user && user.first_name}!</p>
+                    </div>
+
+                    <ul className="nav-right-main">
+                        <li>
+                            {user && (
+                            <div className ="flex">
+                                <NavLink to="/:user_id/profile" className="cs-nav-container">
+                                <span className="cs-nav-format">
+                                    <HiOutlineUser />
+                                </span>
+                                Profile
+                                </NavLink>
+                                <NavLink to="/" onClick={logout} className="cs-nav-container">
+                                <span className="cs-nav-flex">
+                                    <GrLogout />
+                                </span>
+                                Sign out
+                                </NavLink>
+                            </div>
+                            )}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div className="cs-sidebar-container">
+                <div className="cs-sidebar-flex">
+                <ul className="cs-sidebar-set">
+                    <li className="hidden-text">
+                    <div className="title-container">
+                        <div className="cs-sidebar-title">Upcoming</div>
+                    </div>
+                    </li>
+
+                    <NavLink to="./reservations">
+                        <li>
+                            <p className="cs-container">
+                                <span className="cs-row">
+                                <BsHouse size="30"/>
+                                </span>
+                                <span className="cs-sidebar-text">Make Boarding Reservation</span>
+                            </p>
+                        </li>
+                    </NavLink>
+
+                    <NavLink to="./training">
+                        <li>
+                            <p className="cs-container">
+                                <span className="cs-row">
+                                <HiOutlineUserGroup size="30"/>
+                                </span>
+                                <span className="cs-sidebar-text">Upcoming Classes Signup</span>
+                            </p>
+                        </li>
+                    </NavLink>
+
+                    <li className="hidden-text">
+                    <div className="title-container">
+                        <div className="cs-sidebar-title">Animal Trail</div>
+                    </div>
+                    </li>
+
+                    <NavLink to="./boarding/history">
+                        <li>
+                            <p className="cs-container">
+                                <span className="cs-row">
+                                <HiOutlineClipboardDocumentList size="25"/>
+                                </span>
+                                <span className="cs-sidebar-text">Boarding History</span>
+                            </p>
+                        </li>
+                    </NavLink>
+
+                    <NavLink to="./training/history">
+                        <li>
+                            <p className="cs-container">
+                                <span className="cs-row">
+                                <RiHistoryFill size="25"/>
+                                </span>
+                                <span className="cs-sidebar-text">Training History</span>
+                            </p>
+                        </li>
+                    </NavLink>
+
+                </ul>
+                <p className="footer-copyright">Copyright @2023 by Pawgress</p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</>
-)
+    )
 };
 
 export default CustomerHome;
