@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 
 function TrainingBoardingHistory() {
   const [history, setHistory] = useState([]);
   const [user, setUser] = useState([]);
   const [pet, setPet] = useState([]);
+
+  const { token } = useToken();
 
   const formatDate = (input) => {
     const date = new Date(input);
@@ -54,6 +57,9 @@ useEffect(() => {
     fetchData();
   }, []);
 
+    if (!token) {
+    return null;
+  }
 
   return (
     <div style={{ paddingLeft: "20rem", marginTop: "-40rem" }}>

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function BoardingHistory() {
   const [history, setHistory] = useState([]);
+
+    const { token } = useToken();
 
   const fetchData = async () => {
     const url = "http://localhost:8000/reservation";
@@ -16,6 +19,10 @@ function BoardingHistory() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  if (!token) {
+    return null;
+  }
 
   return (
     <div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function TrainingForm() {
   const [reservation, setReservation] = useState({
@@ -20,6 +21,7 @@ function TrainingForm() {
   };
 
   const navigate = useNavigate();
+  const { token } = useToken();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -45,6 +47,10 @@ function TrainingForm() {
       navigate("/");
     }
   };
+
+  if (!token) {
+    return null;
+  }
 
   return (
     <div>
