@@ -16,7 +16,7 @@ function Meettheteam() {
                   </h1>
 
                   <p class="text-gray-700 text-lg font-light">
-                    "Welcome to our family of pet boarding business founders!
+                    Welcome to our family of pet boarding business founders!
                     Bonded by passion around our furry friends, we are dedicated
                     to creating a home away from home, one bark and purr at a
                     time. Join us in this rewarding endeavor as we build a haven
@@ -56,17 +56,10 @@ function Meettheteam() {
                         </a>
 
                         <a
-                          href="#"
+                          href="https://gitlab.com/dahnaahn16"
                           class="flex rounded-full hover:bg-blue-50 h-10 w-10"
                         >
-                          <i class="mdi mdi-twitter text-blue-300 mx-auto mt-2"></i>
-                        </a>
-
-                        <a
-                          href="#"
-                          class="flex rounded-full hover:bg-orange-50 h-10 w-10"
-                        >
-                          <i class="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
+                          <i class="mdi mdi-gitlab text-blue-300 mx-auto mt-2"></i>
                         </a>
                       </div>
                     </div>
@@ -104,17 +97,10 @@ function Meettheteam() {
                         </a>
 
                         <a
-                          href="#"
+                          href="https://gitlab.com/jennho"
                           class="flex rounded-full hover:bg-blue-50 h-10 w-10"
                         >
-                          <i class="mdi mdi-twitter text-blue-400 mx-auto mt-2"></i>
-                        </a>
-
-                        <a
-                          href="#"
-                          class="flex rounded-full hover:bg-orange-50 h-10 w-10"
-                        >
-                          <i class="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
+                          <i class="mdi mdi-gitlab text-blue-400 mx-auto mt-2"></i>
                         </a>
                       </div>
                     </div>
@@ -151,17 +137,10 @@ function Meettheteam() {
                         </a>
 
                         <a
-                          href="#"
+                          href="https://gitlab.com/Karisuta"
                           class="flex rounded-full hover:bg-blue-50 h-10 w-10"
                         >
-                          <i class="mdi mdi-twitter text-blue-400 mx-auto mt-2"></i>
-                        </a>
-
-                        <a
-                          href="#"
-                          class="flex rounded-full hover:bg-orange-50 h-10 w-10"
-                        >
-                          <i class="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
+                          <i class="mdi mdi-gitlab text-blue-400 mx-auto mt-2"></i>
                         </a>
                       </div>
                     </div>
@@ -198,17 +177,10 @@ function Meettheteam() {
                         </a>
 
                         <a
-                          href="#"
+                          href="https://gitlab.com/Zhuste"
                           class="flex rounded-full hover:bg-blue-50 h-10 w-10"
                         >
-                          <i class="mdi mdi-twitter text-blue-400 mx-auto mt-2"></i>
-                        </a>
-
-                        <a
-                          href="#"
-                          class="flex rounded-full hover:bg-orange-50 h-10 w-10"
-                        >
-                          <i class="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
+                          <i class="mdi mdi-gitlab text-blue-400 mx-auto mt-2"></i>
                         </a>
                       </div>
                     </div>
