@@ -4,7 +4,7 @@ import { RiHistoryFill } from "react-icons/ri";
 import { BsHouse } from "react-icons/bs";
 import { HiOutlineUser } from "react-icons/hi";
 import { GrLogout } from "react-icons/gr";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Outlet } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
@@ -39,8 +39,6 @@ const CustomerHome = () => {
       navigate("/customers");
     }
   }, [token, navigate, user]);
-
-  console.log(user_id);
 
   return (
     <div>
@@ -152,6 +150,7 @@ const CustomerHome = () => {
           </div>
         </div>
       </div>
+      <Outlet />
     </div>
   );
 };
