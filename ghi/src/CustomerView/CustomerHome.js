@@ -5,7 +5,7 @@ import { BsHouse } from 'react-icons/bs';
 import { HiOutlineUser } from 'react-icons/hi';
 import { GrLogout } from 'react-icons/gr';
 import { NavLink, useNavigate } from 'react-router-dom';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../useUser";
@@ -17,6 +17,16 @@ const CustomerHome = () => {
     const { logout } = useToken();
     const { user } = useUser(token);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+
+    const loggingOut = () => {
+        localStorage.removeItem('token');
+        logout();
+    }
+
+    if (token) {
+        localStorage.setItem('token', token)
+    }
 
     useEffect(() => {
         const savedToken = localStorage.getItem('token');
@@ -30,18 +40,23 @@ const CustomerHome = () => {
                 setToken(currentToken);
             }
         }
-    }, [token, navigate, setToken]);
-
-    useEffect(() => {
-        if (!token) {
-            navigate("/");
-        } else if (token && user && user.role === "trainer") {
-            navigate("/trainer");
-        } else {
-            navigate("/customers");
+        if (user) {
+            setLoading(false);
+            if (!token) {
+                navigate("/");
+            } else if (token && user && user.role === "trainer") {
+                navigate("/trainer");
+            } else {
+                navigate("/customers");
+            }
         }
-    }, [token, navigate, user]);
+    }, [token, navigate, setToken, user]);
 
+    if (loading) {
+        return <div>
+            Loading...
+        </div>
+    } else {
 
     return (
         <div>
@@ -66,7 +81,7 @@ const CustomerHome = () => {
                                 </span>
                                 Profile
                                 </NavLink>
-                                <NavLink to="/" onClick={logout} className="cs-nav-container">
+                                <NavLink to="/" onClick={loggingOut} className="cs-nav-container">
                                 <span className="cs-nav-flex">
                                     <GrLogout />
                                 </span>
@@ -145,6 +160,7 @@ const CustomerHome = () => {
         </div>
     </div>
     )
+    }
 };
 
 export default CustomerHome;
