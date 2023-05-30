@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import Popup from 'reactjs-popup'
-import Auth from './Auth.js'
 import SignupForm from './SignupForm';
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../useUser";
@@ -9,6 +8,8 @@ import useUser from "../useUser";
 function MainPageNav(){
   const { token, logout } = useToken();
   const { user } = useUser(token);
+
+
     return (
       <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex mx-auto p-4">
@@ -53,7 +54,14 @@ function MainPageNav(){
             {user ? (
               <>
                 <div className="flex items-center">
-                  <span className="mr-2">Hello {user.first_name} !</span>
+                  <span className="mr-2">Hello {user.first_name} {user.last_name}!</span>
+                  <Link to="/customers">
+                  <button
+                    className="flex items-center ml-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Home
+                  </button>
+                  </Link>
                   <button
                     onClick={logout}
                     className="flex items-center ml-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

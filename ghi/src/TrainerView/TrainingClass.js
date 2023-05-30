@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function TrainingClass() {
   const [classes, setClasses] = useState([]);
+
+  const { token } = useToken();
 
     const formatDate = (input) => {
       const date = new Date(input);
@@ -29,6 +32,10 @@ function TrainingClass() {
 
     fetchData();
   }, []);
+
+  if (!token) {
+    return null;
+  }
 
   return (
     <div

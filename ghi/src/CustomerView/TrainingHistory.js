@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function TrainingHistory() {
   const [history, setHistory] = useState([]);
+
+  const { token } = useToken()
 
   const fetchData = async () => {
     const url = "http://localhost:8000/reservation";
@@ -18,10 +21,14 @@ function TrainingHistory() {
     fetchData();
   }, []);
 
+  if (!token) {
+    return null;
+  }
+
   return (
     <div>
       <div className="my-5 container">
-        <Link to={".."}>
+        <Link to={"/training"}>
           <button className="btn">Make a reservation</button>
         </Link>
       </div>
