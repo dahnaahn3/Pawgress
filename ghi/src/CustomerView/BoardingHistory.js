@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function BoardingHistory() {
   const [history, setHistory] = useState([]);
