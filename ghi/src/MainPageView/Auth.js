@@ -11,7 +11,7 @@ function Auth() {
 
   useEffect(() => {
     if (token) {
-      navigate("/");
+      navigate("/customers");
     }
   }, [token]);
 
@@ -26,10 +26,10 @@ function Auth() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  if (isSignIn) {
-    login(formData.username, formData.password);
-  }
-};
+    if (isSignIn) {
+      login(formData.username, formData.password);
+    }
+  };
 
   return token ? null : (
     <div>
@@ -39,11 +39,12 @@ function Auth() {
           <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
             <div className="max-w-md mx-auto">
               <div>
-                <h1 className="text-2xl font-semibold">
-                  Login Form
-                </h1>
+                <h1 className="text-2xl font-semibold">Login Form</h1>
               </div>
-              <form onSubmit={handleSubmit} className="divide-y divide-gray-200">
+              <form
+                onSubmit={handleSubmit}
+                className="divide-y divide-gray-200"
+              >
                 <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                   <div className="relative">
                     <input
@@ -91,6 +92,5 @@ function Auth() {
     </div>
   );
 }
-
 
 export default Auth;
