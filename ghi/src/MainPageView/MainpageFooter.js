@@ -25,7 +25,7 @@ function MainpageFooter(){
             </a>
           </li>
           <li>
-            <a href="#" class="hover:underline">
+            <a href="/contact" class="hover:underline">
               Contact
             </a>
           </li>

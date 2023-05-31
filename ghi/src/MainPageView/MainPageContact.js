@@ -65,12 +65,7 @@ function MainPageContact(){
             </div>
           </form>
         </div>
-        {/* <div
-          className="flex flex-col items-center mt-8"
-          style={{ marginTop: "-3rem" }}
-        >
-          <img src="https://i.makeagif.com/media/12-01-2016/p1czkg.gif" />
-        </div> */}
+
       </section>
     );
 }

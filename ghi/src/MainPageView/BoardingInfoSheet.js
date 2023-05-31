@@ -3,14 +3,9 @@ import MainpageFooter from "./MainpageFooter";
 
 function Boardingservice() {
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
-    >
+    <div className="flex flex-auto">
       <MainPageNav />
-      <div
-        style={{ marginLeft: "15%" }}
-        className="container justify-center items-center max-w-xl p-6 py-12 mx-auto space-y-24 lg:px-8 lg:max-w-7xl mt-10"
-      >
+      <div className="container  flex flex-auto justify-center items-center max-w-xl p-6 py-12 mx-auto space-y-24 lg:px-8 lg:max-w-7xl mt-10">
         <section
           className="dark:bg-gray-800 dark:text-gray-100 justify-center"
           style={{ marginBottom: "5rem" }}
@@ -50,8 +45,8 @@ function Boardingservice() {
                   State of the art boarding facility!
                 </h3>
                 <p class="mt-3 text-lg dark:text-gray-400">
-                  Some content here describing how nice the boarding is
-                  blahblahbalhabalhablaha
+                  The boarding facility at our dog hotel is truly exceptional,
+                  offering a top-notch experience for furry guests.
                 </p>
                 <div class="mt-12 space-y-12">
                   <div class="flex">
