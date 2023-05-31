@@ -36,7 +36,6 @@ function App() {
         <Route path="/" element={<Mainpage />} />
         <Route path="/signin" element={<Auth />} />
         <Route path="/signup" element={<SignupForm />} />
-        <Route path="/signup" element={<SignupForm />} />
         <Route path="/meettheteam" element={<Meettheteam />} />
         {/* <Route path="/customers" element={<CustomerHome />} /> */}
         <Route path="reservation/" element={<BoardingForm />} />
@@ -52,14 +51,18 @@ function App() {
         />
         <Route path="/trainingservices" element={<Trainingservice />} />
         <Route path="/boardingservices" element={<Boardingservice />} />
-
+        <Route
+          path="customers/:user_id/profile"
+          element={<CustomerProfile />}
+        />
+        {/* <Route path="customers/:user_id/" element={<LandingPage />} /> */}
         <Route path="/customers/:user_id/edit" element={<EditCustomer />} />
         <Route path="/customers/:user_id/editpw" element={<EditPassword />} />
         <Route path="/customers/:user_id/:pet_id/" element={<PetProfile />} />
         <Route path="/customers/:user_id/:pet_id/edit" element={<EditPet />} />
         <Route path="customers/" element={<CustomerHome />}>
-          <Route path=":user_id/profile" element={<CustomerProfile />} />
           <Route path=":user_id/" element={<LandingPage />} />
+          {/* <Route path=":user_id/profile" element={<CustomerProfile />} /> */}
         </Route>
 
         <Route path="trainer/" element={<TrainerHome />}>
