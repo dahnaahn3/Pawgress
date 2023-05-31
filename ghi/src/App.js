@@ -29,6 +29,7 @@ import BoardingHistory from "./CustomerView/BoardingHistory";
 import EditCustomer from "./CustomerView/EditCustomer";
 import EditPassword from "./CustomerView/EditPassword";
 import BoardingModal from "./Modal";
+import ContactUs from "./MainPageView/ContactUs";
 
 function App() {
   return (
@@ -54,10 +55,13 @@ function App() {
         <Route path="/signin" element={<Auth />} />
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/modal" element={<BoardingModal />} />
-        <Route path="/" element={<Mainpage />} />
+
         <Route path="/meettheteam" element={<Meettheteam />} />
         <Route path="/trainingservices" element={<Trainingservice />} />
         <Route path="/boardingservices" element={<Boardingservice />} />
+
+        <Route path="/" element={<Mainpage />} />
+        <Route path="contactus/" element={<ContactUs />} />
 
         <Route
           path="/customers/:user_id/profile"

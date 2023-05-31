@@ -2,11 +2,12 @@
 
 [Today, I worked on:
 
+- Added functionally to outreach to Pawgress on Contact Page
 - Worked through customer token issues with team
 - Refreshed the team page
-- Added functionally to outreach to Pawgress
 
-
+Troubleshooting by console.logging is the most way to understand
+what might be causing certain issues
 ]
 ## May 25, 2023
 
