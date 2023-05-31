@@ -1,12 +1,8 @@
 import MainPageNav from "./MainPageNav";
 import MainpageFooter from "./MainpageFooter";
-
-import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 function ContactUs() {
-  const form = useRef();
-
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -44,10 +40,10 @@ function ContactUs() {
                 />
               </div>
               <h1 className="text-4xl sm:text-5xl text-gray-800 dark:text-white font-extrabold tracking-tight">
-                Get in touch
+                Any questions?
               </h1>
               <p className="text-normal text-lg sm:text-2xl font-medium text-gray-600 dark:text-gray-400 mt-2">
-                Fill in the form to start a conversation
+                Let us know!
               </p>
 
               <div className="flex items-center mt-8 text-gray-600 dark:text-gray-400">
