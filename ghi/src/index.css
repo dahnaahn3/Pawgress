@@ -1,6 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 /* General CSS */
 .header-right {
@@ -11,33 +11,33 @@
 }
 @media only screen and (min-width: 768px) {
   .header-right {
-      width: calc(100% - 16rem);
+    width: calc(100% - 16rem);
   }
 }
 
 /* General sidebar CSS */
 .logo-icon {
-  @apply w-7 h-7 md:w-10 md:h-10 mr-2 rounded-md overflow-hidden
+  @apply w-7 h-7 md:w-10 md:h-10 mr-2 rounded-md overflow-hidden;
 }
 
 .home-title {
-  @apply hidden md:block
+  @apply hidden md:block;
 }
 
 .hidden-text {
-  @apply px-5 hidden md:block
+  @apply px-5 hidden md:block;
 }
 
 .title-container {
-  @apply flex flex-row items-center h-8
+  @apply flex flex-row items-center h-8;
 }
 
 .footer-copyright {
-  @apply mb-14 px-5 py-3 hidden md:block text-center text-xs
+  @apply mb-14 px-5 py-3 hidden md:block text-center text-xs;
 }
 
 .nav-right-main {
-  @apply flex items-center ml-auto
+  @apply flex items-center ml-auto;
 }
 
 /* Trainer CSS */
@@ -47,7 +47,7 @@
 }
 
 .tr-container-right {
-  @apply fixed w-full flex items-center justify-between h-14 text-white z-10
+  @apply fixed w-full flex items-center justify-between h-14 text-white z-10;
 }
 
 .tr-header-left {
@@ -71,19 +71,19 @@
 }
 
 .tr-sidebar-container {
-  @apply fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-gray-700 dark:bg-gray-900 h-full text-white transition-all duration-300 border-none z-10 sidebar
+  @apply fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-gray-700 dark:bg-gray-900 h-full text-white transition-all duration-300 border-none z-10 sidebar;
 }
 
 .tr-sidebar-flex {
-  @apply overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow
+  @apply overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow;
 }
 
 .tr-sidebar-set {
-  @apply flex flex-col py-4 space-y-1
+  @apply flex flex-col py-4 space-y-1;
 }
 
 .tr-sidebar-title {
-  @apply text-sm font-light tracking-wide text-gray-400 uppercase
+  @apply text-sm font-light tracking-wide text-gray-400 uppercase;
 }
 
 .tr-container {
@@ -91,44 +91,44 @@
 }
 
 .tr-row {
-  @apply inline-flex justify-center items-center ml-4
+  @apply inline-flex justify-center items-center ml-4;
 }
 
 .tr-sidebar-text {
-  @apply ml-2 text-sm tracking-wide truncate
+  @apply ml-2 text-sm tracking-wide truncate;
 }
 
 /* Customer CSS */
 .cs-header-left {
-  @apply flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-blue-200 text-black border-none
+  @apply flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-blue-200 text-black border-none;
 }
 
 .cs-header-right {
-  @apply flex justify-between items-center h-14 bg-blue-200 text-black header-right
+  @apply flex justify-between items-center h-14 bg-blue-200 text-black header-right;
 }
 
 .cs-container-right {
-  @apply fixed w-full flex items-center justify-between h-14 text-white z-10
+  @apply fixed w-full flex items-center justify-between h-14 text-white z-10;
 }
 
 .cs-container-left {
-  @apply min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white text-black
+  @apply min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white text-black;
 }
 
 .cs-welcome-container {
-  @apply flex items-center justify-center w-full max-w-xl mr-4 p-2
+  @apply flex items-center justify-center w-full max-w-xl mr-4 p-2;
 }
 
 .cs-nav-container {
-  @apply flex items-center mr-4 hover:text-blue-600
+  @apply flex items-center mr-4 hover:text-blue-600;
 }
 
 .cs-nav-flex {
-  @apply inline-flex mr-1
+  @apply inline-flex mr-1;
 }
 
 .cs-nav-format {
-  @apply inline-flex mr-1
+  @apply inline-flex mr-1;
 }
 
 .cs-sidebar-container {
@@ -140,25 +140,27 @@
 }
 
 .cs-sidebar-set {
-  @apply flex flex-col py-4 space-y-1
+  @apply flex flex-col py-4 space-y-1;
 }
 .cs-container {
-  @apply relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-200 text-white hover:text-black border-l-4 border-transparent hover:border-gray-600 dark:hover:border-gray-800 pr-6
+  @apply relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-200 text-white hover:text-black border-l-4 border-transparent hover:border-gray-600 dark:hover:border-gray-800 pr-6;
 }
 
 .cs-row {
-  @apply inline-flex justify-center items-center ml-4
+  @apply inline-flex justify-center items-center ml-4;
 }
 
 .cs-sidebar-title {
-  @apply text-sm font-light tracking-wide uppercase
+  @apply text-sm font-light tracking-wide uppercase;
 }
 
 .cs-sidebar-text {
-  @apply ml-2 text-sm tracking-wide truncate whitespace-normal
+  @apply ml-2 text-sm tracking-wide truncate whitespace-normal;
 }
-
-
+.cs-main-component {
+  margin-left: 256px;
+  margin-top: 56px;
+}
 
 /* ##########OLD CODE##############
 body {

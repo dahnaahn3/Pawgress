@@ -67,7 +67,7 @@ function LandingPage() {
 
   return (
     <>
-      <div class="w-full">
+      <div class="w-full cs-main-component">
         <div class="border-t">
           <h4 class="mb-2 mt-0 text-2xl font-medium leading-tight text-primary">
             Upcoming Boardings
