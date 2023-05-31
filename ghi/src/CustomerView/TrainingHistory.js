@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function TrainingHistory() {
+  console.log("TRAINING HISTORY FORM");
   const [history, setHistory] = useState([]);
 
-  const { token } = useToken()
+  const { token } = useToken();
 
   const fetchData = async () => {
     const url = "http://localhost:8000/reservation";
@@ -26,24 +27,27 @@ function TrainingHistory() {
   }
 
   return (
-    <div>
-      <div className="my-5 container">
+    <div className="overflow-x-auto">
+      <header className="px-3 py-4 border-b border-gray-100">
+        <h2 className="font-semibold text-gray-800">Training History 🐾</h2>
         <Link to={"/training"}>
-          <button className="btn">Make a reservation</button>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+            Make a reservation
+          </button>
         </Link>
-      </div>
+      </header>
       {history && history.length ? (
         <div>
-          <table className="table table-striped">
-            <thead>
+          <table className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+            <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
               <tr>
-                <th>Reservation Number</th>
-                <th>Pet</th>
-                <th>Class Start Date and Time</th>
-                <th>Class End Date and Time</th>
+                <th className="p-8">Reservation Number</th>
+                <th className="p-8">Pet</th>
+                <th className="p-8">Class Start Date and Time</th>
+                <th className="p-8">Class End Date and Time</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="border-b">
               {history.map((reservation) => {
                 let start_datetime = reservation.start_datetime;
                 let end_datetime = reservation.end_datetime;
@@ -52,10 +56,14 @@ function TrainingHistory() {
                 console.log(reservation.reservation_id);
                 return (
                   <tr key={reservation.reservation_id}>
-                    <td>{reservation.reservation_id}</td>
-                    <td>{reservation.pet_id}</td>
-                    <td>{start_datetime.toLocaleString()}</td>
-                    <td>{end_datetime.toLocaleString()}</td>
+                    <td className="px-8 py-2">{reservation.reservation_id}</td>
+                    <td className="px-8 py-2">{reservation.pet_id}</td>
+                    <td className="px-8 py-2">
+                      {start_datetime.toLocaleString()}
+                    </td>
+                    <td className="px-8 py-2">
+                      {end_datetime.toLocaleString()}
+                    </td>
                   </tr>
                 );
               })}

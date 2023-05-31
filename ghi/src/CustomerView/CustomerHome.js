@@ -4,7 +4,7 @@ import { RiHistoryFill } from "react-icons/ri";
 import { BsHouse } from "react-icons/bs";
 import { HiOutlineUser } from "react-icons/hi";
 import { GrLogout } from "react-icons/gr";
-import { NavLink, useNavigate, Outlet } from "react-router-dom";
+import { NavLink, useNavigate, Outlet, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
@@ -47,8 +47,8 @@ const CustomerHome = () => {
       } else if (token && user && user.role === "trainer") {
         navigate("/trainer");
       } else {
-        console.log("HI I AM REDIRECTING");
-        navigate("/customers");
+        console.log("REDIRECTING TO CUSTOMERS");
+        // navigate("/customers");
       }
     }
   }, [token, navigate, setToken, user]);
@@ -108,7 +108,7 @@ const CustomerHome = () => {
                   </div>
                 </li>
 
-                <NavLink to="./reservations">
+                <NavLink to="./boarding">
                   <li>
                     <p className="cs-container">
                       <span className="cs-row">
@@ -140,7 +140,7 @@ const CustomerHome = () => {
                   </div>
                 </li>
 
-                <NavLink to="./boarding/history">
+                <Link to={{ pathname: "boarding/history" }}>
                   <li>
                     <p className="cs-container">
                       <span className="cs-row">
@@ -149,9 +149,9 @@ const CustomerHome = () => {
                       <span className="cs-sidebar-text">Boarding History</span>
                     </p>
                   </li>
-                </NavLink>
+                </Link>
 
-                <NavLink to="./training/history">
+                <Link to="./training/history">
                   <li>
                     <p className="cs-container">
                       <span className="cs-row">
@@ -160,12 +160,13 @@ const CustomerHome = () => {
                       <span className="cs-sidebar-text">Training History</span>
                     </p>
                   </li>
-                </NavLink>
+                </Link>
               </ul>
               <p className="footer-copyright">Copyright @2023 by Pawgress</p>
             </div>
           </div>
         </div>
+        <Outlet />
       </div>
     );
   }
