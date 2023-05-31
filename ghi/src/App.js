@@ -21,35 +21,47 @@ import EditPet from "./CustomerView/EditPet";
 import Trainingservice from "./MainPageView/TrainingInfoSheet";
 import Boardingservice from "./MainPageView/BoardingInfoSheet";
 import Meettheteam from "./MainPageView/Meettheteam";
-import SignupForm from './MainPageView/SignupForm';
+import SignupForm from "./MainPageView/SignupForm";
 import Auth from "./MainPageView/Auth";
 import ClassForm from "./TrainerView/ClassForm";
 import PetForm from "./MainPageView/PetForm";
 import BoardingHistory from "./CustomerView/BoardingHistory";
-
+import BoardingModal from "./Modal";
 
 function App() {
   return (
     <div className="flex">
       <Routes>
-        <Route path="/" element={<Mainpage />} />
+        <Route path="customers/" element={<CustomerHome />}>
+          <Route path="" element={<CustomerHome />} />
+          <Route path="training/" element={<TrainingForm />} />
+          <Route path="boarding/" element={<BoardingForm />} />
+          <Route path="training/history/" element={<TrainingHistory />} />
+          <Route path="boarding/history/" element={<BoardingHistory />} />
+          {/* <Route path="/:user_id/edit" element={<CustomerProfile />} /> */}
+          {/* <Route
+              path="/customers/:user_id/:pet_id/"
+              element={<PetProfile />}
+            />
+            <Route
+              path="/customers/:user_id/:pet_id/edit"
+              element={<EditPet />}
+            /> */}
+          {/* <Route path="/customers/:user_id/" element={<LandingPage />} /> */}
+        </Route>
+
         <Route path="/signin" element={<Auth />} />
         <Route path="/signup" element={<SignupForm />} />
-        <Route path="/signup" element={<SignupForm />} />
+        <Route path="/modal" element={<BoardingModal />} />
+        <Route path="/" element={<Mainpage />} />
         <Route path="/meettheteam" element={<Meettheteam />} />
-        <Route path="/customers" element={<CustomerHome />} />
-        <Route path="reservation/" element={<BoardingForm />} />
-        <Route path="customers/training/" element={<TrainingForm />} />
-        <Route path="customers/boarding/" element={<BoardingForm />} />
-        <Route path="customers/training/history/" element={<TrainingHistory />} />
-        <Route path="customers/boarding/history/" element={<BoardingHistory />} />
         <Route path="/trainingservices" element={<Trainingservice />} />
         <Route path="/boardingservices" element={<Boardingservice />} />
-        <Route path="/customers/:user_id/" element={<LandingPage />} />
-        <Route path="/customers/:user_id/profile" element={<CustomerProfile />} />
-        <Route path="/customers/:user_id/edit" element={<CustomerProfile />} />
-        <Route path="/customers/:user_id/:pet_id/" element={<PetProfile />} />
-        <Route path="/customers/:user_id/:pet_id/edit" element={<EditPet />} />
+
+        <Route
+          path="/customers/:user_id/profile"
+          element={<CustomerProfile />}
+        />
 
         <Route path="trainer/" element={<TrainerHome />}>
           <Route path="rooms/" element={<RoomsList />} />

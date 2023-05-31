@@ -10,7 +10,7 @@ function PetProfile() {
   // put this in the NAV
   // const { token, logout } = useToken();
   // const { user } = useUser(token);
-
+  console.log("PET PROFILE PAGE");
   const { user_id, pet_id } = useParams();
   const fetchData = async () => {
     const petURL = `http://localhost:8000/api/pets/${pet_id}/`;
