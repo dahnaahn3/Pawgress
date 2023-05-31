@@ -11,6 +11,7 @@ function formatDateTime(dateTime) {
 }
 
 function LandingPage() {
+  console.log("LANDING PAGE");
   const [pet, setPets] = useState([]);
   const [boardings, setBoardings] = useState([]);
   const [trainings, setTrainings] = useState([]);

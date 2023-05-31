@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function TrainingForm() {
+  console.log("TRAINING FORM");
   const [reservation, setReservation] = useState({
     start_datetime: "",
     end_datetime: "",
@@ -53,61 +54,67 @@ function TrainingForm() {
   }
 
   return (
-    <div>
+    <div className="form-container">
       <div>
         <Link to={{ pathname: "history/" }}>
           <button>Training History</button>
         </Link>
       </div>
-      <div>
-        <h1>Create a training reservation</h1>
-        <form onSubmit={handleSubmit}>
-          <div>
+      <div className="secondary-container">
+        <h1 className="mb-5">Create a training reservation</h1>
+        <form onSubmit={handleSubmit} id="create-user-form">
+          <div className="mb-5">
             <input
+              required
               onChange={handleReservationChange}
               placeholder="Class Start Date"
               type="datetime-local"
               name="start_datetime"
+              className="form-input-container"
             />
             <label htmlFor="start_datetime">Class Start Date and Time</label>
           </div>
-          <div>
+          <div className="mb-5">
             <input
               onChange={handleReservationChange}
               placeholder="Class End Date"
               type="datetime-local"
               name="end_datetime"
+              className="form-input-container"
             />
             <label htmlFor="end_datetime">Class End Date and Time</label>
           </div>
-          <div>
+          <div className="mb-5">
             <input
               onChange={handleReservationChange}
               placeholder="Category"
               type="text"
               name="category"
+              className="form-input-container"
             />
             <label htmlFor="category">Category</label>
           </div>
-          <div>
+          <div className="mb-5">
             <input
               onChange={handleReservationChange}
               placeholder="Customer ID"
               type="text"
               name="customer_id"
+              className="form-input-container"
             />
             <label htmlFor="customer_id">Customer ID</label>
           </div>
-          <div>
+          <div className="mb-5">
             <input
               onChange={handleReservationChange}
               placeholder="Pet ID"
               type="text"
               name="pet_id"
+              className="form-input-container"
             />
             <label htmlFor="pet_id">Pet ID</label>
           </div>
-          <button>Add</button>
+          <button className="submit-button">Add</button>
         </form>
       </div>
     </div>
