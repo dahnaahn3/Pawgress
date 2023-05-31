@@ -1,14 +1,37 @@
+## May 31, 2023
+
+[Today, I worked on:
+
+- Updated/fixed nested routes for all nested routes to show appropriately
+- Completed contact us page with formatting; Tested functionality
+-
+
+]
+
 ## May 30, 2023
 
 [Today, I worked on:
 
 - Added functionally to outreach to Pawgress on Contact Page
 - Worked through customer token issues with team
-- Refreshed the team page
+- Updated profile button to link to customer profile pages
+- Refreshed the team page - added appropriate links for team
 
 Troubleshooting by console.logging is the most way to understand
-what might be causing certain issues
+what might be causing certain issues! Was able to identify why token
+logic kept re-navigating to a certain page
 ]
+
+## May 26, 2023
+
+[Today, I worked on:
+
+- Created page to update customer profile basic details;
+  functionality tested and committed
+- Added functionality to update user password
+
+]
+
 ## May 25, 2023
 
 [Today, I worked on:
