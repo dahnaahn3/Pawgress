@@ -32,14 +32,14 @@ function PetProfile() {
 
   return (
     <div className="w-full">
-      <div class="max-w-lg mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
+      <div className="max-w-lg mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
         <img
-          class="w-32 h-32 rounded-full mx-auto"
+          className="w-32 h-32 rounded-full mx-auto"
           src={pet.picture}
           alt="Profile picture"
         />
         <div> </div>
-        <h2 class="text-center text-2xl font-semibold mt-3">{pet.name}</h2>
+        <h2 className="text-center text-2xl font-semibold mt-3">{pet.name}</h2>
         <div className="mt-5">
           <h3 className="text-xl font-semibold ml-3">Details</h3>
           <div className="max-w-[700px] mx-auto mt-3">
