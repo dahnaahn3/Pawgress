@@ -32,6 +32,7 @@ import ContactUs from "./MainPageView/ContactUs";
 import Donation from "./MainPageView/Donation";
 import BoardingModal from "./Modal";
 import FAQ from "./MainPageView/FAQ";
+import AddPet from "./CustomerView/AddPet";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path=":user_id/editpw" element={<EditPassword />} />
           <Route path=":user_id/:pet_id/" element={<PetProfile />} />
           <Route path=":user_id/:pet_id/edit" element={<EditPet />} />
+          <Route path=":user_id/addpet" element={<AddPet />} />
           <Route path="training/" element={<TrainingForm />} />
           <Route path="boarding/" element={<BoardingForm />} />
           <Route path="training/history/" element={<TrainingHistory />} />

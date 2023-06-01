@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BiEditAlt } from "react-icons/bi";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
-import Popup from "reactjs-popup";
 import useUser from "../useUser";
 
 function CustomerProfile() {
@@ -83,21 +83,31 @@ function CustomerProfile() {
 
             <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none mt-3">
               <h3 className="text-lg font-semibold">Pets</h3>
-              {pets.map((pet) => (
-                <a
-                  href={`/customers/${user.id}/${pet.pet_id}`}
-                  className="flex items-center mt-2"
-                >
-                  <img
-                    className="w-20 h-20 rounded-full mr-2"
-                    src={pet.picture}
-                    alt="Pet"
-                  />
-                  <p className="text-center text-xl font-semibold mt-3">
-                    {pet.name}
-                  </p>
-                </a>
-              ))}
+              <div className="flex items-center justify-between mt-2">
+                {pets.map((pet) => (
+                  <a
+                    href={`/customers/${user.id}/${pet.pet_id}`}
+                    className="flex items-center mt-2"
+                  >
+                    <img
+                      className="w-20 h-20 rounded-full mr-2"
+                      src={pet.picture}
+                      alt="Pet"
+                    />
+                    <p className="text-center text-xl font-semibold mt-3">
+                      {pet.name}
+                    </p>
+                  </a>
+                ))}
+                <div className="flex items-center">
+                  <a
+                    href={`/customers/${user.id}/addpet`}
+                    className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
+                  >
+                    <AiOutlinePlusCircle size={30} />
+                  </a>
+                </div>
+              </div>
               <a
                 href={`/customers/${user.id}/edit`}
                 className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
