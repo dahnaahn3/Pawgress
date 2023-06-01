@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BiEditAlt } from "react-icons/bi";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
-import getUser from "../useUser";
+import Popup from "reactjs-popup";
 import useUser from "../useUser";
 
 function CustomerProfile() {
@@ -46,8 +46,8 @@ function CustomerProfile() {
   }, [tokenUser.user]);
 
   return (
-    <div className="w-full">
-      <div className="max-w-lg mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
+    <div className="w-full cs-main-component">
+      <div className="max-w-xl mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
         <img
           className="w-32 h-32 rounded-full mx-auto"
           src="https://picsum.photos/200"
@@ -84,67 +84,27 @@ function CustomerProfile() {
             <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none mt-3">
               <h3 className="text-lg font-semibold">Pets</h3>
               {pets.map((pet) => (
-                <div className="w-full mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
-                  <a
-                    href={`/customers/${user.id}/${pet.pet_id}`}
-                    className="flex items-center mt-2"
-                  >
-                    <img
-                      className="w-20 h-20 rounded-full mr-2"
-                      src={pet.picture}
-                      alt="Pet"
-                    />
-                    <p className="text-center text-2xl font-semibold mt-3">
-                      {pet.name}
-                    </p>
-                  </a>
-                  <div className="mt-5">
-                    <div className="max-w-[700px] mx-auto mt-3">
-                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none">
-                        <p className="text-md text-gray-600">Breed</p>
-                        <p className="text-base font-medium text-navy-700">
-                          {pet.breed}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none mt-3">
-                        <p className="text-md text-gray-600">Gender</p>
-                        <p className="text-base font-medium text-navy-700">
-                          {pet.gender}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none mt-3">
-                        <p className="text-md text-gray-600">Age</p>
-                        <p className="text-base font-medium text-navy-700">
-                          {pet.age}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none mt-3">
-                        <p className="text-md text-gray-600">Size</p>
-                        <p className="text-base font-medium text-navy-700">
-                          {pet.size}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none mt-3">
-                        <p className="text-md text-gray-600">Weight</p>
-                        <p className="text-base font-medium text-navy-700">
-                          {pet.weight}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <a
-                    href={`/customers/${user.id}/${pet.pet_id}/edit`}
-                    className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
-                  >
-                    <BiEditAlt />
-                    <span>Edit</span>
-                  </a>
-                </div>
+                <a
+                  href={`/customers/${user.id}/${pet.pet_id}`}
+                  className="flex items-center mt-2"
+                >
+                  <img
+                    className="w-20 h-20 rounded-full mr-2"
+                    src={pet.picture}
+                    alt="Pet"
+                  />
+                  <p className="text-center text-xl font-semibold mt-3">
+                    {pet.name}
+                  </p>
+                </a>
               ))}
+              <a
+                href={`/customers/${user.id}/edit`}
+                className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
+              >
+                <BiEditAlt />
+                <span>Edit</span>
+              </a>
             </div>
           </div>
         </div>
