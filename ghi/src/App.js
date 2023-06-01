@@ -30,6 +30,7 @@ import EditCustomer from "./CustomerView/EditCustomer";
 import EditPassword from "./CustomerView/EditPassword";
 import BoardingModal from "./Modal";
 import ContactUs from "./MainPageView/ContactUs";
+import FAQ from "./MainPageView/FAQ";
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
 
         <Route path="/" element={<Mainpage />} />
         <Route path="contactus/" element={<ContactUs />} />
+        <Route path="faq/" element={<FAQ />} />
 
         <Route
           path="/customers/:user_id/profile"
