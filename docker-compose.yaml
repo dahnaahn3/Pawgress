@@ -40,7 +40,7 @@ services:
     depends_on:
       - db
     environment:
-      SIGNING_KEY: generatethis
+      SIGNING_KEY: 1f7d454f0013de3f7b81d830c5b1c7b55bb8532821835e08b341de4f92fe1574
       DATABASE_URL: postgresql://pawgress:pawgress@db/pawgress
       WAIT_HOST: db:5432
       WAIT_TIMEOUT: 600
