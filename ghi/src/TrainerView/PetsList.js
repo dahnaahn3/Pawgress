@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import useToken from "@galvanize-inc/jwtdown-for-react";
+import { NavLink, Outlet, Link} from "react-router-dom";
+
 
 function PetsList() {
-  const { token } = useToken();
   const [pets, setPets] = useState([]);
   const [users, setUsers] = useState([]);
+
+
   const fetchData = async () => {
     const petsURL = "http://localhost:8000/api/pets";
     const userURL = "http://localhost:8000/api/accounts";
@@ -20,37 +21,26 @@ function PetsList() {
     fetchData();
   }, []);
 
-  if (!token) {
-    return null;
-  }
 
   return (
-    <div
-      className="overflow-x-auto"
-      style={{ paddingLeft: "20rem", marginTop: "-50rem" }}
-    >
-      <header class="px-5 py-4 border-b border-gray-100">
-        <h2 class="font-semibold text-gray-800">
-          Our friends with four legs 🐾
-        </h2>
-        <NavLink to="./form">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-            Create a new pet
-          </button>
-        </NavLink>
-      </header>
-      <table class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+    <div style={{ marginLeft: "20rem", marginTop: "-45rem" }}>
+      <table class="w-full max-w mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
         <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+          <NavLink to="./form">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+              Create a new pet
+            </button>
+          </NavLink>
           <tr className="dark:bg-gray-700">
             <th className="p-5">Name</th>
             <th className="p-5">Breed</th>
-            <th className="p-5">gender</th>
-            <th className="p-5">age</th>
-            <th className="p-5">picture</th>
-            <th className="p-5">size</th>
-            <th className="p-5">weight</th>
-            <th className="p-5">diet</th>
-            <th className="p-5">owner</th>
+            <th className="p-5">Gender</th>
+            <th className="p-5">Age</th>
+            <th className="p-5">Picture</th>
+            <th className="p-5">Size</th>
+            <th className="p-5">Weight</th>
+            <th className="p-5">Diet</th>
+            <th className="p-5">Owner</th>
           </tr>
         </thead>
         <tbody className="border-b dark:bg-gray-900 dark:border-gray-700">
@@ -60,16 +50,19 @@ function PetsList() {
                 let owner = `${user.first_name} ${user.last_name}`;
 
                 return (
-                  <tr key={pet.id}>
-                    <td
-                      style={{ textDecoration: "underline" }}
-                      className="px-3 py-2"
-                    >
-                      <NavLink to={`${pet.pet_id}`} key={pet.pet_id}>
+                  <tr key={pet.pet_id}>
+                    <td>
+                      <NavLink
+                        className="bg-blue-200 text-black active:bg-blue-500
+                          font-bold px-6 py-3 rounded
+                        shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                        type="button"
+                        to={`${pet.pet_id}`}
+                        key={pet.pet_id}
+                      >
                         {pet.name}
                       </NavLink>
                     </td>
-
                     <td className="px-3 py-2">{pet.breed}</td>
                     <td className="px-3 py-2">{pet.gender}</td>
                     <td className="px-3 py-2">{pet.age}</td>
@@ -87,7 +80,7 @@ function PetsList() {
                   </tr>
                 );
               }
-              return null; // Return null if the user is not the owner of the pet
+              return null;
             });
           })}
         </tbody>
