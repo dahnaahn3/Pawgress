@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
+import getUser from "../useUser";
 
 function TrainingHistory() {
   console.log("TRAINING HISTORY FORM");
   const [history, setHistory] = useState([]);
 
-  const { token } = useToken();
+  const { token } = useAuthContext();
+  const user = getUser(token);
 
   const fetchData = async () => {
     const url = "http://localhost:8000/reservation";
@@ -27,7 +30,10 @@ function TrainingHistory() {
   }
 
   return (
-    <div className="overflow-x-auto">
+    <div
+      className="overflow-x-auto"
+      style={{ paddingLeft: "20rem", marginTop: "-25rem" }}
+    >
       <header className="px-3 py-4 border-b border-gray-100">
         <h2 className="font-semibold text-gray-800">Training History 🐾</h2>
         <Link to={"/training"}>
@@ -54,18 +60,30 @@ function TrainingHistory() {
                 start_datetime = new Date(start_datetime);
                 end_datetime = new Date(end_datetime);
                 console.log(reservation.reservation_id);
-                return (
-                  <tr key={reservation.reservation_id}>
-                    <td className="px-8 py-2">{reservation.reservation_id}</td>
-                    <td className="px-8 py-2">{reservation.pet_id}</td>
-                    <td className="px-8 py-2">
-                      {start_datetime.toLocaleString()}
-                    </td>
-                    <td className="px-8 py-2">
-                      {end_datetime.toLocaleString()}
-                    </td>
-                  </tr>
-                );
+                if (
+                  reservation.customer_id === parseInt(user?.user?.id) &&
+                  reservation.category === "TRAINING"
+                ) {
+                  return (
+                    <tr key={reservation.reservation_id}>
+                      <td className="px-8 py-2">
+                        {reservation.reservation_id}
+                      </td>
+                      <td className="px-8 py-2">{reservation.pet_id}</td>
+                      <td className="px-8 py-2">
+                        {start_datetime.toLocaleString()}
+                      </td>
+                      <td className="px-8 py-2">
+                        {end_datetime.toLocaleString()}
+                      </td>
+                    </tr>
+                  );
+                } else {
+                  console.log(false);
+                  console.log(reservation.customer_id);
+                  console.log(reservation.category);
+                  console.log(user?.user?.id);
+                }
               })}
             </tbody>
           </table>
