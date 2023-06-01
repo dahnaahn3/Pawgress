@@ -38,48 +38,46 @@ function PetDetail() {
   });
 
   return (
-    <div>
-      <div
-        class="flex justify-between"
-        style={{ marginTop: "-30rem", marginLeft: "13rem"}}
-      >
-        <div className="max-w-xs container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+    <div style={{ paddingLeft: "20rem", marginTop: "-30rem" }}>
+      <div className="detail-container">
+        <div className="card-container">
           <div>
-            <Link to="/trainer/pets">
-              <span className="text-white text-xs font-bold rounded-lg inline-block mt-4 ml-15 py-3.5 px-4 cursor-pointer">
-                ❌
+
+            <Link to="/trainer/pets" >
+              <span className="back-button">
+                Back to list
               </span>
             </Link>
 
-            <h1 className="text-2xl mt-2 ml-4 font-bold text-gray-800 cursor-pointer hover:text-gray-900 transition duration-100">
+            <h1 className="pet-name">
               {pets.name}
             </h1>
-            <p className="ml-4 mt-1 mb-2 text-gray-700 hover:underline cursor-pointer">
+            <p className="row-text">
               {pets.breed}
             </p>
           </div>
 
-          <img className="w-full cursor-pointer" src={pets.picture} alt="" />
-          <div className="flex p-4 justify-between">
-            <div className="flex items-center space-x-2">
-              <h2 className="text-gray-800 font-bold cursor-pointer">
+          <img className="image" src={pets.picture} alt="" />
+          <div className="h2-container">
+            <div className="age-flex">
+              <h2 className="age-font">
                 Age: {pets.age}
               </h2>
             </div>
-            <div className="flex space-x-2">
+            <div className="gender">
               {genderIcon && <img src={genderIcon} alt="Gender Icon" />}
             </div>
           </div>
-          <p className="ml-4 mt-1 mb-2 text-gray-700 hover:underline cursor-pointer">
+          <p className="row-text">
             Weight: {pets.weight}
           </p>
-          <p className="ml-4 mt-1 mb-2 text-gray-700 hover:underline cursor-pointer">
+          <p className="row-text">
             Diet: {pets.diet}
           </p>
-          <p className="ml-4 mt-1 mb-2 text-gray-700 hover:underline cursor-pointer">
+          <p className="row-text">
             Size: {pets.size}
           </p>
-          <p className="ml-4 mt-1 mb-2 text-gray-700 hover:underline cursor-pointer">
+          <p className="row-text">
             Owner: {owner}
           </p>
         </div>

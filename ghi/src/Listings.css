@@ -1,0 +1,246 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+
+/* Classes */
+
+.class-container {
+    @apply overflow-x-auto;
+}
+
+.c-ext {
+    @apply px-5 py-4 border-b border-gray-100;
+}
+
+.c-h2 {
+    @apply font-semibold text-gray-800;
+}
+
+.new-class-button {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full;
+}
+
+.c-box {
+    @apply w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200;
+}
+
+.c-main-row {
+    @apply text-xs font-semibold uppercase text-gray-400 bg-gray-50;
+}
+
+.c-b {
+    @apply border-b;
+}
+
+.c-cat1 {
+    @apply p-8;
+}
+
+.c-cat2 {
+    @apply p-10;
+}
+
+.c-row {
+    @apply px-3 py-2;
+}
+
+/* Trainer List */
+
+.t-ext {
+    @apply px-5 py-4 border-b border-gray-100;
+}
+
+.t-h2 {
+    @apply font-semibold text-gray-800;
+}
+
+.t-box {
+    @apply w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200;
+}
+
+.t-main-row {
+    @apply text-xs font-semibold uppercase text-gray-400 bg-gray-50;
+}
+
+.t-cat1 {
+    @apply p-8;
+}
+
+.t-cat2 {
+    @apply p-10;
+}
+
+.t-b {
+    @apply border-b;
+}
+
+.t-row {
+    @apply px-3 py-2 whitespace-nowrap;
+}
+
+/* Rooms */
+
+.room-container {
+    @apply overflow-x-auto;
+}
+
+.room-ext {
+    @apply px-3 py-4 border-b border-gray-100;
+}
+
+.rom-title {
+    @apply font-semibold text-gray-800;
+}
+
+.new-room-button {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full;
+}
+
+.room-box {
+    @apply w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200;
+}
+
+.room-main-row {
+    @apply text-xs font-semibold uppercase text-gray-400 bg-gray-50;
+}
+
+.room-cat {
+    @apply p-8;
+}
+
+.room-body {
+    @apply border-b
+}
+
+.room-info1 {
+    @apply px-10 py-2;
+}
+
+.room-info2 {
+    @apply px-8 py-2;
+}
+
+/* Pet Listing */
+
+.nav-name-active {
+    @apply bg-blue-200 text-black active:bg-blue-500
+    font-bold px-6 py-3 rounded
+    shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1;
+}
+
+.plist-container {
+    @apply overflow-x-auto;
+}
+
+.plist-ext {
+    @apply px-5 py-4 border-b border-gray-100;
+}
+
+.plist-h2 {
+    @apply font-semibold text-gray-800;
+}
+
+.new-pet-button {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full;
+}
+
+.plist-box {
+    @apply w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200;
+}
+
+.plist-main-row {
+    @apply text-xs font-semibold uppercase text-gray-400 bg-gray-50;
+}
+.info-border {
+    @apply border-b;
+}
+
+.p-image {
+    @apply container w-96 h-96;
+}
+
+.plist-cat {
+    @apply p-5;
+}
+
+.plist-info {
+    @apply px-3 py-2;
+}
+
+/* Pet Detail */
+
+.row-text {
+    @apply ml-4 mt-1 mb-2 text-gray-700;
+}
+
+.gender {
+    @apply flex space-x-2;
+}
+
+.age-font {
+    @apply text-gray-800 font-bold;
+}
+
+.age-flex {
+    @apply flex items-center space-x-2;
+}
+
+.h2-container {
+    @apply flex p-4 justify-between;
+}
+
+.image {
+    @apply w-full cursor-pointer;
+}
+
+.pet-name {
+    @apply text-2xl mt-2 ml-4 font-bold text-gray-800 cursor-pointer hover:text-gray-900 transition duration-100;
+}
+
+.back-button {
+    @apply text-white text-xs font-bold justify-center items-center rounded-lg bg-green-500 inline-block m-4  py-1.5 px-4 cursor-pointer;
+}
+
+.card-container {
+    @apply max-w-xs container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl;
+}
+
+.detail-container {
+    @apply min-h-screen flex justify-center items-center;
+}
+
+/* History Page */
+
+.label-container {
+    @apply px-5 py-4 border-b border-gray-100;
+}
+
+.label-text {
+    @apply font-semibold text-gray-800;
+}
+
+.table-container {
+    @apply w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200;
+}
+
+.category {
+    @apply text-xs font-semibold uppercase text-gray-400 bg-gray-50;
+}
+
+.info-container {
+    @apply border-b;
+}
+
+.h-row {
+    @apply px-3 py-2;
+}
+
+.atitle-margin {
+    @apply p-10;
+}
+
+.btitle-margin {
+    @apply p-8;
+}
