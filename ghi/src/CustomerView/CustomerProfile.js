@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { BiEditAlt } from "react-icons/bi";
-import useToken from "@galvanize-inc/jwtdown-for-react";
-// import useUser from "./useUser";
+import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
+import getUser from "../useUser";
+import useUser from "../useUser";
 
 function CustomerProfile() {
   const [user, setUser] = useState([]);
   const [pets, setPets] = useState([]);
 
-  // put this in the NAV
-  // const { token, logout } = useToken();
-  // const { user } = useUser(token);
+  const { token } = useAuthContext();
+  const tokenUser = useUser(token);
+  console.log("initial pull:::", tokenUser);
 
-  const { user_id } = useParams();
   const fetchData = async () => {
-    const userURL = `http://localhost:8000/api/accounts/${user_id}/`;
+    console.log("I am being called");
+    console.log("with fetch::::", tokenUser);
+    const userURL = `http://localhost:8000/api/accounts/${tokenUser.user.id}/`;
     const petsURL = "http://localhost:8000/api/pets";
 
     const [userResponse, petsResponse] = await Promise.all([
@@ -28,7 +29,7 @@ function CustomerProfile() {
       console.log(userData, petsData);
 
       const filteredPets = petsData.filter(
-        (pet) => pet.owner_id === parseInt(user_id)
+        (pet) => pet.owner_id === parseInt(tokenUser.user.id)
       );
       setUser(userData);
       setPets(filteredPets);
@@ -38,8 +39,11 @@ function CustomerProfile() {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (tokenUser.user !== null) {
+      console.log("token::::::", token);
+      fetchData();
+    }
+  }, [tokenUser.user]);
 
   return (
     <div className="w-full">
@@ -82,7 +86,7 @@ function CustomerProfile() {
               {pets.map((pet) => (
                 <div className="w-full mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
                   <a
-                    href={`/customers/${user_id}/${pet.pet_id}`}
+                    href={`/customers/${user.id}/${pet.pet_id}`}
                     className="flex items-center mt-2"
                   >
                     <img
@@ -133,7 +137,7 @@ function CustomerProfile() {
                     </div>
                   </div>
                   <a
-                    href={`/customers/${user_id}/${pet.pet_id}/edit`}
+                    href={`/customers/${user.id}/${pet.pet_id}/edit`}
                     className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
                   >
                     <BiEditAlt />
