@@ -25,7 +25,7 @@ function EditPassword() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData.password),
+        body: JSON.stringify({ password: formData.password }),
       };
 
       const response = await fetch(url, fetchOptions);
@@ -62,10 +62,10 @@ function EditPassword() {
             </label>
             <input
               onChange={handleFormChange}
-              type="text"
+              type="password"
               name="password"
               id="password"
-              placeholder="password"
+              placeholder="Password"
               className="form-input-container"
               value={formData.password}
             />
@@ -76,7 +76,7 @@ function EditPassword() {
             </label>
             <input
               onChange={handleFormChange}
-              type="text"
+              type="password"
               name="password_confirm"
               id="password_confirm"
               placeholder="Confirm password"
