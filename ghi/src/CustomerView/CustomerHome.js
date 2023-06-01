@@ -9,13 +9,11 @@ import React, { useState, useEffect } from "react";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../useUser";
-import { useParams } from "react-router-dom";
 
 const CustomerHome = () => {
   const { token, setToken } = useAuthContext();
   const { logout } = useToken();
   const { user } = useUser(token);
-  const { user_id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -77,7 +75,7 @@ const CustomerHome = () => {
                     {user && (
                       <div className="flex">
                         <NavLink
-                          to={`/customers/${user_id}/profile`}
+                          to={`/customers/${user.id}/profile`}
                           className="cs-nav-container"
                         >
                           <span className="cs-nav-format">
