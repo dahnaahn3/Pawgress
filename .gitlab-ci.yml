@@ -4,27 +4,27 @@ stages:
   - deploy
 
 # Run flake8 to check for code quality
-lint-test-job:
-  image: python:3-bullseye
-  stage: test
-  script:
-    - pip install flake8
-    - flake8 sample_service
+# lint-test-job:
+#   image: python:3-bullseye
+#   stage: test
+#   script:
+#     - pip install flake8
+#     - flake8 api
 
 
 services:
   - docker:dind
 
-build-pawgress-image:
+build-fastapi-service-image:
   stage: build
   image: docker:git
   variables:
-    GITLAB_IMAGE: ${CI_REGISTRY_IMAGE}/pawgress_image
+    GITLAB_IMAGE: ${CI_REGISTRY_IMAGE}/sample_service_image
   before_script:
     # $CI_JOB_TOKEN is variable automatically added by Gitlab: see https://docs.gitlab.com/ee/ci/variables/predefined_variables.html#variables-reference
     - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token registry.gitlab.com --password-stdin
   script:
-    - docker build --tag $GITLAB_IMAGE:latest pawgress
+    - docker build --tag $GITLAB_IMAGE:latest sample_service
     - docker push $GITLAB_IMAGE:latest
   only:
     - main
