@@ -135,14 +135,12 @@ def update_user(
 )
 def update_user_password(
     user_id: int,
-    password: str,
+    password: dict,
     response: Response,
     repo: AccountQueries = Depends(),
 ):
     try:
-        print("I AM TRYING TO CREATE HASHED PASSWORD")
-        hashed_password = authenticator.hash_password(password)
-        print("I CREATED A HASHED")
+        hashed_password = authenticator.hash_password(password["password"])
         result = repo.update_password(user_id, hashed_password)
 
         if result:
