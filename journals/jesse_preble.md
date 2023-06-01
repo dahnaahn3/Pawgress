@@ -45,3 +45,7 @@ Continued work on the front end. Created pages for the boarding reservation and 
 Continued working on the front end. Ran into an issue with the react router. After a few hours, finally found a way to have the nested routes work properly. There are a few ways to implement it so we will work on it further in the coming days.
 
 ## 5/25/23
+
+## 5/30/23
+
+Today I worked on adding styling to the boarding history, training history, boarding sign up, and training sign up forms. We also troubleshooted a bug with the navigation on the customer side. When nesting the routes under customerHome, we were getting unexpected issues but we finally solved it. This was an issue that had been plaguing us for weeks. Also we figured out how to get the user information from the token on the history pages.

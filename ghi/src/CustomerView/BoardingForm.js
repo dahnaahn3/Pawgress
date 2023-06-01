@@ -54,7 +54,10 @@ function BoardingForm() {
   }
 
   return (
-    <div className="form-container">
+    <div
+      className="form-container"
+      style={{ paddingLeft: "20rem", marginTop: "-25rem" }}
+    >
       <div>
         <Link to={".."}>
           <button>back to customers</button>

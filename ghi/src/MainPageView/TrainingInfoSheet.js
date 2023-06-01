@@ -5,13 +5,10 @@ import MainpageFooter from "./MainpageFooter";
 function Trainingservice() {
 
   return (
-    <div>
+    <div className="flex flex-auto">
       <MainPageNav />
-      <div class="px-8 py-15 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-        <div
-          class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12"
-          style={{ marginLeft: "30rem" }}
-        >
+      <div class="px-5 py-5 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12" style={{marginLeft:"40%"}}>
           <div>
             <p class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
               Pawgress proudly presents
@@ -38,10 +35,14 @@ function Trainingservice() {
             The best in the Bay Area!
           </p>
         </div>
+
         {/* CARDS */}
         <div class="grid grid-cols-3 gap-x-60 gap-y-10">
           <div class="card">
-            <img className="dogphoto" src="https://www.rd.com/wp-content/uploads/2021/03/GettyImages-1133605325-scaled-e1617227898456.jpg" />
+            <img
+              className="dogphoto"
+              src="https://www.rd.com/wp-content/uploads/2021/03/GettyImages-1133605325-scaled-e1617227898456.jpg"
+            />
             <h1 class="classtitle">Puppy Training</h1>
             <h2 className="classsubtitle">10 wks to 5 months old </h2>
             <div class="card__inner">
@@ -62,7 +63,10 @@ function Trainingservice() {
           </div>
 
           <div class="card">
-            <img className="dogphoto" src="https://www.thesprucepets.com/thmb/hxWjs7evF2hP1Fb1c1HAvRi_Rw0=/2765x0/filters:no_upscale():strip_icc()/chinese-dog-breeds-4797219-hero-2a1e9c5ed2c54d00aef75b05c5db399c.jpg" />
+            <img
+              className="dogphoto"
+              src="https://www.thesprucepets.com/thmb/hxWjs7evF2hP1Fb1c1HAvRi_Rw0=/2765x0/filters:no_upscale():strip_icc()/chinese-dog-breeds-4797219-hero-2a1e9c5ed2c54d00aef75b05c5db399c.jpg"
+            />
             <h1 class="classtitle">Beginner Training</h1>
             <h2 className="classsubtitle">5 months and up </h2>
             <div class="card__inner">
@@ -83,7 +87,10 @@ function Trainingservice() {
           </div>
 
           <div class="card">
-            <img className="dogphoto" src="https://hips.hearstapps.com/hmg-prod/images/large-dog-breeds-lead-1550810820.jpg" />
+            <img
+              className="dogphoto"
+              src="https://hips.hearstapps.com/hmg-prod/images/large-dog-breeds-lead-1550810820.jpg"
+            />
             <h1 class="classtitle">Intermediate Training</h1>
             <h2 className="classsubtitle">6 months and up </h2>
             <div class="card__inner">
@@ -102,7 +109,10 @@ function Trainingservice() {
           </div>
 
           <div class="card">
-            <img className="dogphoto" src="https://thumbs.dreamstime.com/b/barking-doberman-12431875.jpg" />
+            <img
+              className="dogphoto"
+              src="https://thumbs.dreamstime.com/b/barking-doberman-12431875.jpg"
+            />
             <h1 class="classtitle">Behavioral Modification</h1>
             <div class="card__inner">
               <p>
@@ -117,7 +127,10 @@ function Trainingservice() {
             </div>
           </div>
           <div class="card">
-            <img className="dogphoto" src="https://3.bp.blogspot.com/_CezSYzAS5Ms/TIGsRHpnESI/AAAAAAAACMM/aRj7yQcEyRU/s1600/DSC09423.jpg" />
+            <img
+              className="dogphoto"
+              src="https://3.bp.blogspot.com/_CezSYzAS5Ms/TIGsRHpnESI/AAAAAAAACMM/aRj7yQcEyRU/s1600/DSC09423.jpg"
+            />
             <h1 class="classtitle"> Pawsome Tricks</h1>
             <div class="card__inner">
               <p>
@@ -131,7 +144,10 @@ function Trainingservice() {
             </div>
           </div>
           <div class="card">
-            <img className="dogphoto" src="https://4pawsins.com/wp-content/uploads/2018/08/dog_breed_groups_1200.jpg" />
+            <img
+              className="dogphoto"
+              src="https://4pawsins.com/wp-content/uploads/2018/08/dog_breed_groups_1200.jpg"
+            />
             <h1 class="classtitle">Group Classes</h1>
             <div class="card__inner">
               <p>

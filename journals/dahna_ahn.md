@@ -60,3 +60,11 @@ Ah ha moment: The outlet tag should be used in parent route elements to render t
 
 Ah ha moment: The outlet tag should be used in parent route elements to render their child route elements.
 ]
+
+## May 30 2023
+[Today, I worked on:
+- Creating a donations page for the main page
+- Added to the meet the team page
+
+Ah ha moment: The outlet tag should be used in parent route elements to render their child route elements.
+]

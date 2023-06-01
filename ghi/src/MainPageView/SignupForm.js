@@ -169,7 +169,7 @@ function SignupForm () {
                 <input
                   required
                   onChange={passwordChange}
-                  type="text"
+                  type="password"
                   name="password"
                   id="password"
                   placeholder="***********"
