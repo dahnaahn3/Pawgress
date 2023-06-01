@@ -15,7 +15,6 @@ function PetDetail() {
     const usersData = await response[1].json();
     setPets(petsData);
     setUsers(usersData);
-    console.log(petsData, usersData);
   };
 
   useEffect(() => {

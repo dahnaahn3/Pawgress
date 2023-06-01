@@ -67,7 +67,6 @@ class ReservationQueries:
                     )
                     return self.reservation_in_to_out(id, reservation)
         except Exception as e:
-            print(e)
             raise e
 
     def list_reservations(self) -> Union[List[ReservationOut], Error]:
@@ -90,13 +89,11 @@ class ReservationQueries:
                         """
                     )
                     reservations = db.fetchall()
-                    print(reservations)
                     return [
                         self.reservation_to_reservation_out(reservation)
                         for reservation in reservations
                     ]
         except Exception as e:
-            print("Error!!!", e)
             raise e
 
     def reservation_in_to_out(

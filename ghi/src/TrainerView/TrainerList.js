@@ -13,7 +13,6 @@ function TrainerList() {
         if (response.ok) {
           const data = await response.json();
           setTrainers(data);
-          console.log(data);
         }
       };
       fetchData();

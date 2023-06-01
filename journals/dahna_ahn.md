@@ -66,5 +66,24 @@ Ah ha moment: The outlet tag should be used in parent route elements to render t
 - Creating a donations page for the main page
 - Added to the meet the team page
 
-Ah ha moment: The outlet tag should be used in parent route elements to render their child route elements.
+Ah ha moment: If the page is getting too large it is better to split up components into different files for better organization and styling. 
+]
+
+## May 30 2023
+[Today, I worked on:
+- Finished donations page
+- Adding more content to main page
+- Removed the articles and replaced it with informational content
+
+Ah ha moment: Using CSS tailwind templates to save time.
+]
+
+
+## June 1 2023
+[Today, I worked on:
+- Removing all trailing console.log and print statements
+- Changed "class" to "className"
+- Making sure there are no errors in the terminal
+
+Ah ha moment: Using CSS tailwind templates to save time.
 ]

@@ -28,7 +28,7 @@ const TrainerHome = () => {
 
   useEffect(() => {
     const savedToken = localStorage.getItem('token');
-    console.log(savedToken)
+    
     if (!token && !savedToken) {
         navigate("/");
     } else {

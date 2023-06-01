@@ -11,7 +11,7 @@ function formatDateTime(dateTime) {
 }
 
 function LandingPage() {
-  console.log("LANDING PAGE");
+
   const [pet, setPets] = useState([]);
   const [boardings, setBoardings] = useState([]);
   const [trainings, setTrainings] = useState([]);
@@ -33,8 +33,7 @@ function LandingPage() {
     if (reservationsResponse.ok && petsResponse.ok) {
       const reservationsData = await reservationsResponse.json();
       const petsData = await petsResponse.json();
-      console.log(petsData, reservationsData);
-      console.log(user_id);
+
 
       const filteredPets = petsData.filter(
         (pet) => pet.owner_id === parseInt(user_id)
@@ -50,9 +49,7 @@ function LandingPage() {
           reservation.category === "Training"
       );
 
-      console.log("Pets:::::", filteredPets);
-      console.log("Boards:::::", filteredBoardings);
-      console.log("Trainings:::::", filteredTrainings);
+
       setPets(filteredPets);
       setBoardings(filteredBoardings);
       setTrainings(filteredTrainings);

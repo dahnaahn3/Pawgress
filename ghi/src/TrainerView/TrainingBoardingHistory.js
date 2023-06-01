@@ -37,22 +37,22 @@ function TrainingBoardingHistory() {
     };
 
     let userName;
-    history.map((h)=>{
-      user.map((u) => {
+    history.forEach((h)=>(
+      user.forEach((u) => {
         if(h.customer_id === u.id){
           userName=`${u.first_name} ${u.last_name}`
         }
       })
-    })
+    ))
 
     let petName;
-    history.map((h) => {
-      pet.map((p) => {
+    history.forEach((h) => (
+      pet.forEach((p) => {
         if (h.pet_id === p.pet_id) {
           petName = `${p.name}`;
         }
-      });
-    });
+      })
+    ));
 
 useEffect(() => {
     fetchData();

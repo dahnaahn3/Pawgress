@@ -26,7 +26,7 @@ function TrainingClass() {
       if (response.ok) {
         const data = await response.json();
         setClasses(data);
-        console.log(data);
+        
       }
     };
 
