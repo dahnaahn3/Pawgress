@@ -56,7 +56,7 @@ function TrainingForm() {
   return (
     <div
       className="form-container"
-      style={{ paddingLeft: "20rem", marginTop: "-25rem" }}
+      style={{ paddingLeft: "15rem", marginTop: "1rem" }}
     >
       <div>
         <Link to={{ pathname: "history/" }}>
