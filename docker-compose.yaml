@@ -6,7 +6,7 @@ services:
   db:
     image: postgres:latest
     volumes:
-      - pawgress-db:/var/lib/postgresql/data
+      - pawgress-db:/var/lib/postgresql
     environment:
       POSTGRES_PASSWORD: pawgress
       POSTGRES_USER: pawgress
