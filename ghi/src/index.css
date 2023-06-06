@@ -100,7 +100,7 @@
 
 /* Customer CSS */
 .cs-header-left {
-  @apply flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-blue-200 text-black border-none;
+  @apply flex items-center justify-start md:justify-center pl-3 w-full md:w-64 h-14 bg-blue-200 text-black border-none;
 }
 
 .cs-header-right {
@@ -175,6 +175,18 @@
 }
 
 .lato{font-family: 'Lato'}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom; 
+  z-index: -1
+}
 
 /* ##########OLD CODE##############
 body {

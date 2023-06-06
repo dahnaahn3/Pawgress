@@ -128,7 +128,7 @@ const CustomerHome = () => {
                 <ul className="cs-sidebar-set">
                   <li className="hidden-text">
                     <div className="title-container">
-                      <div className="cs-sidebar-title">Upcoming</div>
+                      <div className="cs-sidebar-title">MAKE A RESERVATION</div>
                     </div>
                   </li>
 
@@ -159,8 +159,8 @@ const CustomerHome = () => {
                   </NavLink>
 
                   <li className="hidden-text">
-                    <div className="title-container">
-                      <div className="cs-sidebar-title">Animal Trail</div>
+                    <div className="title-container mt-10">
+                      <div className="cs-sidebar-title">PAST RESERVATIONS</div>
                     </div>
                   </li>
 
