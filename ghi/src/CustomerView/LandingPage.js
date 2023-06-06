@@ -14,6 +14,7 @@ function LandingPage() {
   const [boardings, setBoardings] = useState([]);
   const [trainings, setTrainings] = useState([]);
 
+
   const { token } = useAuthContext();
   console.log(token);
   const tokenUser = useUser(token);

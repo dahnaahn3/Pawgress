@@ -1,9 +1,11 @@
 import { HiOutlineUserGroup } from "react-icons/hi2";
 import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
 import { RiHistoryFill } from "react-icons/ri";
+import { BsPersonCircle } from "react-icons/bs";
 import { BsHouse } from "react-icons/bs";
 import { HiOutlineUser } from "react-icons/hi";
-import { GrLogout } from "react-icons/gr";
+import { MdLogout } from "react-icons/md";
+import { RiArrowDropDownLine } from "react-icons/ri";
 import { NavLink, useNavigate, Outlet, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
@@ -16,6 +18,15 @@ const CustomerHome = () => {
   const { user } = useUser(token);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleProfileClick = () => {
+    setShowDropdown(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowDropdown(false);
+  };
 
   const loggingOut = () => {
     localStorage.removeItem("token");
@@ -72,29 +83,41 @@ const CustomerHome = () => {
 
                 <ul className="nav-right-main">
                   <li>
-                    {user && (
-                      <div className="flex">
-                        <NavLink
-                          to={`/customers/${user.id}/profile`}
-                          className="cs-nav-container"
-                        >
-                          <span className="cs-nav-format">
-                            <HiOutlineUser />
-                          </span>
-                          Profile
-                        </NavLink>
-                        <NavLink
-                          to="/"
-                          onClick={loggingOut}
-                          className="cs-nav-container"
-                        >
-                          <span className="cs-nav-flex">
-                            <GrLogout />
-                          </span>
-                          Sign out
-                        </NavLink>
-                      </div>
-                    )}
+                    <div
+                      class="h-10 w-10 hover:ring-4 user cursor-pointer relative ring-blue-700/30 rounded-full bg-cover bg-center mr-5"
+                      onClick={handleProfileClick}
+                    >
+                      <BsPersonCircle className="h-10 w-10" />
+                      {showDropdown && (
+                        <div>
+                          <div
+                            class="drop-down  w-48 overflow-hidden bg-white rounded-md shadow absolute top-12 right-3"
+                            onMouseLeave={handleMouseLeave}
+                          >
+                            <ul>
+                              <li>
+                                <a
+                                  href={`/pawgress/customers/${user.id}/profile`}
+                                  class="px-3 py-3 text-sm font-medium flex items-center space-x-2 hover:bg-slate-400"
+                                >
+                                  <HiOutlineUser className="h-6 w-6 mr-2" />
+                                  Profile
+                                </a>
+                              </li>
+                              <li>
+                                <a
+                                  onClick={loggingOut}
+                                  class="px-3 py-3 text-sm font-medium flex items-center space-x-2 hover:bg-slate-400"
+                                >
+                                  <MdLogout className="h-6 w-6 mr-2" />
+                                  Sign Out
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </li>
                 </ul>
               </div>
