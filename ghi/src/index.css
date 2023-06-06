@@ -160,7 +160,21 @@
 .cs-main-component {
   margin-left: 256px;
   margin-top: 56px;
+  padding: 25px 50px 50px
 }
+
+.welcome-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 80px;
+    margin-bottom: 30px;
+}
+
+.gamma {
+  font-size: 2rem; /* 36 / 18 = 2 */
+  margin-bottom: 0.825rem;
+}
+
+.lato{font-family: 'Lato'}
 
 /* ##########OLD CODE##############
 body {
