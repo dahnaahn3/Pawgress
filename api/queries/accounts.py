@@ -214,12 +214,11 @@ class AccountQueries:
                     )
                     return self.user_in_and_out(user_id, user)
         except Exception as e:
-            print(e)
+
             raise e
 
     def update_password(self, user_id: int, hashed_password: str) -> str:
         try:
-            print("I AM TRYING CONNECT TO DB")
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     db.execute(
@@ -237,7 +236,6 @@ class AccountQueries:
                     success = "This was successful"
                     return success
         except Exception as e:
-            print(e)
             raise e
 
     def delete(self, user_id: int) -> str:
@@ -256,5 +254,4 @@ class AccountQueries:
                     else:
                         return "Successfully removed removed"
         except Exception as e:
-            print(e)
             raise e

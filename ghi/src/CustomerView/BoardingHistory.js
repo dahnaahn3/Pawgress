@@ -36,7 +36,7 @@ function BoardingHistory() {
   return (
     <div
       className="overflow-x-auto"
-      style={{ paddingLeft: "20rem", marginTop: "-25rem" }}
+      style={{ paddingLeft: "20rem", marginTop: "5rem" }}
     >
       <header className="px-3 py-4 border-b border-gray-100">
         <h2 className="font-semibold text-gray-800">Boarding History 🐾</h2>

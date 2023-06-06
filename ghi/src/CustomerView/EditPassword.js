@@ -17,7 +17,7 @@ function EditPassword() {
     event.preventDefault();
 
     if (formData.password === formData.password_confirm) {
-      console.log(typeof formData.password);
+      
       const url = `http://localhost:8000/api/accounts/${user_id}/password`;
 
       const fetchOptions = {

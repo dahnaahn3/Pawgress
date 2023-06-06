@@ -33,7 +33,6 @@ function EditCustomer() {
     if (userResponse.ok && petsResponse.ok) {
       const userData = await userResponse.json();
       const petsData = await petsResponse.json();
-      console.log(userData, petsData);
       setUser(userData);
       setPets(petsData);
     } else {
@@ -64,7 +63,7 @@ function EditCustomer() {
     updatedFields["role"] = user["role"];
     updatedFields["hashed_password"] = user["hashed_password"];
 
-    console.log("updated:::::", updatedFields);
+
 
     // If no fields have changed
     if (updatedFields.length === 0) {

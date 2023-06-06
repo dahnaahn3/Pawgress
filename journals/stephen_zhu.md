@@ -77,3 +77,39 @@ Today, I worked on:
 I worked on fixing the problems that were on the PetForm trying to fetch the owner data and displaying it.  Also completed the RoomForm to create rooms with and without a pet assigned so many rooms could be created for visual purposes.  Jesse helped in solving the issue of my .map() issue not getting the the pets name to input properly.
 
 I learned that with doing SQL it's different from django where I didn't have to apply the name of the table or keyword that was used as the ForeignKey when calling for the referenced table for example applying the .user after setting an attribute to the json response.
+
+## May 25, 2023
+Today, I worked on:
+
+*Adding a Sign up form
+
+I did some small fixes to the original Sign up form I made a week ago for users to sign up but didn't add into project because I thought the auth would do what we needed for the project.
+
+
+## May 26, 2023
+Today, I worked on:
+
+*Adding auth and CSS to sign in form, customer and trainer views
+
+I worked on adding authentication to sign in so it would check token and role to redirect to the correct views.  I also moved some CSS from a template Dahna made into the auth file.
+
+## May 29, 2023
+Today, I worked on:
+
+*Adding filters to Customer/Trainer view pages
+
+I added filters so that redirects would happen if the role of user did not match such as role: "trainer" if trying to go to localhost:3000/customers, it would redirect to localhost:3000/trainer and vice versa customer cannot go to trainer page view.  I also worked on adding some filters so that unless there's a token the view such as listings and forms will not render.
+
+I figured out that token wasn't being saved globally so every time I hard refreshed, I would get sent back to the main page of localhost:3000.
+
+## May 30, 2023
+Today, I worked on:
+
+*Fixing the saving of token when logging in so that it would be saved to localStorage that way when page is refreshed it doesn't redirect to the main page of localhost:3000 because of the unfound token between the refresh and when the token is fetched.  Jesse saw the problem that I was getting the 'token' but I wasn't 'setting it'.  After the solution was found I adde a removeItem('token') component so that it would delete the token information from localStorage at sign out.  Jesse, Jennifer and I dug around to find out why the forms and listings weren't showing up on the customer home page.  Eventually we figured out the problem was the redirect in the useEffect that checked for token role it was forcefully redirecting it to "/customers" before the list or form page could render.
+
+I learned about localStorage set, get, and delete.
+
+## May 31, 2023
+Today, I worked on:
+
+*

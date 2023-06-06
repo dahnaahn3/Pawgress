@@ -23,60 +23,62 @@ function PetsList() {
 
 
   return (
-    <div style={{ marginLeft: "20rem", marginTop: "-45rem" }}>
-      <table class="w-full max-w mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-        <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-          <NavLink to="./form">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-              Create a new pet
-            </button>
-          </NavLink>
-          <tr className="dark:bg-gray-700">
-            <th className="p-5">Name</th>
-            <th className="p-5">Breed</th>
-            <th className="p-5">Gender</th>
-            <th className="p-5">Age</th>
-            <th className="p-5">Picture</th>
-            <th className="p-5">Size</th>
-            <th className="p-5">Weight</th>
-            <th className="p-5">Diet</th>
-            <th className="p-5">Owner</th>
+    <div
+      className="plist-container"
+      style={{ paddingLeft: "20rem", marginTop: "-50rem" }}
+    >
+      <header class="plist-ext">
+        <h2 class="plist-h2">
+          Our friends with four legs 🐾
+        </h2>
+        <NavLink to="./form">
+          <button class="new-pet-button">
+            Create a new pet
+          </button>
+        </NavLink>
+      </header>
+      <table class="plist-box">
+        <thead class="plist-main-row">
+          <tr>
+            <th className="plist-cat">Name</th>
+            <th className="plist-cat">Breed</th>
+            <th className="plist-cat">gender</th>
+            <th className="plist-cat">age</th>
+            <th className="plist-cat">picture</th>
+            <th className="plist-cat">size</th>
+            <th className="plist-cat">weight</th>
+            <th className="plist-cat">diet</th>
+            <th className="plist-cat">owner</th>
           </tr>
         </thead>
-        <tbody className="border-b dark:bg-gray-900 dark:border-gray-700">
+        <tbody className="info-border">
           {users.map((user) => {
             return pets.map((pet) => {
               if (user.id === pet.owner_id) {
                 let owner = `${user.first_name} ${user.last_name}`;
 
                 return (
-                  <tr key={pet.pet_id}>
+                  <tr key={pet.id}>
                     <td>
-                      <NavLink
-                        className="bg-blue-200 text-black active:bg-blue-500
-                          font-bold px-6 py-3 rounded
-                        shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                        to={`${pet.pet_id}`}
-                        key={pet.pet_id}
-                      >
+                      <NavLink className="nav-name-active" type="button" to={`${pet.pet_id}`} key={pet.pet_id}>
                         {pet.name}
                       </NavLink>
                     </td>
-                    <td className="px-3 py-2">{pet.breed}</td>
-                    <td className="px-3 py-2">{pet.gender}</td>
-                    <td className="px-3 py-2">{pet.age}</td>
-                    <td className="px-3 py-2">
+
+                    <td className="plist-info">{pet.breed}</td>
+                    <td className="plist-info">{pet.gender}</td>
+                    <td className="plist-info">{pet.age}</td>
+                    <td className="plist-info">
                       <img
-                        className="img-fluid w-100 h-100"
+                        className="p-image"
                         style={{ maxWidth: "200px", maxHeight: "150px" }}
                         src={pet.picture}
                       />
                     </td>
-                    <td className="px-3 py-2">{pet.size}</td>
-                    <td className="px-3 py-2">{pet.weight}</td>
-                    <td className="px-3 py-2">{pet.diet}</td>
-                    <td className="px-3 py-2">{owner}</td>
+                    <td className="plist-info">{pet.size}</td>
+                    <td className="plist-info">{pet.weight}</td>
+                    <td className="plist-info">{pet.diet}</td>
+                    <td className="plist-info">{owner}</td>
                   </tr>
                 );
               }

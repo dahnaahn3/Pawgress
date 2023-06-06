@@ -28,7 +28,7 @@ const TrainerHome = () => {
 
   useEffect(() => {
     const savedToken = localStorage.getItem('token');
-    console.log(savedToken)
+    
     if (!token && !savedToken) {
         navigate("/");
     } else {
@@ -66,12 +66,6 @@ const TrainerHome = () => {
                 <li style={{marginRight:"10rem"}}>
                   <NavLink to="/" onClick={loggingOut} className="tr-nav-container">
                     <span className="tr-nav-flex">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M17 16l4-4m0 0l-4-4m4 text-white 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                        ></path>
                       <GrLogout />
                     </span>
                     Sign out
