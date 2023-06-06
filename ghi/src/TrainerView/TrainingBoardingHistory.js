@@ -26,32 +26,33 @@ function TrainingBoardingHistory() {
       const userURL = "http://localhost:8000/api/accounts";
       const petsURL = "http://localhost:8000/api/pets";
       const response = await Promise.all([fetch(historyURL), fetch(userURL), fetch(petsURL)]);
-      if(response.ok){
+      // if(response.ok){
       const historydata = await response[0].json();
       const userdata = await response[1].json();
       const petdata = await response[2].json();
         setHistory(historydata);
         setUser(userdata)
-        setPet(petdata)}
+        setPet(petdata)
+    // }
     };
 
     let userName;
-    history.map((h)=>{
-      user.map((u) => {
+    history.forEach((h)=>(
+      user.forEach((u) => {
         if(h.customer_id === u.id){
           userName=`${u.first_name} ${u.last_name}`
         }
       })
-    })
+    ))
 
     let petName;
-    history.map((h) => {
-      pet.map((p) => {
+    history.forEach((h) => (
+      pet.forEach((p) => {
         if (h.pet_id === p.pet_id) {
           petName = `${p.name}`;
         }
-      });
-    });
+      })
+    ));
 
 useEffect(() => {
     fetchData();
@@ -62,35 +63,35 @@ useEffect(() => {
   }
 
   return (
-    <div style={{ paddingLeft: "20rem", marginTop: "-40rem" }}>
-      {history && history.length ? (
+    <div style={{ paddingLeft: "20rem", marginTop: "-50rem" }}>
+      {/* {history && history.length ? ( */}
         <>
           <div>
-            <header className="px-5 py-4 border-b border-gray-100">
-              <h2 className="font-semibold text-gray-800">
+            <header className="label-container">
+              <h2 className="label-text">
                 Training History 🐾
               </h2>
             </header>
-            <table className="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-              <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-                <tr className="dark:bg-gray-700">
-                  <th className="p-10">Customer</th>
-                  <th className="p-10">Pet</th>
-                  <th className="p-10">Start</th>
-                  <th className="p-10">End</th>
+            <table className="table-container">
+              <thead className="category">
+                <tr>
+                  <th className="atitle-margin">Customer</th>
+                  <th className="atitle-margin">Pet</th>
+                  <th className="atitle-margin">Start</th>
+                  <th className="atitle-margin">End</th>
                 </tr>
               </thead>
-              <tbody className="border-b dark:bg-gray-900 dark:border-gray-700">
+              <tbody className="info-container">
                 {history.map((h) => {
                   if (h.category === "TRAINING") {
                     const formattedStartDateTime = formatDate(h.start_datetime);
                     const formattedEndDateTime = formatDate(h.end_datetime);
                     return (
                       <tr>
-                        <td className="px-3 py-2">{userName}</td>
-                        <td className="px-3 py-2">{petName} </td>
-                        <td className="px-3 py-2">{formattedStartDateTime}</td>
-                        <td className="px-3 py-2">{formattedEndDateTime}</td>
+                        <td className="h-row">{userName}</td>
+                        <td className="h-row">{petName} </td>
+                        <td className="h-row">{formattedStartDateTime}</td>
+                        <td className="h-row">{formattedEndDateTime}</td>
                       </tr>
                     );
                   }
@@ -99,31 +100,31 @@ useEffect(() => {
             </table>
           </div>
           <div>
-            <header className="px-5 py-4 border-b border-gray-100">
-              <h2 className="font-semibold text-gray-800">
+            <header className="label-container">
+              <h2 className="label-text">
                 Boarding History 🐾
               </h2>
             </header>
-            <table className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-              <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-                <tr className="dark:bg-gray-700">
-                  <th className="p-8">Customer</th>
-                  <th className="p-8">Pet</th>
-                  <th className="p-8">Start</th>
-                  <th className="p-8">End</th>
+            <table className="table-container">
+              <thead className="category">
+                <tr>
+                  <th className="btitle-margin">Customer</th>
+                  <th className="btitle-margin">Pet</th>
+                  <th className="btitle-margin">Start</th>
+                  <th className="btitle-margin">End</th>
                 </tr>
               </thead>
-              <tbody className="border-b dark:bg-gray-900 dark:border-gray-700">
+              <tbody className="info-container">
                 {history.map((h) => {
                   if (h.category === "BOARDING") {
                     const formattedStartDateTime = formatDate(h.start_datetime);
                     const formattedEndDateTime = formatDate(h.end_datetime);
                     return (
                       <tr>
-                        <td className="px-3 py-2">{userName}</td>
-                        <td className="px-3 py-2">{petName} </td>
-                        <td className="px-3 py-2">{formattedStartDateTime}</td>
-                        <td className="px-3 py-2">{formattedEndDateTime}</td>
+                        <td className="h-row">{userName}</td>
+                        <td className="h-row">{petName} </td>
+                        <td className="h-row">{formattedStartDateTime}</td>
+                        <td className="h-row">{formattedEndDateTime}</td>
                       </tr>
                     );
                   }
@@ -132,9 +133,9 @@ useEffect(() => {
             </table>
           </div>
         </>
-      ) : (
-        <p> No history to display! </p>
-      )}
+      {/* ) : ( */}
+        {/* <p> No history to display! </p> */}
+      {/* )} */}
     </div>
   );
 }

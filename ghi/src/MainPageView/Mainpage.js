@@ -5,7 +5,7 @@ import MainPageCover from "./MainPageCover";
 import MainPageArticles from "./MainPageArticles";
 import MainPageContact from "./MainPageContact";
 import MainpageFooter from "./MainpageFooter";
-import './mainpage.css'
+
 
 function Mainpage() {
   return (

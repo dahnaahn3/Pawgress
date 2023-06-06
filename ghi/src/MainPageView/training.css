@@ -67,3 +67,43 @@
     height: 300px;
     width:500px
 }
+
+.learnmore {
+ display: inline-block;
+ border-radius: 4px;
+ background-color: #84a2f8;
+ border: none;
+ color: black;
+ text-align: center;
+ font-size: 17px;
+ padding: 16px;
+ width: 150px;
+ transition: all 0.5s;
+ cursor: pointer;
+ margin: 5px;
+}
+
+.learnmore .open {
+ cursor: pointer;
+ display: inline-block;
+ position: relative;
+ transition: 0.5s;
+}
+
+.learnmore .open:after {
+ content: '  🐾';
+ position: absolute;
+ opacity: 0;
+ top: 0;
+ right: -15px;
+ transition: 0.5s;
+}
+
+.learnmore:hover .open {
+ padding-right: 25px;
+}
+
+.learnmore:hover .open:after {
+ opacity: 1;
+ right: 0;
+}

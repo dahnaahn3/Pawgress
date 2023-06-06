@@ -20,7 +20,6 @@ class RoomQueries:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
-                    print("pools connected")
                     result = db.execute(
                         """
                         INSERT INTO rooms(room_number, occupied, pet_id)
@@ -34,13 +33,8 @@ class RoomQueries:
                         ]
                     )
 
-                    print('the results:', result)
-                    print(room.room_number,
-                            room.occupied,
-                            room.pet_id)
 
                     id = result.fetchone()[0]
-                    print("id", id)
                 return self.room_in_to_out(id, room)
         except Exception as e:
             raise e

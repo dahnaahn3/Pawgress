@@ -26,26 +26,26 @@ function RoomsList(){
   }
   return (
     <div
-      className="overflow-x-auto"
+      className="room-container"
       style={{ paddingLeft: "20rem", marginTop: "-50rem" }}
     >
-      <header className="px-3 py-4 border-b border-gray-100">
-        <h2 className="font-semibold text-gray-800">Rooms 🐾</h2>
+      <header className="room-ext">
+        <h2 className="room-title">Rooms 🐾</h2>
         <NavLink to="./form">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+          <button className="new-room-button">
             Create a new room
           </button>
         </NavLink>
       </header>
-      <table className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-        <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-          <tr className="dark:bg-gray-700">
-            <th className="p-8">Room Number</th>
-            <th className="p-8">Occupied</th>
-            <th className="p-8">Pet Name</th>
+      <table className="room-box">
+        <thead className="room-main-row">
+          <tr>
+            <th className="room-cat">Room Number</th>
+            <th className="room-cat">Occupied</th>
+            <th className="room-cat">Pet Name</th>
           </tr>
         </thead>
-        <tbody className="border-b dark:bg-gray-900 dark:border-gray-700">
+        <tbody className="room-body">
           {rooms.map((room) => {
             const pet = pets.find((pet) => pet.pet_id === room.pet_id);
             let occupied = room.occupied ? "Yes ✅" : "No ❌";
@@ -53,9 +53,9 @@ function RoomsList(){
 
             return (
               <tr key={room.id}>
-                <td className="px-10 py-2">{room.room_number}</td>
-                <td className="px-8 py-2">{occupied}</td>
-                <td className="px-8 py-2">{petName}</td>
+                <td className="room-info1">{room.room_number}</td>
+                <td className="room-info2">{occupied}</td>
+                <td className="room-info2">{petName}</td>
               </tr>
             );
           })}

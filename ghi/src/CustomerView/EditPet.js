@@ -29,7 +29,6 @@ function EditPet() {
 
     if (petResponse.ok) {
       const petData = await petResponse.json();
-      console.log(petData);
       setPet(petData);
     } else {
       console.log("Error fetching data");
