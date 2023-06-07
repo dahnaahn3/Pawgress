@@ -13,7 +13,6 @@ function Donation(){
       const [name, setName] = useState("");
       const [expiry, setExpiry] = useState("");
       const [cvc, setCvc] = useState("");
-      const [issuer, setIssuer] = useState("");
       const [focused, setFocused] = useState("");
       const [formData, setFormData] = useState(null);
 

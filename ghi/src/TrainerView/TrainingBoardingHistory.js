@@ -33,7 +33,7 @@ function TrainingBoardingHistory() {
         setHistory(historydata);
         setUser(userdata)
         setPet(petdata)
-    // }
+      // }
     };
 
     let userName;
@@ -63,7 +63,7 @@ useEffect(() => {
   }
 
   return (
-    <div style={{ paddingLeft: "20rem", marginTop: "-50rem" }}>
+    <div style={{ paddingLeft: "20rem", marginTop: "-70%" }}>
       {/* {history && history.length ? ( */}
         <>
           <div>
@@ -83,11 +83,12 @@ useEffect(() => {
               </thead>
               <tbody className="info-container">
                 {history.map((h) => {
+                  
                   if (h.category === "TRAINING") {
                     const formattedStartDateTime = formatDate(h.start_datetime);
                     const formattedEndDateTime = formatDate(h.end_datetime);
                     return (
-                      <tr>
+                      <tr key={h.reservation_id}>
                         <td className="h-row">{userName}</td>
                         <td className="h-row">{petName} </td>
                         <td className="h-row">{formattedStartDateTime}</td>
@@ -120,7 +121,7 @@ useEffect(() => {
                     const formattedStartDateTime = formatDate(h.start_datetime);
                     const formattedEndDateTime = formatDate(h.end_datetime);
                     return (
-                      <tr>
+                      <tr key={h.reservation_id}>
                         <td className="h-row">{userName}</td>
                         <td className="h-row">{petName} </td>
                         <td className="h-row">{formattedStartDateTime}</td>

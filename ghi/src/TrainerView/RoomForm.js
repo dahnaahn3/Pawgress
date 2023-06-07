@@ -69,7 +69,7 @@ function RoomForm() {
   return (
     <div
       className="form-container"
-      style={{ paddingLeft: "20rem", marginTop: "-50rem" }}
+      style={{ paddingLeft: "20rem", marginTop: "-60%" }}
     >
       <div className="secondary-container">
         <form onSubmit={handleSubmit} id="create-user-form">

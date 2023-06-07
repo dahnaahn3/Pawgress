@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Outlet, Link} from "react-router-dom";
+import { NavLink, Outlet} from "react-router-dom";
 
 
 function PetsList() {
@@ -25,20 +25,20 @@ function PetsList() {
   return (
     <div
       className="plist-container"
-      style={{ paddingLeft: "20rem", marginTop: "-50rem" }}
+      style={{ paddingLeft: "20rem", marginTop: "-40rem" }}
     >
-      <header class="plist-ext">
-        <h2 class="plist-h2">
+      <header className="plist-ext">
+        <h2 className="plist-h2">
           Our friends with four legs 🐾
         </h2>
         <NavLink to="./form">
-          <button class="new-pet-button">
+          <button className="new-pet-button">
             Create a new pet
           </button>
         </NavLink>
       </header>
-      <table class="plist-box">
-        <thead class="plist-main-row">
+      <table className="plist-box">
+        <thead className="plist-main-row">
           <tr>
             <th className="plist-cat">Name</th>
             <th className="plist-cat">Breed</th>
@@ -58,7 +58,7 @@ function PetsList() {
                 let owner = `${user.first_name} ${user.last_name}`;
 
                 return (
-                  <tr key={pet.id}>
+                  <tr key={pet.pet_id}>
                     <td>
                       <NavLink className="nav-name-active" type="button" to={`${pet.pet_id}`} key={pet.pet_id}>
                         {pet.name}

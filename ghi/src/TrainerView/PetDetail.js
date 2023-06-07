@@ -29,10 +29,10 @@ function PetDetail() {
     genderIcon = "https://img.icons8.com/parakeet/48/female.png";
   }
 
-  let owner = ""; // Initialize owner variable outside the loop
+  let owner = "";
   users.map((user) => {
     if (user.id === pets.owner_id) {
-      owner = `${user.first_name} ${user.last_name}`; // Assign value to owner
+      owner = `${user.first_name} ${user.last_name}`; 
     }
   });
 

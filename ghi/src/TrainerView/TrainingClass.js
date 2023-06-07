@@ -26,7 +26,7 @@ function TrainingClass() {
       if (response.ok) {
         const data = await response.json();
         setClasses(data);
-        
+
       }
     };
 
@@ -40,18 +40,18 @@ function TrainingClass() {
   return (
     <div
       className="class-container"
-      style={{ paddingLeft: "20rem", marginTop: "-50rem" }}
+      style={{ paddingLeft: "20rem", marginTop: "-50%" }}
     >
-      <header class="c-ext">
-        <h2 class="c-h2">Classes 🐾</h2>
+      <header className="c-ext">
+        <h2 className="c-h2">Classes 🐾</h2>
         <NavLink to="./form">
-          <button class="new-class-button">
+          <button className="new-class-button">
             Create a new class
           </button>
         </NavLink>
       </header>
-      <table class="c-box">
-        <thead class="c-main-row">
+      <table className="c-box">
+        <thead className="c-main-row">
           <tr>
             <th className="c-cat1">Class Name</th>
             <th className="c-cat1">Category</th>
@@ -67,7 +67,7 @@ function TrainingClass() {
             const formattedStartDateTime = formatDate(c.start_datetime)
             const formattedEndDateTime = formatDate(c.end_datetime)
             return(
-            <tr key={c.id}>
+            <tr key={c.class_id}>
               <td className="c-row">{c.name}</td>
               <td className="c-row">{c.category}</td>
               <td className="c-row">{c.attendees}</td>
@@ -80,6 +80,7 @@ function TrainingClass() {
           })}
         </tbody>
       </table>
+      <Outlet/>
     </div>
   );
 }

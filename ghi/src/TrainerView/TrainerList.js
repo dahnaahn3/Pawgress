@@ -23,7 +23,7 @@ function TrainerList() {
   }
 
   return (
-    <div style={{ paddingLeft: "20rem", marginTop: "-50rem" }}>
+    <div style={{ paddingLeft: "20rem", marginTop: "-70%" }}>
       <header className="t-ext">
         <h2 className="t-h2">Trainers 🐾</h2>
       </header>

@@ -28,7 +28,7 @@ const TrainerHome = () => {
 
   useEffect(() => {
     const savedToken = localStorage.getItem('token');
-    
+
     if (!token && !savedToken) {
         navigate("/");
     } else {
@@ -40,11 +40,6 @@ const TrainerHome = () => {
     }
   }, [token, navigate, setToken]);
 
-  // useEffect(() => {
-  //     if (token && user && user.role === "trainer") {
-  //         navigate("/trainer");
-  //     }
-  // }, [token, navigate, user]);
 
 
   return (

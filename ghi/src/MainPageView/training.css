@@ -12,8 +12,6 @@
 
 }
 
-/*  Assigning properties to inner
-    content of card  */
 .card__inner {
     background-color: rgba(43, 43, 43, 0.9);
     color: #fff;
@@ -28,14 +26,11 @@
     transition: all 0.4s ease 0s;
 }
 
-/*  On hovering card opacity
-    of content must be 1*/
+
 .card:hover .card__inner {
     opacity: 1;
 }
 
-/*  General property for heading
-    and paragraph*/
 .card__inner h2 {
     margin-top: 1rem;
 }
