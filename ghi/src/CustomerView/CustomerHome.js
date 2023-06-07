@@ -99,13 +99,13 @@ const CustomerHome = () => {
                           >
                             <ul>
                               <li>
-                                <a
-                                  href={`/pawgress/customers/${user.id}/profile`}
+                                <Link
+                                  to={`/customers/${user.id}/profile`}
                                   className="px-3 py-3 text-sm font-medium flex items-center space-x-2 hover:bg-slate-400"
                                 >
                                   <HiOutlineUser className="h-6 w-6 mr-2" />
                                   Profile
-                                </a>
+                                </Link>
                               </li>
                               <li>
                                 <a

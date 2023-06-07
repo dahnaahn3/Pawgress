@@ -39,7 +39,7 @@ function App() {
     <div className="flex">
       <Routes>
         <Route path="customers/" element={<CustomerHome />}>
-          <Route path="/customers/:user_id/" element={<LandingPage />} />
+          <Route path=":user_id/" element={<LandingPage />} />
           <Route path=":user_id/profile" element={<CustomerProfile />} />
           <Route path=":user_id/edit" element={<EditCustomer />} />
           <Route path=":user_id/editpw" element={<EditPassword />} />
