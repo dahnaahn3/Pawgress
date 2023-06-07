@@ -63,8 +63,6 @@ function EditCustomer() {
     updatedFields["role"] = user["role"];
     updatedFields["hashed_password"] = user["hashed_password"];
 
-
-
     // If no fields have changed
     if (updatedFields.length === 0) {
       alert("No changes have been made.");

@@ -8,7 +8,7 @@ function RoomForm() {
   const [pet, setPet] = useState(null);
   const [pets, setPets] = useState([]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { token } = useToken();
 
   const roomChange = (event) => {
@@ -44,7 +44,7 @@ function RoomForm() {
       setOccupancy(false);
       setPet(null);
       setPets([]);
-      navigate('/trainer/rooms')
+      navigate("/trainer/rooms");
 
       fetchData();
     }

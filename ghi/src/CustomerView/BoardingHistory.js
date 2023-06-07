@@ -6,18 +6,22 @@ import getUser from "../useUser";
 
 function BoardingHistory() {
   const [history, setHistory] = useState([]);
-  console.log("BOARDING HISTORY PAGE");
+  const [pets, setPets] = useState([]);
   const { token } = useAuthContext();
   const user = getUser(token);
-  console.log("USERID", user?.user?.id);
 
   const fetchData = async () => {
     const url = "http://localhost:8000/reservation";
+    const urlPets = "http://localhost:8000/api/pets";
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
       setHistory(data);
-      console.log("DATA", data);
+    }
+    const responsePets = await fetch(urlPets);
+    if (responsePets.ok) {
+      const petData = await responsePets.json();
+      setPets(petData);
     }
   };
 
@@ -28,10 +32,11 @@ function BoardingHistory() {
   if (!token) {
     return null;
   }
-  const userID = user.id;
-  // const usersReservations = (reservation) =>
-  //   reservation.customer_id === user?.user?.id;
-  const usersReservations = (r) => r.customer_id === user?.user?.id;
+
+  const getPetName = (reservation, pets) => {
+    const pet = pets.filter((pet) => pet.pet_id === reservation.pet_id);
+    return pet[0]?.name;
+  };
 
   return (
     <div
@@ -63,7 +68,7 @@ function BoardingHistory() {
                 let end_datetime = reservation.end_datetime;
                 start_datetime = new Date(start_datetime);
                 end_datetime = new Date(end_datetime);
-                console.log("RESERVATION", reservation);
+                const petName = getPetName(reservation, pets);
                 if (
                   reservation.customer_id === parseInt(user?.user?.id) &&
                   reservation.category === "BOARDING"
@@ -73,7 +78,7 @@ function BoardingHistory() {
                       <td className="px-8 py-2">
                         {reservation.reservation_id}
                       </td>
-                      <td className="px-8 py-2">{reservation.pet_id}</td>
+                      <td className="px-8 py-2">{petName}</td>
                       <td className="px-8 py-2">
                         {start_datetime.toLocaleString()}
                       </td>
@@ -83,11 +88,7 @@ function BoardingHistory() {
                     </tr>
                   );
                 } else {
-                  console.log(false);
-                  console.log(reservation.customer_id);
-                  console.log(typeof reservation.customer_id);
-                  console.log(user?.user?.id);
-                  console.log(typeof parseInt(user?.user?.id));
+                  return null;
                 }
               })}
             </tbody>

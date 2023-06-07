@@ -1,89 +1,86 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
+function ClassForm() {
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [attendees, setAttendees] = useState("0");
+  const [maxAttendees, setMAttendees] = useState("");
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [description, setDescription] = useState("");
 
-function ClassForm () {
-  const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
-  const [attendees, setAttendees] = useState('0');
-  const [maxAttendees, setMAttendees] = useState('');
-  const [start, setStart] = useState('');
-  const [end, setEnd] = useState('');
-  const [description, setDescription] = useState('');
-
-  const navigate = useNavigate()
-  const { token } = useToken()
+  const navigate = useNavigate();
+  const { token } = useToken();
 
   const nameChange = (event) => {
-      const valueName = event.target.value;
-      setName(valueName);
-  }
+    const valueName = event.target.value;
+    setName(valueName);
+  };
 
   const categoryChange = (event) => {
-      const valueCategory = event.target.value;
-      setCategory(valueCategory);
-  }
+    const valueCategory = event.target.value;
+    setCategory(valueCategory);
+  };
 
   const maxAttendeeChange = (event) => {
-      const valueMAttendee = event.target.value;
-      setMAttendees(valueMAttendee);
-  }
+    const valueMAttendee = event.target.value;
+    setMAttendees(valueMAttendee);
+  };
 
   const startChange = (event) => {
-      const valueStart = event.target.value;
-      setStart(valueStart);
-  }
+    const valueStart = event.target.value;
+    setStart(valueStart);
+  };
 
   const endChange = (event) => {
-      const valueEnd = event.target.value;
-      setEnd(valueEnd);
-  }
+    const valueEnd = event.target.value;
+    setEnd(valueEnd);
+  };
 
   const descChange = (event) => {
-      const valueDescription = event.target.value;
-      setDescription(valueDescription);
-  }
+    const valueDescription = event.target.value;
+    setDescription(valueDescription);
+  };
 
   const handleSubmit = async (event) => {
-      event.preventDefault();
-      const data = {};
-      data.name = name;
-      data.category = category;
-      data.attendees = attendees;
-      data.max_attendees = maxAttendees;
-      data.start_datetime = start;
-      data.end_datetime = end;
-      data.description = description;
+    event.preventDefault();
+    const data = {};
+    data.name = name;
+    data.category = category;
+    data.attendees = attendees;
+    data.max_attendees = maxAttendees;
+    data.start_datetime = start;
+    data.end_datetime = end;
+    data.description = description;
 
-      const classUrl = 'http://localhost:8000/api/classes'
-      const fetchConfig = {
-          method: "post",
-          body: JSON.stringify(data),
-          headers: {
-              'Content-Type': 'application/json',
-          }
-      }
-      const response = await fetch(classUrl, fetchConfig)
-      if (response.ok) {
-          await response.json();
+    const classUrl = "http://localhost:8000/api/classes";
+    const fetchConfig = {
+      method: "post",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await fetch(classUrl, fetchConfig);
+    if (response.ok) {
+      await response.json();
 
-          setName('');
-          setCategory('');
-          setAttendees('');
-          setMAttendees('');
-          setStart('');
-          setEnd('');
-          setDescription('');
-          navigate('/trainer/training')
-
-      }
-  }
+      setName("");
+      setCategory("");
+      setAttendees("");
+      setMAttendees("");
+      setStart("");
+      setEnd("");
+      setDescription("");
+      navigate("/trainer/training");
+    }
+  };
 
   if (!token) {
     return null;
   }
-
 
   return (
     <div
@@ -195,6 +192,6 @@ function ClassForm () {
       </div>
     </div>
   );
-};
+}
 
 export default ClassForm;

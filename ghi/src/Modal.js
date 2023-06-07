@@ -96,7 +96,6 @@ function BoardingModal() {
                 let end_datetime = reservation.end_datetime;
                 start_datetime = new Date(start_datetime);
                 end_datetime = new Date(end_datetime);
-                console.log(reservation);
                 return (
                   <tr key={reservation.reservation_id}>
                     <td>{reservation.reservation_id}</td>

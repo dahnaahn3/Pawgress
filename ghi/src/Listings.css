@@ -222,7 +222,7 @@
 }
 
 .table-container {
-    @apply w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200;
+    @apply w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200;
 }
 
 .category {
