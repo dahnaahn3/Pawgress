@@ -15,9 +15,7 @@ function LandingPage() {
   const [trainings, setTrainings] = useState([]);
 
   const { token } = useAuthContext();
-  console.log(token);
   const tokenUser = useUser(token);
-  console.log("I AM:::::", tokenUser);
 
   const fetchData = async () => {
     const reservationsURL = "http://localhost:8000/reservation";
@@ -29,16 +27,12 @@ function LandingPage() {
     ]);
 
     if (reservationsResponse.ok && petsResponse.ok && tokenUser) {
-      console.log("I AM:::::", tokenUser);
       const reservationsData = await reservationsResponse.json();
-      console.log("reservationsData:::", reservationsData);
       const petsData = await petsResponse.json();
-      console.log("petsData:::", petsData);
 
       const filteredPets = petsData.filter(
         (pet) => pet.owner_id === parseInt(tokenUser.user.id)
       );
-      console.log("filteredpetsData:::", filteredPets);
       const filteredBoardings = reservationsData
         .filter(
           (reservation) =>
@@ -60,7 +54,6 @@ function LandingPage() {
           ...training,
           pet: filteredPets.find((pet) => pet.pet_id === training.pet_id),
         }));
-      console.log("filteredTrainingData:::", filteredTrainings);
 
       setPets(filteredPets);
       setBoardings(filteredBoardings);
