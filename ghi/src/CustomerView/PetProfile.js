@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { BiEditAlt } from "react-icons/bi";
-// import useToken from "@galvanize-inc/jwtdown-for-react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 // import useUser from "./useUser";
 
 function PetProfile() {
   const [pet, setPet] = useState([]);
+  const { token } = useToken();
 
   console.log("PET PROFILE PAGE");
   const { user_id, pet_id } = useParams();
   const fetchData = async () => {
     const petURL = `http://localhost:8000/api/pets/${pet_id}/`;
 
-    const petResponse = await fetch(petURL);
+    const petResponse = await fetch(petURL, {headers: {"Authorization": `Bearer ${token}`,}, });
 
     if (petResponse.ok) {
       const petData = await petResponse.json();
@@ -24,8 +25,9 @@ function PetProfile() {
   };
 
   useEffect(() => {
+    if (token) {
     fetchData();
-  }, []);
+  }}, [token]);
 
   return (
     <div className="w-full cs-main-component">

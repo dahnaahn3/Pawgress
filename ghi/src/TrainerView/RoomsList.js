@@ -9,7 +9,8 @@ function RoomsList(){
         const fetchData = async () => {
         const roomsURL = "http://localhost:8000/api/rooms";
         const petsURL = "http://localhost:8000/api/pets";
-        const response = await Promise.all([fetch(roomsURL), fetch(petsURL)]);
+        const response = await Promise.all([fetch(roomsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+        fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, })]);
         const roomsData = await response[0].json();
         const petsData = await response[1].json();
         setRooms(roomsData);
@@ -17,9 +18,10 @@ function RoomsList(){
 
         };
 
-        useEffect(() => {
-        fetchData();
-        }, []);
+  useEffect(() => {
+    if (token) {
+    fetchData();
+  }}, [token]);
 
   if (!token) {
     return null;

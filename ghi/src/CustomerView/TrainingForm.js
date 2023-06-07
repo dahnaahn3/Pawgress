@@ -62,6 +62,7 @@ function TrainingForm() {
       body: JSON.stringify(reservation),
       headers: {
         "Content-type": "application/json",
+        "Authorization": `Bearer ${token}`,
       },
     };
 
@@ -82,12 +83,12 @@ function TrainingForm() {
   const fetchData = async () => {
     const url = "http://localhost:8000/api/pets";
     const urlClasses = "http://localhost:8000/api/classes";
-    const response = await fetch(url);
+    const response = await fetch(url, {headers: {"Authorization": `Bearer ${token}`,}, });
     if (response.ok) {
       const data = await response.json();
       setPets(data);
     }
-    const responseClasses = await fetch(urlClasses);
+    const responseClasses = await fetch(urlClasses, {headers: {"Authorization": `Bearer ${token}`,}, });
     if (responseClasses.ok) {
       const classesData = await responseClasses.json();
       setTrainingClasses(classesData);
@@ -96,8 +97,9 @@ function TrainingForm() {
   };
 
   useEffect(() => {
+    if (token) {
     fetchData();
-  }, []);
+  }}, [token]);
 
   if (!token) {
     return null;

@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Outlet} from "react-router-dom";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 
 function PetsList() {
   const [pets, setPets] = useState([]);
   const [users, setUsers] = useState([]);
+  const { token } = useToken();
 
 
   const fetchData = async () => {
     const petsURL = "http://localhost:8000/api/pets";
     const userURL = "http://localhost:8000/api/accounts";
-    const response = await Promise.all([fetch(petsURL), fetch(userURL)]);
+    const response = await Promise.all([fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+    fetch(userURL, {headers: {"Authorization": `Bearer ${token}`,}, })]);
+    
     const petsData = await response[0].json();
     const usersData = await response[1].json();
     setPets(petsData);
@@ -18,8 +22,9 @@ function PetsList() {
   };
 
   useEffect(() => {
+    if (token) {
     fetchData();
-  }, []);
+  }}, [token]);
 
 
   return (
@@ -60,7 +65,7 @@ function PetsList() {
                 return (
                   <tr key={pet.pet_id}>
                     <td>
-                      <NavLink className="nav-name-active" type="button" to={`${pet.pet_id}`} key={pet.pet_id}>
+                      <NavLink className="nav-name-active" type="button" to={`${pet.pet_id}`}>
                         {pet.name}
                       </NavLink>
                     </td>

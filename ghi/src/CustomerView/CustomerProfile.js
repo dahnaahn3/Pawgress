@@ -16,8 +16,8 @@ function CustomerProfile() {
     const petsURL = "http://localhost:8000/api/pets";
 
     const [userResponse, petsResponse] = await Promise.all([
-      fetch(userURL),
-      fetch(petsURL),
+      fetch(userURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+      fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
     ]);
 
     if (userResponse.ok && petsResponse.ok) {

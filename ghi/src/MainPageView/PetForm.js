@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function PetForm() {
   const [name, setName] = useState("");
@@ -13,6 +14,9 @@ function PetForm() {
   const [owner, setOwner] = useState("");
   const [owners, setOwners] = useState([]);
   const navigation = useNavigate();
+  const { token } = useToken();
+
+
   const nameChange = (event) => {
     const valueName = event.target.value;
     setName(valueName);
@@ -79,6 +83,7 @@ function PetForm() {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
       },
     };
     const response = await fetch(petUrl, fetchConfig);

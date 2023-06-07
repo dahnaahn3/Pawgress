@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 function AddPet() {
   const navigate = useNavigate();
+  const { token } = useAuthContext();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -33,6 +35,7 @@ function AddPet() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(formData),
     };

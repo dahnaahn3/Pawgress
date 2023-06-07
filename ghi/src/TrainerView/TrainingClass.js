@@ -22,7 +22,7 @@ function TrainingClass() {
   useEffect(() => {
     const fetchData = async () => {
       const url = "http://localhost:8000/api/classes";
-      const response = await fetch(url);
+      const response = await fetch(url, {headers: {"Authorization": `Bearer ${token}`,}, });
       if (response.ok) {
         const data = await response.json();
         setClasses(data);

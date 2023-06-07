@@ -55,16 +55,10 @@ const CustomerHome = () => {
         navigate("/");
       } else if (token && user && user.role === "trainer") {
         navigate("/trainer");
-      } else {
-        console.log("REDIRECTING TO CUSTOMERS");
-        // navigate("/customers");
       }
     }
   }, [token, navigate, setToken, user]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  } else {
     return (
       <>
         <div>
@@ -217,7 +211,7 @@ const CustomerHome = () => {
         <Outlet />
       </>
     );
-  }
+  
 };
 
 export default CustomerHome;

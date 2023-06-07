@@ -41,7 +41,6 @@ const TrainerHome = () => {
   }, [token, navigate, setToken]);
 
 
-
   return (
 
     <>

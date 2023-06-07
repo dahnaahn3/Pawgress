@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// import useToken from "@galvanize-inc/jwtdown-for-react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 // import useUser from "./useUser";
 
 function EditCustomer() {
@@ -17,7 +17,7 @@ function EditCustomer() {
   });
 
   // put this in the NAV
-  // const { token, logout } = useToken();
+  const { token } = useToken();
   // const { user } = useUser(token);
 
   const { user_id } = useParams();
@@ -26,8 +26,8 @@ function EditCustomer() {
     const petsURL = "http://localhost:8000/api/pets";
 
     const [userResponse, petsResponse] = await Promise.all([
-      fetch(userURL),
-      fetch(petsURL),
+      fetch(userURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+      fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
     ]);
 
     if (userResponse.ok && petsResponse.ok) {
@@ -41,8 +41,9 @@ function EditCustomer() {
   };
 
   useEffect(() => {
+    if (token) {
     fetchData();
-  }, []);
+  }}, [token]);
 
   const handlePassword = () => {
     navigate(`/customers/${user_id}/editpw`);

@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function EditPet() {
   const navigate = useNavigate();
+  const { token } = useToken();
 
   const [pet, setPet] = useState([]);
   const [formData, setFormData] = useState({
@@ -18,14 +20,14 @@ function EditPet() {
   });
 
   // put this in the NAV
-  // const { token, logout } = useToken();
+  // const { token } = useToken();
   // const { user } = useUser(token);
 
   const { user_id, pet_id } = useParams();
   const fetchData = async () => {
     const petURL = `http://localhost:8000/api/pets/${pet_id}/`;
 
-    const petResponse = await fetch(petURL);
+    const petResponse = await fetch(petURL, {headers: {"Authorization": `Bearer ${token}`,}, });
 
     if (petResponse.ok) {
       const petData = await petResponse.json();
@@ -36,8 +38,9 @@ function EditPet() {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+      if (token) {
+      fetchData();
+    }}, [token]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -65,6 +68,7 @@ function EditPet() {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(updatedFields),
       };

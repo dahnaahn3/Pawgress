@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// import useToken from "@galvanize-inc/jwtdown-for-react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 // import useUser from "./useUser";
 
 function EditPassword() {
   const navigate = useNavigate();
+  const { token } = useToken();
   const [formData, setFormData] = useState({
     password: "",
     password_confirm: "",
@@ -23,6 +24,7 @@ function EditPassword() {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({ password: formData.password }),
       };

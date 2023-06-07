@@ -25,7 +25,11 @@ function TrainingBoardingHistory() {
       const historyURL = "http://localhost:8000/reservation";
       const userURL = "http://localhost:8000/api/accounts";
       const petsURL = "http://localhost:8000/api/pets";
-      const response = await Promise.all([fetch(historyURL), fetch(userURL), fetch(petsURL)]);
+      const response = await Promise.all([
+        fetch(historyURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+        fetch(userURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+        fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, })]);
+        
       // if(response.ok){
       const historydata = await response[0].json();
       const userdata = await response[1].json();
@@ -55,8 +59,9 @@ function TrainingBoardingHistory() {
     ));
 
 useEffect(() => {
-    fetchData();
-  }, []);
+    if (token) {
+      fetchData();
+  }}, [token]);
 
     if (!token) {
     return null;
@@ -83,7 +88,7 @@ useEffect(() => {
               </thead>
               <tbody className="info-container">
                 {history.map((h) => {
-                  
+
                   if (h.category === "TRAINING") {
                     const formattedStartDateTime = formatDate(h.start_datetime);
                     const formattedEndDateTime = formatDate(h.end_datetime);
