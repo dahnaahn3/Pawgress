@@ -22,8 +22,8 @@ function LandingPage() {
     const petsURL = "http://localhost:8000/api/pets";
 
     const [reservationsResponse, petsResponse] = await Promise.all([
-      fetch(reservationsURL),
-      fetch(petsURL),
+      fetch(reservationsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+      fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
     ]);
 
     if (reservationsResponse.ok && petsResponse.ok && tokenUser) {
@@ -32,7 +32,7 @@ function LandingPage() {
       const petsData = await petsResponse.json();
 
       const filteredPets = petsData.filter(
-        (pet) => pet.owner_id === parseInt(tokenUser.user.id)
+        (pet) => pet?.owner_id === parseInt(tokenUser?.user.id)
       );
       const filteredBoardings = reservationsData
         .filter(
@@ -65,8 +65,9 @@ function LandingPage() {
   };
 
   useEffect(() => {
+    if (token) {
     fetchData();
-  }, [tokenUser.user]);
+  }}, [tokenUser.user]);
 
   return (
     <>

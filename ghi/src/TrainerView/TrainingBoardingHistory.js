@@ -25,7 +25,11 @@ function TrainingBoardingHistory() {
       const historyURL = "http://localhost:8000/reservation";
       const userURL = "http://localhost:8000/api/accounts";
       const petsURL = "http://localhost:8000/api/pets";
-      const response = await Promise.all([fetch(historyURL), fetch(userURL), fetch(petsURL)]);
+      const response = await Promise.all([
+        fetch(historyURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+        fetch(userURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+        fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, })]);
+        
       // if(response.ok){
       const historydata = await response[0].json();
       const userdata = await response[1].json();
@@ -33,7 +37,7 @@ function TrainingBoardingHistory() {
         setHistory(historydata);
         setUser(userdata)
         setPet(petdata)
-    // }
+      // }
     };
 
     let userName;
@@ -55,15 +59,16 @@ function TrainingBoardingHistory() {
     ));
 
 useEffect(() => {
-    fetchData();
-  }, []);
+    if (token) {
+      fetchData();
+  }}, [token]);
 
     if (!token) {
     return null;
   }
 
   return (
-    <div style={{ paddingLeft: "20rem", marginTop: "-50rem" }}>
+    <div style={{ paddingLeft: "20rem", marginTop: "-70%" }}>
       {/* {history && history.length ? ( */}
         <>
           <div>
@@ -83,11 +88,12 @@ useEffect(() => {
               </thead>
               <tbody className="info-container">
                 {history.map((h) => {
+
                   if (h.category === "TRAINING") {
                     const formattedStartDateTime = formatDate(h.start_datetime);
                     const formattedEndDateTime = formatDate(h.end_datetime);
                     return (
-                      <tr>
+                      <tr key={h.reservation_id}>
                         <td className="h-row">{userName}</td>
                         <td className="h-row">{petName} </td>
                         <td className="h-row">{formattedStartDateTime}</td>
@@ -120,7 +126,7 @@ useEffect(() => {
                     const formattedStartDateTime = formatDate(h.start_datetime);
                     const formattedEndDateTime = formatDate(h.end_datetime);
                     return (
-                      <tr>
+                      <tr key={h.reservation_id}>
                         <td className="h-row">{userName}</td>
                         <td className="h-row">{petName} </td>
                         <td className="h-row">{formattedStartDateTime}</td>

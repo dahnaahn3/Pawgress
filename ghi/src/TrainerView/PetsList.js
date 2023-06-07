@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Outlet, Link} from "react-router-dom";
+import { NavLink, Outlet} from "react-router-dom";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 
 function PetsList() {
   const [pets, setPets] = useState([]);
   const [users, setUsers] = useState([]);
+  const { token } = useToken();
 
 
   const fetchData = async () => {
     const petsURL = "http://localhost:8000/api/pets";
     const userURL = "http://localhost:8000/api/accounts";
-    const response = await Promise.all([fetch(petsURL), fetch(userURL)]);
+    const response = await Promise.all([fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+    fetch(userURL, {headers: {"Authorization": `Bearer ${token}`,}, })]);
+    
     const petsData = await response[0].json();
     const usersData = await response[1].json();
     setPets(petsData);
@@ -18,27 +22,28 @@ function PetsList() {
   };
 
   useEffect(() => {
+    if (token) {
     fetchData();
-  }, []);
+  }}, [token]);
 
 
   return (
     <div
       className="plist-container"
-      style={{ paddingLeft: "20rem", marginTop: "-50rem" }}
+      style={{ paddingLeft: "20rem", marginTop: "-40rem" }}
     >
-      <header class="plist-ext">
-        <h2 class="plist-h2">
+      <header className="plist-ext">
+        <h2 className="plist-h2">
           Our friends with four legs 🐾
         </h2>
         <NavLink to="./form">
-          <button class="new-pet-button">
+          <button className="new-pet-button">
             Create a new pet
           </button>
         </NavLink>
       </header>
-      <table class="plist-box">
-        <thead class="plist-main-row">
+      <table className="plist-box">
+        <thead className="plist-main-row">
           <tr>
             <th className="plist-cat">Name</th>
             <th className="plist-cat">Breed</th>
@@ -58,9 +63,9 @@ function PetsList() {
                 let owner = `${user.first_name} ${user.last_name}`;
 
                 return (
-                  <tr key={pet.id}>
+                  <tr key={pet.pet_id}>
                     <td>
-                      <NavLink className="nav-name-active" type="button" to={`${pet.pet_id}`} key={pet.pet_id}>
+                      <NavLink className="nav-name-active" type="button" to={`${pet.pet_id}`}>
                         {pet.name}
                       </NavLink>
                     </td>

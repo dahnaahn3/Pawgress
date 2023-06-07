@@ -34,6 +34,7 @@ function RoomForm() {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
       },
     };
     const response = await fetch(roomUrl, fetchConfig);
@@ -51,16 +52,19 @@ function RoomForm() {
   };
   const fetchData = async () => {
     const petUrl = "http://localhost:8000/api/pets";
-    const response = await fetch(petUrl);
+    const response = await fetch(petUrl, {headers: {"Authorization": `Bearer ${token}`,}, });
 
     if (response.ok) {
       const data = await response.json();
       setPets(data);
     }
   };
+
   useEffect(() => {
+    if (token) {
     fetchData();
-  }, []);
+  }}, [token]);
+
 
   if (!token) {
     return null;
@@ -69,7 +73,7 @@ function RoomForm() {
   return (
     <div
       className="form-container"
-      style={{ paddingLeft: "20rem", marginTop: "-50rem" }}
+      style={{ paddingLeft: "20rem", marginTop: "-60%" }}
     >
       <div className="secondary-container">
         <form onSubmit={handleSubmit} id="create-user-form">

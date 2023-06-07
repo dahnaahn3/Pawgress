@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, Response
-from typing import Optional, Union, List
+from authenticator import authenticator
+from typing import Union, List
 from queries.rooms import(
     RoomIn,
     RoomOut,
@@ -13,6 +14,7 @@ router = APIRouter()
 def create_room(
     room: RoomIn,
     response: Response,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: RoomQueries = Depends(),
 ):
     try:
@@ -24,6 +26,7 @@ def create_room(
 
 @router.get("/api/rooms", response_model=Union[List[RoomOut], Error])
 def get_all_rooms(
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: RoomQueries = Depends(),
 ):
     return repo.get_all_rooms()
@@ -33,6 +36,7 @@ def update_room(
     room_id: int,
     room: RoomIn,
     response: Response,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: RoomQueries = Depends(),
 ) -> Union[Error, RoomOut]:
     try:
@@ -49,6 +53,7 @@ def update_room(
 @router.delete("/api/rooms/{room_id}", response_model=bool)
 def delete_room(
     room_id: int,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: RoomQueries = Depends(),
 ) -> bool:
     return repo.delete_room(room_id)

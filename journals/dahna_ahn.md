@@ -108,6 +108,19 @@ Ah ha moment: Sometimes you need to know when to give up.
 ## June 6 2023
 [Today, I worked on:
 - Worked on the data models of the readme
+- Completed README
+- Need team feedback on what else to add to readme file
+- Cleaned up front end
 
-Ah ha moment: Use markdown cheat sheet for styling of the readme 
+
+Ah ha moment: Use markdown cheat sheet for styling of the readme
+]
+
+## June 7 2023
+[Today, I worked on:
+- Reformatted backend
+- Remove all console.log and print statements
+
+
+Ah ha moment: Had to apply pet_is instead of id for the unique keys
 ]

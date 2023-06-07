@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Popup from "reactjs-popup";
-import Auth from "./Auth.js";
+
 import SignupForm from "./SignupForm";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../useUser";
