@@ -75,92 +75,6 @@ function SignupForm() {
     alert("Account has been made!");
   }
 
-<<<<<<< HEAD
-    const lastNChange = (event) => {
-        const valueLast = event.target.value;
-        setLastName(valueLast);
-    }
-
-    const addressChange = (event) => {
-        const valueAddress = event.target.value;
-        setAddress(valueAddress);
-    }
-
-    const emailChange = (event) => {
-        const valueEmail = event.target.value;
-        setEmail(valueEmail);
-    }
-
-    const phoneChange = (event) => {
-        const valuePhone = event.target.value;
-        setPhone(valuePhone);
-    }
-
-    const passwordChange = (event) => {
-        const valuePassword = event.target.value;
-        setPassword(valuePassword);
-    }
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const data = {};
-        data.first_name = firstName;
-        data.last_name = lastName;
-        data.address = address;
-        data.email = email;
-        data.phone_number = phone;
-        data.role = role;
-        data.password = password;
-
-        const userUrl = 'http://localhost:8000/api/accounts';
-        const fetchConfig = {
-            method: "post",
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        }
-        const response = await fetch(userUrl, fetchConfig)
-        if (response.ok) {
-            await response.json();
-
-            setFirstName('');
-            setLastName('');
-            setAddress('');
-            setEmail('');
-            setPhone('');
-            setRole('');
-            setPassword('');
-        }
-    }
-        function handleClick() {
-          alert("Account has been made!");
-        }
-
-    return (
-      <div className="min-h-screen py-6 flex flex-col justify-center sm:py-12">
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div className="absolute inset-0 bg-[#93CBE1] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-          <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-            <form onSubmit={handleSubmit} id="create-user-form">
-              <div className="form-wrap">
-                <div className="label-container">
-                  <div className="mb-5">
-                    <label htmlFor="first_name" className="label-css">
-                      First Name
-                    </label>
-                    <input
-                      required
-                      onChange={firstNChange}
-                      type="text"
-                      name="first_name"
-                      id="first_name"
-                      placeholder="First Name"
-                      className="form-input-container"
-                      value={firstName}
-                    />
-                  </div>
-=======
   return (
     <div className="min-h-screen py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -183,7 +97,6 @@ function SignupForm() {
                     className="form-input-container"
                     value={firstName}
                   />
->>>>>>> main
                 </div>
                 <div className="label-container">
                   <div className="mb-5">
