@@ -80,7 +80,7 @@ function LandingPage() {
           }}
         ></div>
         <div>
-          <h4 className="mb-10 mt-10 text-2xl font-medium leading-tight text-primary">
+          <h4 className="mb-6 mt-10 text-2xl font-medium leading-tight text-primary">
             Upcoming Boardings 🐾
           </h4>
           <table className="table-container w-full">
@@ -113,7 +113,7 @@ function LandingPage() {
 
           <div className="my-8" />
 
-          <h4 className="mb-10 mt-5 text-2xl font-medium leading-tight text-primary">
+          <h4 className="mb-6 mt-5 text-2xl font-medium leading-tight text-primary">
             Upcoming Trainings 🐾
           </h4>
 

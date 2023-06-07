@@ -50,20 +50,7 @@ function App() {
           <Route path="boarding/" element={<BoardingForm />} />
           <Route path="training/history/" element={<TrainingHistory />} />
           <Route path="boarding/history/" element={<BoardingHistory />} />
-          <Route
-            path="/customers/:user_id/profile"
-            element={<CustomerProfile />}
-          />
-          <Route
-            path="/customers/:user_id/edit"
-            element={<CustomerProfile />}
-          />
           <Route path="/customers/:user_id/:pet_id/" element={<PetProfile />} />
-          <Route
-            path="/customers/:user_id/:pet_id/edit"
-            element={<EditPet />}
-          />
-          <Route path="/customers/:user_id/" element={<LandingPage />} />
         </Route>
 
         <Route path="/" element={<Mainpage />} />
@@ -72,15 +59,10 @@ function App() {
         <Route path="/donate" element={<Donation />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/modal" element={<BoardingModal />} />
-        <Route path="contactus/" element={<ContactUs />} />
         <Route path="faq/" element={<FAQ />} />
         <Route path="/meettheteam" element={<Meettheteam />} />
         <Route path="/trainingservices" element={<Trainingservice />} />
         <Route path="/boardingservices" element={<Boardingservice />} />
-        <Route
-          path="/customers/:user_id/profile"
-          element={<CustomerProfile />}
-        />
 
         <Route path="trainer/" element={<TrainerHome />}>
           <Route path="rooms/" element={<RoomsList />} />

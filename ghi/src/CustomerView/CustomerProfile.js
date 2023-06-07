@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Link } from "react";
 import { BiEditAlt } from "react-icons/bi";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
@@ -112,13 +112,13 @@ function CustomerProfile() {
                   </a>
                 </div>
               </div>
-              <a
-                href={`/customers/${user.id}/edit`}
+              <Link
+                to={`/customers/${user.id}/edit`}
                 className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
               >
                 <BiEditAlt />
                 <span>Edit</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
