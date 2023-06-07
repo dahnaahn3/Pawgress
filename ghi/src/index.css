@@ -160,13 +160,13 @@
 .cs-main-component {
   margin-left: 256px;
   margin-top: 56px;
-  padding: 25px 50px 50px
+  padding: 25px 50px 50px;
 }
 
 .welcome-text {
-    font-family: 'Dancing Script', cursive;
-    font-size: 80px;
-    margin-bottom: 30px;
+  font-family: "Dancing Script", cursive;
+  font-size: 80px;
+  margin-bottom: 30px;
 }
 
 .gamma {
@@ -174,7 +174,9 @@
   margin-bottom: 0.825rem;
 }
 
-.lato{font-family: 'Lato'}
+.lato {
+  font-family: "Lato";
+}
 
 .background-image {
   position: absolute;
@@ -184,7 +186,8 @@
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  z-index: -1
+  background-attachment: fixed;
+  z-index: -1;
 }
 
 /* ##########OLD CODE##############
