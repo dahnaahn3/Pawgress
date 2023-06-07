@@ -47,6 +47,14 @@ function CustomerProfile() {
 
   return (
     <div className="w-full cs-main-component">
+      <div
+        className="background-image"
+        style={{
+          backgroundImage: `url(https://c4.wallpaperflare.com/wallpaper/37/666/486/winter-look-face-snow-pose-hd-wallpaper-preview.jpg)`,
+          opacity: 0.5,
+          backgroundPosition: "left"
+        }}
+      ></div>
       <div className="max-w-xl mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
         <img
           className="w-32 h-32 rounded-full mx-auto"
@@ -83,19 +91,19 @@ function CustomerProfile() {
 
             <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none mt-3">
               <h3 className="text-lg font-semibold">Pets</h3>
-              <div className="flex items-center justify-between mt-2">
+              <div className="flex flex-wrap justify-evenly items-center justify-between mt-2">
                 {pets.map((pet) => (
                   <a
                     key={"p" + pet.pet_id}
                     href={`/customers/${user.id}/${pet.pet_id}`}
-                    className="flex items-center mt-2"
+                    className="flex flex-col items-center mt-2 m-4"
                   >
                     <img
-                      className="w-20 h-20 rounded-full mr-2"
+                      className="w-20 h-20 rounded-full mb-2"
                       src={pet.picture}
                       alt="Pet"
                     />
-                    <p className="text-center text-xl font-semibold mt-3">
+                    <p className="text-center text-xl font-semibold">
                       {pet.name}
                     </p>
                   </a>
