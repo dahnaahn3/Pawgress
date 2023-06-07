@@ -39,11 +39,16 @@ function LandingPage() {
         (pet) => pet.owner_id === parseInt(tokenUser.user.id)
       );
       console.log("filteredpetsData:::", filteredPets);
-      const filteredBoardings = reservationsData.filter(
-        (reservation) =>
-          reservation.customer_id === parseInt(tokenUser.user.id) &&
-          reservation.category === "BOARDING"
-      );
+      const filteredBoardings = reservationsData
+        .filter(
+          (reservation) =>
+            reservation.customer_id === parseInt(tokenUser.user.id) &&
+            reservation.category === "BOARDING"
+        )
+        .map((boarding) => ({
+          ...boarding,
+          pet: filteredPets.find((pet) => pet.pet_id === boarding.pet_id),
+        }));
 
       const filteredTrainings = reservationsData
         .filter(
@@ -80,29 +85,29 @@ function LandingPage() {
           }}
         ></div>
         <div>
-          <h4 className="mb-2 mt-0 text-2xl font-medium leading-tight text-primary">
-            Upcoming Boardings
+          <h4 className="mb-10 mt-10 text-2xl font-medium leading-tight text-primary">
+            Upcoming Boardings 🐾
           </h4>
-          <table className="table-auto w-full border-x">
-            <thead className="border-b">
+          <table className="table-container w-full">
+            <thead className="category">
               <tr className="bg-gray-100">
-                <th className="text-left p-4 font-medium">Name</th>
-                <th className="text-left p-4 font-medium">Start Time</th>
-                <th className="text-left p-4 font-medium">End Time</th>
+                <th className="btitle-margin text-center">Name</th>
+                <th className="btitle-margin text-center">Start Time</th>
+                <th className="btitle-margin text-center">End Time</th>
               </tr>
             </thead>
             <tbody>
               {boardings?.map((boarding) => {
                 return (
                   <tr
-                    className="border-b hover:bg-gray-50"
+                    className="border-b hover:bg-gray-50 h-20"
                     key={boarding.reservation_id}
                   >
-                    <td className="p-4">{boarding.pet_id}</td>
-                    <td className="p-4">
+                    <td className="h-row text-center">{boarding.pet.name}</td>
+                    <td className="h-row text-center">
                       {formatDateTime(boarding.start_datetime)}
                     </td>
-                    <td className="p-4">
+                    <td className="h-row text-center">
                       {formatDateTime(boarding.end_datetime)}
                     </td>
                   </tr>
@@ -113,30 +118,30 @@ function LandingPage() {
 
           <div className="my-8" />
 
-          <h4 className="mb-2 mt-0 text-2xl font-medium leading-tight text-primary">
-            Upcoming Trainings
+          <h4 className="mb-10 mt-5 text-2xl font-medium leading-tight text-primary">
+            Upcoming Trainings 🐾
           </h4>
 
-          <table className="table-auto w-full border-x">
-            <thead className="border-b">
+          <table className="table-container w-full">
+            <thead className="category">
               <tr className="bg-gray-100">
-                <th className="text-left p-4 font-medium">Name</th>
-                <th className="text-left p-4 font-medium">Start Time</th>
-                <th className="text-left p-4 font-medium">End Time</th>
+                <th className="btitle-margin">Name</th>
+                <th className="btitle-margin">Start Time</th>
+                <th className="btitle-margin">End Time</th>
               </tr>
             </thead>
             <tbody>
               {trainings?.map((training) => {
                 return (
                   <tr
-                    className="border-b hover:bg-gray-50"
+                    className="border-b hover:bg-gray-50 h-20"
                     key={training.reservation_id}
                   >
-                    <td className="p-4">{training.pet.name}</td>
-                    <td className="p-4">
+                    <td className="h-row text-center">{training.pet.name}</td>
+                    <td className="h-row text-center">
                       {formatDateTime(training.start_datetime)}
                     </td>
-                    <td className="p-4">
+                    <td className="h-row text-center">
                       {formatDateTime(training.end_datetime)}
                     </td>
                   </tr>
