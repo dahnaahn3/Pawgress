@@ -36,20 +36,23 @@ function LandingPage() {
       console.log("petsData:::", petsData);
 
       const filteredPets = petsData.filter(
-        (pet) => pet.owner_id === parseInt(tokenUser.user.id)
+        (pet) =>
+          // console.log("IS IT TRUEE", pet.owner_id === tokenUser.user.id)
+          pet.owner_id === tokenUser.user.id
       );
       console.log("filteredpetsData:::", filteredPets);
       const filteredBoardings = reservationsData.filter(
         (reservation) =>
-          reservation.customer_id === parseInt(tokenUser.user.id) &&
+          reservation.customer_id === tokenUser.user.id &&
           reservation.category === "BOARDING"
       );
+
       const filteredTrainings = reservationsData.filter(
         (reservation) =>
-          reservation.customer_id == tokenUser.user.id &&
+          reservation.customer_id === tokenUser.user.id &&
           reservation.category === "TRAINING"
       );
-       console.log("filteredTrainingData:::", filteredTrainings);
+      console.log("filteredTrainingData:::", filteredTrainings);
 
       setPets(filteredPets);
       setBoardings(filteredBoardings);
@@ -58,6 +61,10 @@ function LandingPage() {
       console.log("Error fetching data");
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, [tokenUser.user]);
 
   return (
     <>
