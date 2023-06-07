@@ -36,8 +36,7 @@ function LandingPage() {
       console.log("petsData:::", petsData);
 
       const filteredPets = petsData.filter(
-        (pet) =>
-        pet.owner_id === parseInt(tokenUser.user.id)
+        (pet) => pet.owner_id === parseInt(tokenUser.user.id)
       );
       console.log("filteredpetsData:::", filteredPets);
       const filteredBoardings = reservationsData.filter(
@@ -46,11 +45,16 @@ function LandingPage() {
           reservation.category === "BOARDING"
       );
 
-      const filteredTrainings = reservationsData.filter(
-        (reservation) =>
-          reservation.customer_id === parseInt(tokenUser.user.id) &&
-          reservation.category === "TRAINING"
-      );
+      const filteredTrainings = reservationsData
+        .filter(
+          (reservation) =>
+            reservation.customer_id === parseInt(tokenUser.user.id) &&
+            reservation.category === "TRAINING"
+        )
+        .map((training) => ({
+          ...training,
+          pet: filteredPets.find((pet) => pet.pet_id === training.pet_id),
+        }));
       console.log("filteredTrainingData:::", filteredTrainings);
 
       setPets(filteredPets);
@@ -128,7 +132,7 @@ function LandingPage() {
                     className="border-b hover:bg-gray-50"
                     key={training.reservation_id}
                   >
-                    <td className="p-4">{training.pet_id}</td>
+                    <td className="p-4">{training.pet.name}</td>
                     <td className="p-4">
                       {formatDateTime(training.start_datetime)}
                     </td>
