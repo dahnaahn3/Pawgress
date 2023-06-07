@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { BiEditAlt } from "react-icons/bi";
-import useToken from "@galvanize-inc/jwtdown-for-react";
-// import useUser from "./useUser";
+import { AiOutlinePlusCircle } from "react-icons/ai";
+import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
+import useUser from "../useUser";
 
 function CustomerProfile() {
   const [user, setUser] = useState([]);
   const [pets, setPets] = useState([]);
 
-  // put this in the NAV
-  // const { token, logout } = useToken();
-  // const { user } = useUser(token);
+  const { token } = useAuthContext();
+  const tokenUser = useUser(token);
+  console.log("initial pull:::", tokenUser);
 
-  const { user_id } = useParams();
   const fetchData = async () => {
-    const userURL = `http://localhost:8000/api/accounts/${user_id}/`;
+    console.log("I am being called");
+    console.log("with fetch::::", tokenUser);
+    const userURL = `http://localhost:8000/api/accounts/${tokenUser.user.id}/`;
     const petsURL = "http://localhost:8000/api/pets";
 
     const [userResponse, petsResponse] = await Promise.all([
@@ -28,7 +29,7 @@ function CustomerProfile() {
       console.log(userData, petsData);
 
       const filteredPets = petsData.filter(
-        (pet) => pet.owner_id === parseInt(user_id)
+        (pet) => pet.owner_id === parseInt(tokenUser.user.id)
       );
       setUser(userData);
       setPets(filteredPets);
@@ -38,12 +39,23 @@ function CustomerProfile() {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (tokenUser.user !== null) {
+      console.log("token::::::", token);
+      fetchData();
+    }
+  }, [tokenUser.user]);
 
   return (
-    <div className="w-full">
-      <div className="max-w-lg mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
+    <div className="w-full cs-main-component">
+      <div
+        className="background-image"
+        style={{
+          backgroundImage: `url(https://c4.wallpaperflare.com/wallpaper/37/666/486/winter-look-face-snow-pose-hd-wallpaper-preview.jpg)`,
+          opacity: 0.5,
+          backgroundPosition: "left",
+        }}
+      ></div>
+      <div className="max-w-xl mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
         <img
           className="w-32 h-32 rounded-full mx-auto"
           src="https://picsum.photos/200"
@@ -79,68 +91,39 @@ function CustomerProfile() {
 
             <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none mt-3">
               <h3 className="text-lg font-semibold">Pets</h3>
-              {pets.map((pet) => (
-                <div className="w-full mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
+              <div className="flex flex-wrap justify-evenly items-center justify-between mt-2">
+                {pets.map((pet) => (
                   <a
-                    href={`/customers/${user_id}/${pet.pet_id}`}
-                    className="flex items-center mt-2"
+                    key={"p" + pet.pet_id}
+                    href={`/pawgress/customers/${user.id}/${pet.pet_id}`}
+                    className="flex flex-col items-center mt-2 m-4"
                   >
                     <img
-                      className="w-20 h-20 rounded-full mr-2"
+                      className="w-20 h-20 rounded-full mb-2"
                       src={pet.picture}
                       alt="Pet"
                     />
-                    <p className="text-center text-2xl font-semibold mt-3">
+                    <p className="text-center text-xl font-semibold">
                       {pet.name}
                     </p>
                   </a>
-                  <div className="mt-5">
-                    <div className="max-w-[700px] mx-auto mt-3">
-                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none">
-                        <p className="text-md text-gray-600">Breed</p>
-                        <p className="text-base font-medium text-navy-700">
-                          {pet.breed}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none mt-3">
-                        <p className="text-md text-gray-600">Gender</p>
-                        <p className="text-base font-medium text-navy-700">
-                          {pet.gender}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none mt-3">
-                        <p className="text-md text-gray-600">Age</p>
-                        <p className="text-base font-medium text-navy-700">
-                          {pet.age}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none mt-3">
-                        <p className="text-md text-gray-600">Size</p>
-                        <p className="text-base font-medium text-navy-700">
-                          {pet.size}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:bg-navy-700 dark:shadow-none mt-3">
-                        <p className="text-md text-gray-600">Weight</p>
-                        <p className="text-base font-medium text-navy-700">
-                          {pet.weight}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                ))}
+                <div className="flex items-center">
                   <a
-                    href={`/customers/${user_id}/${pet.pet_id}/edit`}
+                    href={`/pawgress/customers/${user.id}/addpet`}
                     className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
                   >
-                    <BiEditAlt />
-                    <span>Edit</span>
+                    <AiOutlinePlusCircle size={30} />
                   </a>
                 </div>
-              ))}
+              </div>
+              <a
+                href={`/customers/${user.id}/edit`}
+                className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
+              >
+                <BiEditAlt />
+                <span>Edit</span>
+              </a>
             </div>
           </div>
         </div>

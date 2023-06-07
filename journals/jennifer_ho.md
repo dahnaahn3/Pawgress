@@ -1,10 +1,71 @@
+## June 6, 2023
+
+[Today, I worked on:
+
+- Updated FAQ
+
+]
+
+## June 6, 2023
+
+[Today, I worked on:
+
+- Added unit test for users
+- Updated customer sign in to redirect to a landing page with upcoming reservations
+- Added a dropdown profile button to the nav bar
+- Updated styling of nav bar and landing pages
+
+Make sure you save as you go, so that when things break, you have a working version to reference back to.
+
+If something continues to re-render despite the dependency not changing, try going one level deeper within the dependency
+]
+
+## June 5, 2023
+
+[Today, as a team we worked on:
+
+- Successful database, services, front-end deployment!
+
+Learn to ask for help when you need it for technologies that
+you don't understand (i.e. Galvanize Cloud). With different
+technologies, others may be able to support and help you
+figure out if the issue is with your code or something
+on the technology backend
+
+]
+
+## June 2, 2023
+
+[Today, as a team we worked on:
+
+- Kicking off the database and services deployment
+- Ran into issues that we are currently working through
+
+]
+
+## June 1, 2023
+
+[Today, I worked on:
+
+- Updating the tokenization on the customer home page to pull from
+  the actual token rather than a user_id to the user database to create
+  a more secure viewing experience
+- Added a profile button that directly pulls from the token as well
+  to get to the user page
+
+Part being of SWE is taking to the time to understand documentation for
+libraries put together by others
+
+]
+
 ## May 31, 2023
 
 [Today, I worked on:
 
-- Updated/fixed nested routes for all nested routes to show appropriately
+- Updated/fixed nested routes for all nested routes to show appropriately.
+  This was a problem that was plaguing me and my partner for some time, so it
+  was great to finally figure out what the issue was!
 - Completed contact us page with formatting; Tested functionality
--
 
 ]
 

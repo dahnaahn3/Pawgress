@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import useUser from "../useUser";
 
 function Auth() {
   const [formData, setFormData] = useState({});
@@ -8,12 +9,13 @@ function Auth() {
   const location = useLocation();
 
   const { token, login } = useToken();
+  const tokenUser = useUser(token);
 
   useEffect(() => {
-    if (token) {
-      navigate("/customers");
+    if (token && tokenUser.user) {
+      navigate(`/customers/${tokenUser.user.id}`);
     }
-  }, [token]);
+  }, [tokenUser]);
 
   const handleFormChange = (e) => {
     setFormData({

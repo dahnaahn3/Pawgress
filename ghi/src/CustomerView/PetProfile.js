@@ -7,9 +7,6 @@ import { BiEditAlt } from "react-icons/bi";
 function PetProfile() {
   const [pet, setPet] = useState([]);
 
-  // put this in the NAV
-  // const { token, logout } = useToken();
-  // const { user } = useUser(token);
   console.log("PET PROFILE PAGE");
   const { user_id, pet_id } = useParams();
   const fetchData = async () => {
@@ -31,15 +28,15 @@ function PetProfile() {
   }, []);
 
   return (
-    <div className="w-full">
-      <div class="max-w-lg mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
+    <div className="w-full cs-main-component">
+      <div className="max-w-lg mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
         <img
-          class="w-32 h-32 rounded-full mx-auto"
+          className="w-32 h-32 rounded-full mx-auto"
           src={pet.picture}
           alt="Profile picture"
         />
         <div> </div>
-        <h2 class="text-center text-2xl font-semibold mt-3">{pet.name}</h2>
+        <h2 className="text-center text-2xl font-semibold mt-3">{pet.name}</h2>
         <div className="mt-5">
           <h3 className="text-xl font-semibold ml-3">Details</h3>
           <div className="max-w-[700px] mx-auto mt-3">
@@ -74,7 +71,7 @@ function PetProfile() {
           </div>
         </div>
         <a
-          href={`/customers/${user_id}/${pet.pet_id}/edit`}
+          href={`/pawgress/customers/${user_id}/${pet.pet_id}/edit`}
           className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
         >
           <BiEditAlt />
