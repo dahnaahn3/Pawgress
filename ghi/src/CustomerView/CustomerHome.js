@@ -69,14 +69,14 @@ const CustomerHome = () => {
       <>
         <div>
           <div className="cs-container-left">
-            <div className="cs-container-right">
+            <div className="cs-container-right shadow-inner">
               <NavLink to="/" className="cs-header-left">
                 <img className="logo-icon" src="/WhitePawIcon.png" alt="Logo" />
-                <span className="home-title">Pawgress</span>
+                <span className="home-title text-slate-900">Pawgress</span>
               </NavLink>
               <div className="cs-header-right">
                 <div className="cs-welcome-container">
-                  <p>
+                  <p className="text-slate-900">
                     Welcome {user && `${user.first_name} ${user.last_name}`}!
                   </p>
                 </div>
@@ -87,7 +87,10 @@ const CustomerHome = () => {
                       className="h-10 w-10 hover:ring-4 user cursor-pointer relative ring-blue-700/30 rounded-full bg-cover bg-center mr-5"
                       onClick={handleProfileClick}
                     >
-                      <BsPersonCircle className="h-10 w-10" />
+                      <BsPersonCircle
+                        className="h-10 w-10"
+                        style={{ color: "rgb(51 65 85)" }}
+                      />
                       {showDropdown && (
                         <div>
                           <div
@@ -123,74 +126,82 @@ const CustomerHome = () => {
               </div>
             </div>
 
-            <div className="cs-sidebar-container">
-              <div className="cs-sidebar-flex">
-                <ul className="cs-sidebar-set">
-                  <li className="hidden-text">
-                    <div className="title-container">
-                      <div className="cs-sidebar-title">MAKE A RESERVATION</div>
-                    </div>
-                  </li>
-
-                  <NavLink to="./boarding">
-                    <li>
-                      <p className="cs-container">
-                        <span className="cs-row">
-                          <BsHouse size="30" />
-                        </span>
-                        <span className="cs-sidebar-text">
-                          Make Boarding Reservation
-                        </span>
-                      </p>
+            <div>
+              <div className="cs-sidebar-container rounded-lg mt-3 ml-3">
+                <div className="cs-sidebar-flex">
+                  <ul className="cs-sidebar-set">
+                    <li className="hidden-text">
+                      <div className="title-container mt-3">
+                        <div className="cs-sidebar-title">
+                          MAKE A RESERVATION
+                        </div>
+                      </div>
                     </li>
-                  </NavLink>
 
-                  <NavLink to="./training">
-                    <li>
-                      <p className="cs-container">
-                        <span className="cs-row">
-                          <HiOutlineUserGroup size="30" />
-                        </span>
-                        <span className="cs-sidebar-text">
-                          Upcoming Classes Signup
-                        </span>
-                      </p>
+                    <NavLink to="./boarding">
+                      <li>
+                        <p className="cs-container">
+                          <span className="cs-row">
+                            <BsHouse size="30" />
+                          </span>
+                          <span className="cs-sidebar-text">
+                            Make Boarding Reservation
+                          </span>
+                        </p>
+                      </li>
+                    </NavLink>
+
+                    <NavLink to="./training">
+                      <li>
+                        <p className="cs-container">
+                          <span className="cs-row">
+                            <HiOutlineUserGroup size="30" />
+                          </span>
+                          <span className="cs-sidebar-text">
+                            Upcoming Classes Signup
+                          </span>
+                        </p>
+                      </li>
+                    </NavLink>
+
+                    <li className="hidden-text">
+                      <div className="title-container mt-10">
+                        <div className="cs-sidebar-title">
+                          PAST RESERVATIONS
+                        </div>
+                      </div>
                     </li>
-                  </NavLink>
 
-                  <li className="hidden-text">
-                    <div className="title-container mt-10">
-                      <div className="cs-sidebar-title">PAST RESERVATIONS</div>
-                    </div>
-                  </li>
+                    <Link to={{ pathname: "boarding/history" }}>
+                      <li>
+                        <p className="cs-container">
+                          <span className="cs-row">
+                            <HiOutlineClipboardDocumentList size="25" />
+                          </span>
+                          <span className="cs-sidebar-text">
+                            Boarding History
+                          </span>
+                        </p>
+                      </li>
+                    </Link>
 
-                  <Link to={{ pathname: "boarding/history" }}>
-                    <li>
-                      <p className="cs-container">
-                        <span className="cs-row">
-                          <HiOutlineClipboardDocumentList size="25" />
-                        </span>
-                        <span className="cs-sidebar-text">
-                          Boarding History
-                        </span>
-                      </p>
-                    </li>
-                  </Link>
-
-                  <Link to="./training/history">
-                    <li>
-                      <p className="cs-container">
-                        <span className="cs-row">
-                          <RiHistoryFill size="25" />
-                        </span>
-                        <span className="cs-sidebar-text">
-                          Training History
-                        </span>
-                      </p>
-                    </li>
-                  </Link>
-                </ul>
-                <p className="footer-copyright">Copyright @2023 by Pawgress</p>
+                    <Link to="./training/history">
+                      <li>
+                        <p className="cs-container">
+                          <span className="cs-row">
+                            <RiHistoryFill size="25" />
+                          </span>
+                          <span className="cs-sidebar-text">
+                            Training History
+                          </span>
+                        </p>
+                      </li>
+                    </Link>
+                  </ul>
+                  <p className="footer-copyright">
+                    Copyright @2023 by Pawgress
+                  </p>
+                </div>
               </div>
             </div>
           </div>
