@@ -84,21 +84,21 @@ const CustomerHome = () => {
                 <ul className="nav-right-main">
                   <li>
                     <div
-                      class="h-10 w-10 hover:ring-4 user cursor-pointer relative ring-blue-700/30 rounded-full bg-cover bg-center mr-5"
+                      className="h-10 w-10 hover:ring-4 user cursor-pointer relative ring-blue-700/30 rounded-full bg-cover bg-center mr-5"
                       onClick={handleProfileClick}
                     >
                       <BsPersonCircle className="h-10 w-10" />
                       {showDropdown && (
                         <div>
                           <div
-                            class="drop-down  w-48 overflow-hidden bg-white rounded-md shadow absolute top-12 right-3"
+                            className="drop-down  w-48 overflow-hidden bg-white rounded-md shadow absolute top-12 right-3"
                             onMouseLeave={handleMouseLeave}
                           >
                             <ul>
                               <li>
                                 <a
                                   href={`/pawgress/customers/${user.id}/profile`}
-                                  class="px-3 py-3 text-sm font-medium flex items-center space-x-2 hover:bg-slate-400"
+                                  className="px-3 py-3 text-sm font-medium flex items-center space-x-2 hover:bg-slate-400"
                                 >
                                   <HiOutlineUser className="h-6 w-6 mr-2" />
                                   Profile
@@ -107,7 +107,7 @@ const CustomerHome = () => {
                               <li>
                                 <a
                                   onClick={loggingOut}
-                                  class="px-3 py-3 text-sm font-medium flex items-center space-x-2 hover:bg-slate-400"
+                                  className="px-3 py-3 text-sm font-medium flex items-center space-x-2 hover:bg-slate-400"
                                 >
                                   <MdLogout className="h-6 w-6 mr-2" />
                                   Sign Out

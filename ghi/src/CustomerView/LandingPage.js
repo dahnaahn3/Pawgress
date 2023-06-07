@@ -10,7 +10,7 @@ function formatDateTime(dateTime) {
 }
 
 function LandingPage() {
-  const [pet, setPets] = useState([]);
+  const [pets, setPets] = useState([]);
   const [boardings, setBoardings] = useState([]);
   const [trainings, setTrainings] = useState([]);
 
@@ -31,21 +31,25 @@ function LandingPage() {
     if (reservationsResponse.ok && petsResponse.ok && tokenUser) {
       console.log("I AM:::::", tokenUser);
       const reservationsData = await reservationsResponse.json();
+      console.log("reservationsData:::", reservationsData);
       const petsData = await petsResponse.json();
+      console.log("petsData:::", petsData);
 
       const filteredPets = petsData.filter(
         (pet) => pet.owner_id === parseInt(tokenUser.user.id)
       );
+      console.log("filteredpetsData:::", filteredPets);
       const filteredBoardings = reservationsData.filter(
         (reservation) =>
           reservation.customer_id === parseInt(tokenUser.user.id) &&
-          reservation.category === "Boarding"
+          reservation.category === "BOARDING"
       );
       const filteredTrainings = reservationsData.filter(
         (reservation) =>
-          reservation.customer_id === parseInt(tokenUser.user.id) &&
-          reservation.category === "Training"
+          reservation.customer_id == tokenUser.user.id &&
+          reservation.category === "TRAINING"
       );
+       console.log("filteredTrainingData:::", filteredTrainings);
 
       setPets(filteredPets);
       setBoardings(filteredBoardings);
@@ -54,10 +58,6 @@ function LandingPage() {
       console.log("Error fetching data");
     }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, [tokenUser]);
 
   return (
     <>
