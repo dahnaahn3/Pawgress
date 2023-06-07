@@ -52,7 +52,7 @@ function CustomerProfile() {
         style={{
           backgroundImage: `url(https://c4.wallpaperflare.com/wallpaper/37/666/486/winter-look-face-snow-pose-hd-wallpaper-preview.jpg)`,
           opacity: 0.5,
-          backgroundPosition: "left"
+          backgroundPosition: "left",
         }}
       ></div>
       <div className="max-w-xl mx-auto my-10 bg-white rounded-lg shadow-xl p-5">
@@ -95,7 +95,7 @@ function CustomerProfile() {
                 {pets.map((pet) => (
                   <a
                     key={"p" + pet.pet_id}
-                    href={`/customers/${user.id}/${pet.pet_id}`}
+                    href={`/pawgress/customers/${user.id}/${pet.pet_id}`}
                     className="flex flex-col items-center mt-2 m-4"
                   >
                     <img
