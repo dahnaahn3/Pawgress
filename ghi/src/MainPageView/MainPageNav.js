@@ -13,7 +13,7 @@ function MainPageNav() {
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex mx-auto p-4">
-        <a href="/" className="flex">
+        <Link to="/" className="flex">
           <img
             src={
               "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/853274/dog-paw-prints-clipart-xl.png"
@@ -24,35 +24,35 @@ function MainPageNav() {
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Pawgress
           </span>
-        </a>
+        </Link>
 
         <div className="flex-grow"></div>
 
         <div className="flex items-center justify-center">
           <ul className="flex">
             <li className="mr-4">
-              <a
-                href="/trainingservices"
+              <Link
+                to="/trainingservices"
                 className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white"
               >
-                Training Services
-              </a>
+                <button> Training Services</button>
+              </Link>
             </li>
             <li className="mr-4">
-              <a
-                href="/boardingservices"
+              <Link
+                to="/boardingservices"
                 className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white"
               >
                 Boarding Service
-              </a>
+              </Link>
             </li>
-            <li style={{marginRight: "15rem"}}>
-              <a
-                href="/donate"
+            <li style={{ marginRight: "15rem" }}>
+              <Link
+                to="/donate"
                 className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white"
               >
                 Donate
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -75,6 +75,8 @@ function Donation(){
         style={{
           justifyContent: "center",
           alignItems: "center",
+          marginTop: "5%",
+          marginBottom: "5%"
         }}
       >
         <MainPageNav />

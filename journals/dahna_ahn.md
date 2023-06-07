@@ -66,7 +66,7 @@ Ah ha moment: The outlet tag should be used in parent route elements to render t
 - Creating a donations page for the main page
 - Added to the meet the team page
 
-Ah ha moment: If the page is getting too large it is better to split up components into different files for better organization and styling. 
+Ah ha moment: If the page is getting too large it is better to split up components into different files for better organization and styling.
 ]
 
 ## May 30 2023
@@ -86,4 +86,28 @@ Ah ha moment: Using CSS tailwind templates to save time.
 - Making sure there are no errors in the terminal
 
 Ah ha moment: Using CSS tailwind templates to save time.
+]
+
+
+## June 2 2023
+[Today, I worked on:
+- Beginning deployment of the database and api
+- Begin deployment of the front end
+
+Ah ha moment: Sometimes you need to know when to give up.
+]
+
+## June 5 2023
+[Today, I worked on:
+- Completed deployment of the backend and front end
+- Need to link the front end with the back end
+
+Ah ha moment: Sometimes you need to know when to give up.
+]
+
+## June 6 2023
+[Today, I worked on:
+- Worked on the data models of the readme
+
+Ah ha moment: Use markdown cheat sheet for styling of the readme 
 ]
