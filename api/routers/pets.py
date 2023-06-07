@@ -1,15 +1,11 @@
 from fastapi import (
     Depends,
-    HTTPException,
-    status,
     Response,
     APIRouter,
-    Request,
 )
 from typing import Union, List, Optional
-
-from pydantic import BaseModel
 from queries.pets import PetIn, PetOut, PetQueries
+from authenticator import authenticator
 from queries.common import Error
 router = APIRouter()
 
@@ -18,6 +14,7 @@ router = APIRouter()
 def create_pet(
     pet: PetIn,
     response: Response,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: PetQueries = Depends(),
 ):
     try:
@@ -29,6 +26,7 @@ def create_pet(
 
 @router.get("/api/pets", response_model=Union[List[PetOut], Error])
 def get_all_pets(
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: PetQueries = Depends(),
 ):
     return repo.get_all_pets()
@@ -38,6 +36,7 @@ def get_all_pets(
 def show_pet_detail(
     pet_id: int,
     response: Response,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: PetQueries = Depends(),
 ) -> PetOut:
     pet = repo.show_pet_detail(pet_id)
@@ -49,6 +48,7 @@ def show_pet_detail(
 @router.delete("/api/pets/{pet_id}", response_model=bool)
 def delete_pet(
     pet_id: int,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: PetQueries = Depends(),
 ) -> bool:
     return repo.delete_pet(pet_id)
@@ -58,6 +58,7 @@ def delete_pet(
 def update_pet(
     pet_id: int,
     pet: PetIn,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: PetQueries = Depends(),
 ) -> Union[Error, PetOut]:
     return repo.update_pet(pet_id, pet)

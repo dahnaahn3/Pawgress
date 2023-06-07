@@ -61,6 +61,7 @@ function ClassForm() {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
       },
     };
     const response = await fetch(classUrl, fetchConfig);

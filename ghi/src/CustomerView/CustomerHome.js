@@ -55,24 +55,26 @@ const CustomerHome = () => {
         navigate("/");
       } else if (token && user && user.role === "trainer") {
         navigate("/trainer");
-      } else {
-        console.log("REDIRECTING TO CUSTOMERS");
-        // navigate("/customers");
       }
     }
   }, [token, navigate, setToken, user]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  } else {
     return (
       <>
         <div>
           <div className="cs-container-left">
             <div className="cs-container-right shadow-inner">
               <NavLink to="/" className="cs-header-left">
-                <img className="logo-icon" src="/WhitePawIcon.png" alt="Logo" />
-                <span className="home-title text-slate-900">Pawgress</span>
+                <img
+                  src={
+                    "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/853274/dog-paw-prints-clipart-xl.png"
+                  }
+                  className="h-8 mr-3"
+                  alt="Flowbite Logo"
+                />
+                <span className="self-center text-2xl font-semibold whitespace-nowrap text-slate-700">
+                  Pawgress
+                </span>
               </NavLink>
               <div className="cs-header-right">
                 <div className="cs-welcome-container">
@@ -209,7 +211,7 @@ const CustomerHome = () => {
         <Outlet />
       </>
     );
-  }
+  
 };
 
 export default CustomerHome;

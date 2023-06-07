@@ -36,6 +36,7 @@ function BoardingForm() {
       body: JSON.stringify(reservation),
       headers: {
         "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     };
 
@@ -55,7 +56,7 @@ function BoardingForm() {
   const [pets, setPets] = useState([]);
   const fetchData = async () => {
     const url = "http://localhost:8000/api/pets";
-    const response = await fetch(url);
+    const response = await fetch(url, {headers: { Authorization: `Bearer ${token}` }});
     if (response.ok) {
       const data = await response.json();
       setPets(data);

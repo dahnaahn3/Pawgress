@@ -10,23 +10,19 @@ function CustomerProfile() {
 
   const { token } = useAuthContext();
   const tokenUser = useUser(token);
-  console.log("initial pull:::", tokenUser);
 
   const fetchData = async () => {
-    console.log("I am being called");
-    console.log("with fetch::::", tokenUser);
     const userURL = `http://localhost:8000/api/accounts/${tokenUser.user.id}/`;
     const petsURL = "http://localhost:8000/api/pets";
 
     const [userResponse, petsResponse] = await Promise.all([
-      fetch(userURL),
-      fetch(petsURL),
+      fetch(userURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+      fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
     ]);
 
     if (userResponse.ok && petsResponse.ok) {
       const userData = await userResponse.json();
       const petsData = await petsResponse.json();
-      console.log(userData, petsData);
 
       const filteredPets = petsData.filter(
         (pet) => pet.owner_id === parseInt(tokenUser.user.id)
@@ -40,7 +36,6 @@ function CustomerProfile() {
 
   useEffect(() => {
     if (tokenUser.user !== null) {
-      console.log("token::::::", token);
       fetchData();
     }
   }, [tokenUser.user]);

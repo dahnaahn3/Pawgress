@@ -42,13 +42,14 @@ class PetQueries:
                             breed,
                             gender,
                             age,
+                            picture,
                             size,
                             weight,
                             diet,
                             owner_id
                             )
                         VALUES
-                            (%s, %s, %s, %s, %s, %s, %s, %s)
+                            (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                         RETURNING pet_id;
                         """,
                         [
@@ -56,6 +57,7 @@ class PetQueries:
                             pets.breed,
                             pets.gender,
                             pets.age,
+                            pets.picture,
                             pets.size,
                             pets.weight,
                             pets.diet,
@@ -162,13 +164,13 @@ class PetQueries:
             "breed": record[2],
             "gender": record[3],
             "age": record[4],
-            "picture": record[5],
+            "picture": record[5] if record[5] is not None else "",
             "size": record[6],
             "weight": record[7],
             "diet": record[8],
             "owner_id": record[9],
         }
-        return pet_dict
+        return PetOut(**pet_dict)
 
     def pet_in_to_out(self, pet_id: int, pet: PetIn):
         data = pet.dict()

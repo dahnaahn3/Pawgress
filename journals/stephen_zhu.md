@@ -112,4 +112,30 @@ I learned about localStorage set, get, and delete.
 ## May 31, 2023
 Today, I worked on:
 
-*
+*Fixing css throughout some pages
+
+We each worked on wrapping up individual areas and fixing css on frontend pages
+
+
+## June 1, 2023
+Today, I worked on:
+
+*fixing
+## June 2, 2023
+Today, I worked on:
+
+*Attempting deployment
+
+Dahna, Jennifer, Jesse and I attempted working on deployment, we hit a wall after breaking the database deployment and were unable to continue as we were unable to reset database in the cloud.
+
+## June 5, 2023
+Today, I worked on:
+
+*Deployment, Unit Tests
+
+Dahna, Jennifer, Jesse and I continued working on deployment.  We succesfully deployed backend and frontend after numerous errors after getting help from Rosheen.  We each then worked on our individual unit tests.
+
+## June 6, 2023
+Today, I worked on:
+
+*Wrapping up unit tests

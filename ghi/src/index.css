@@ -43,7 +43,7 @@
 /* Trainer CSS */
 
 .tr-container-left {
-  @apply min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white;
+  @apply min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white text-black;
 }
 
 .tr-container-right {
@@ -51,11 +51,11 @@
 }
 
 .tr-header-left {
-  @apply flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-gray-600 dark:bg-gray-800 border-none;
+  @apply flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-gray-600 border-none;
 }
 
 .tr-header-right {
-  @apply flex justify-between items-center h-14 bg-gray-600 dark:bg-gray-800 header-right;
+  @apply flex justify-between items-center h-14 bg-gray-600 header-right;
 }
 
 .tr-welcome-container {
@@ -71,7 +71,7 @@
 }
 
 .tr-sidebar-container {
-  @apply fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-gray-700 dark:bg-gray-900 h-full text-white transition-all duration-300 border-none z-10 sidebar;
+  @apply fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-gray-700  h-full text-white transition-all duration-300 border-none z-10 sidebar;
 }
 
 .tr-sidebar-flex {
@@ -87,7 +87,7 @@
 }
 
 .tr-container {
-  @apply relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-600 dark:hover:bg-gray-600 text-white hover:text-white border-l-4 border-transparent hover:border-blue-500 pr-6;
+  @apply relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-600  text-white hover:text-white border-l-4 border-transparent hover:border-blue-500 pr-6;
 }
 
 .tr-row {
@@ -132,7 +132,7 @@
 }
 
 .cs-sidebar-container {
-  @apply fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-blue-400 dark:bg-gray-900 h-5/6 text-white transition-all duration-300 border-none z-10;
+  @apply fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-blue-400 h-full text-white transition-all duration-300 border-none z-10;
 }
 
 .cs-sidebar-flex {
@@ -143,7 +143,7 @@
   @apply flex flex-col py-4 space-y-1;
 }
 .cs-container {
-  @apply relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-200 text-white hover:text-black border-l-4 border-transparent hover:border-gray-600 dark:hover:border-gray-800 pr-6 mt-3;
+  @apply relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-200 text-white hover:text-black border-l-4 border-transparent hover:border-gray-600 pr-6 mt-3;
 }
 
 .cs-row {
@@ -160,13 +160,13 @@
 .cs-main-component {
   margin-left: 256px;
   margin-top: 56px;
-  padding: 25px 50px 50px
+  padding: 25px 50px 50px;
 }
 
 .welcome-text {
-    font-family: 'Dancing Script', cursive;
-    font-size: 80px;
-    margin-bottom: 30px;
+  font-family: "Dancing Script", cursive;
+  font-size: 80px;
+  margin-bottom: 30px;
 }
 
 .gamma {
@@ -174,7 +174,9 @@
   margin-bottom: 0.825rem;
 }
 
-.lato{font-family: 'Lato'}
+.lato {
+  font-family: "Lato";
+}
 
 .background-image {
   position: absolute;
@@ -184,20 +186,6 @@
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  z-index: -1
+  background-attachment: fixed;
+  z-index: -1;
 }
-
-/* ##########OLD CODE##############
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */

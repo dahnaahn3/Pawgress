@@ -13,12 +13,12 @@ function TrainingHistory() {
   const fetchData = async () => {
     const url = "http://localhost:8000/reservation";
     const urlPets = "http://localhost:8000/api/pets";
-    const response = await fetch(url);
+    const response = await fetch(url, {headers: {"Authorization": `Bearer ${token}`,}, });
     if (response.ok) {
       const data = await response.json();
       setHistory(data);
     }
-    const responsePets = await fetch(urlPets);
+    const responsePets = await fetch(urlPets, {headers: {"Authorization": `Bearer ${token}`,}, });
     if (responsePets.ok) {
       const petData = await responsePets.json();
       setPets(petData);
@@ -26,8 +26,9 @@ function TrainingHistory() {
   };
 
   useEffect(() => {
+    if (token) {
     fetchData();
-  }, []);
+  }}, [token]);
 
   if (!token) {
     return null;

@@ -1,13 +1,10 @@
 from fastapi import (
     Depends,
-    HTTPException,
-    status,
     Response,
     APIRouter,
-    Request,
 )
 from typing import Union, List
-from pydantic import BaseModel, ValidationError
+from authenticator import authenticator
 from queries.reservations import (
     ReservationIn,
     ReservationOut,
@@ -22,6 +19,7 @@ router = APIRouter()
 def create_reservation(
     reservation: ReservationIn,
     response: Response,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: ReservationQueries = Depends(),
 ):
     try:
@@ -35,6 +33,7 @@ def create_reservation(
 @router.get("/reservation", response_model=Union[List[ReservationOut], Error])
 def list_reservations(
     response: Response,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: ReservationQueries = Depends(),
 ):
     try:

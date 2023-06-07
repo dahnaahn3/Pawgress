@@ -1,16 +1,20 @@
 import { useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 
 function PetDetail() {
   const { pet_id } = useParams();
   const [pets, setPets] = useState([]);
   const [users, setUsers] = useState([]);
+  const { token } = useToken();
 
   const fetchData = async () => {
     const petsURL = `http://localhost:8000/api/pets/${pet_id}`;
     const usersURL = "http://localhost:8000/api/accounts";
-    const response = await Promise.all([fetch(petsURL), fetch(usersURL)]);
+    const response = await Promise.all([fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+      fetch(usersURL, {headers: {"Authorization": `Bearer ${token}`,}, })]);
+      
     const petsData = await response[0].json();
     const usersData = await response[1].json();
     setPets(petsData);
@@ -29,10 +33,10 @@ function PetDetail() {
     genderIcon = "https://img.icons8.com/parakeet/48/female.png";
   }
 
-  let owner = ""; // Initialize owner variable outside the loop
+  let owner = "";
   users.map((user) => {
     if (user.id === pets.owner_id) {
-      owner = `${user.first_name} ${user.last_name}`; // Assign value to owner
+      owner = `${user.first_name} ${user.last_name}`;
     }
   });
 

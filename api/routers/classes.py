@@ -1,12 +1,11 @@
 from typing import Union, List, Optional
 from queries.classes import ClassIn, ClassOut, ClassQueries, Error
+from authenticator import authenticator
 from queries.common import Error, Success
 from fastapi import (
     Depends,
-    status,
     Response,
     APIRouter,
-    Request,
 )
 
 router = APIRouter()
@@ -16,6 +15,7 @@ router = APIRouter()
 def create_class(
     classes: ClassIn,
     response: Response,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: ClassQueries = Depends(),
 ):
     try:
@@ -45,6 +45,7 @@ def get_all_classes(
 def get_one_class(
     class_id: int,
     response: Response,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: ClassQueries = Depends(),
 ) -> Optional[ClassOut]:
     try:
@@ -63,6 +64,7 @@ def update_class(
     class_id: int,
     classes: ClassIn,
     response: Response,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: ClassQueries = Depends(),
 ) -> Union[Error, ClassOut]:
     try:
@@ -80,6 +82,7 @@ def update_class(
 def delete_class(
     class_id: int,
     response: Response,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: ClassQueries = Depends(),
 ):
     result = repo.delete_class(class_id)

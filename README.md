@@ -335,5 +335,6 @@ After logging in with the correct credentials as a trainer, the user will view t
 
 
 ## Customer View
-After logging in with customer credentials, the user will view the customer's main page which is similarly modeled to the trainer's view. Users can sign their dog up for boarding or training classes as well as view the history of their pet's stays or classes they have attended. Customers also can view their personal information and their dog's information with the option to make any changes as they see fit. 
+After logging in with customer credentials, the user will view the customer's main page which is similarly modeled to the trainer's view. Users can sign their dog up for boarding or training classes as well as view the history of their pet's stays or classes they have attended. Customers also can view their personal information and their dog's information with the option to make any changes as they see fit.
 ![customerpage](./customerpage.png)
+

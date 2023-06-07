@@ -9,17 +9,19 @@ function RoomsList(){
         const fetchData = async () => {
         const roomsURL = "http://localhost:8000/api/rooms";
         const petsURL = "http://localhost:8000/api/pets";
-        const response = await Promise.all([fetch(roomsURL), fetch(petsURL)]);
+        const response = await Promise.all([fetch(roomsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+        fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, })]);
         const roomsData = await response[0].json();
         const petsData = await response[1].json();
         setRooms(roomsData);
         setPets(petsData);
-        console.log('rooms', roomsData, 'pets', petsData)
+
         };
 
-        useEffect(() => {
-        fetchData();
-        }, []);
+  useEffect(() => {
+    if (token) {
+    fetchData();
+  }}, [token]);
 
   if (!token) {
     return null;
@@ -27,7 +29,7 @@ function RoomsList(){
   return (
     <div
       className="room-container"
-      style={{ paddingLeft: "20rem", marginTop: "-50rem" }}
+      style={{ paddingLeft: "20rem", marginTop: "-80%" }}
     >
       <header className="room-ext">
         <h2 className="room-title">Rooms 🐾</h2>
@@ -52,7 +54,7 @@ function RoomsList(){
             let petName = pet ? pet.name : "";
 
             return (
-              <tr key={room.id}>
+              <tr key={room.room_id}>
                 <td className="room-info1">{room.room_number}</td>
                 <td className="room-info2">{occupied}</td>
                 <td className="room-info2">{petName}</td>
