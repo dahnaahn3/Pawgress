@@ -5,19 +5,23 @@ import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import getUser from "../useUser";
 
 function TrainingHistory() {
-  console.log("TRAINING HISTORY FORM");
   const [history, setHistory] = useState([]);
-
+  const [pets, setPets] = useState([]);
   const { token } = useAuthContext();
   const user = getUser(token);
 
   const fetchData = async () => {
     const url = "http://localhost:8000/reservation";
+    const urlPets = "http://localhost:8000/api/pets";
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       setHistory(data);
+    }
+    const responsePets = await fetch(urlPets);
+    if (responsePets.ok) {
+      const petData = await responsePets.json();
+      setPets(petData);
     }
   };
 
@@ -28,6 +32,11 @@ function TrainingHistory() {
   if (!token) {
     return null;
   }
+
+  const getPetName = (reservation, pets) => {
+    const pet = pets.filter((pet) => pet.pet_id === reservation.pet_id);
+    return pet[0]?.name;
+  };
 
   return (
     <div
@@ -59,7 +68,7 @@ function TrainingHistory() {
                 let end_datetime = reservation.end_datetime;
                 start_datetime = new Date(start_datetime);
                 end_datetime = new Date(end_datetime);
-                console.log(reservation.reservation_id);
+                const petName = getPetName(reservation, pets);
                 if (
                   reservation.customer_id === parseInt(user?.user?.id) &&
                   reservation.category === "TRAINING"
@@ -69,7 +78,7 @@ function TrainingHistory() {
                       <td className="px-8 py-2">
                         {reservation.reservation_id}
                       </td>
-                      <td className="px-8 py-2">{reservation.pet_id}</td>
+                      <td className="px-8 py-2">{petName}</td>
                       <td className="px-8 py-2">
                         {start_datetime.toLocaleString()}
                       </td>
@@ -79,10 +88,7 @@ function TrainingHistory() {
                     </tr>
                   );
                 } else {
-                  console.log(false);
-                  console.log(reservation.customer_id);
-                  console.log(reservation.category);
-                  console.log(user?.user?.id);
+                  return null;
                 }
               })}
             </tbody>

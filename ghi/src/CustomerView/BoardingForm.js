@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import getUser from "../useUser";
 
 function BoardingForm() {
-  console.log("BOARDING HISTORY");
   const [reservation, setReservation] = useState({
     start_datetime: "",
     end_datetime: "",
-    category: "",
+    category: "BOARDING",
     customer_id: "",
     pet_id: "",
   });
@@ -15,14 +15,17 @@ function BoardingForm() {
   const handleReservationChange = (event) => {
     const value = event.target.value;
     const inputName = event.target.name;
+    const customer_id = user?.user?.id;
     setReservation({
       ...reservation,
       [inputName]: value,
+      customer_id: customer_id,
     });
   };
 
   const navigate = useNavigate();
   const { token } = useToken();
+  const user = getUser(token);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,13 +44,27 @@ function BoardingForm() {
       setReservation({
         start_datetime: "",
         end_datetime: "",
-        category: "",
+        category: "BOARDING",
         customer_id: "",
         pet_id: "",
       });
-      navigate("/");
+      navigate(`/customers/${user.user.id}`);
     }
   };
+
+  const [pets, setPets] = useState([]);
+  const fetchData = async () => {
+    const url = "http://localhost:8000/api/pets";
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = await response.json();
+      setPets(data);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   if (!token) {
     return null;
@@ -58,11 +75,6 @@ function BoardingForm() {
       className="form-container"
       style={{ paddingLeft: "15rem", marginTop: "1rem" }}
     >
-      <div>
-        <Link to={{ pathname: "history/" }}>
-          <button>back to customers</button>
-        </Link>
-      </div>
       <div className="secondary-container">
         <h1 className="mb-5">Create a boarding reservation</h1>
         <form onSubmit={handleSubmit} id="create-user-form">
@@ -88,34 +100,27 @@ function BoardingForm() {
             <label htmlFor="end_datetime">Pickup Date and Time</label>
           </div>
           <div className="mb-5">
-            <input
-              onChange={handleReservationChange}
-              placeholder="Category"
-              type="text"
-              name="category"
-              className="form-input-container"
-            />
-            <label htmlFor="category">Category</label>
-          </div>
-          <div className="mb-5">
-            <input
-              onChange={handleReservationChange}
-              placeholder="Customer ID"
-              type="text"
-              name="customer_id"
-              className="form-input-container"
-            />
-            <label htmlFor="customer_id">Customer ID</label>
-          </div>
-          <div className="mb-5">
-            <input
+            <select
+              required
               onChange={handleReservationChange}
               placeholder="Pet ID"
-              type="text"
               name="pet_id"
               className="form-input-container"
-            />
-            <label htmlFor="pet_id">Pet ID</label>
+            >
+              <option value="">Pet</option>
+              {pets.map((pet) => {
+                if (pet.owner_id === parseInt(user?.user?.id)) {
+                  return (
+                    <option key={pet.pet_id} value={pet.pet_id}>
+                      {pet.name}
+                    </option>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </select>
+            <label htmlFor="pet_id">Pet</label>
           </div>
           <button className="submit-button">Add</button>
         </form>

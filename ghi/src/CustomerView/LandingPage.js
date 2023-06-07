@@ -28,6 +28,7 @@ function LandingPage() {
 
     if (reservationsResponse.ok && petsResponse.ok && tokenUser) {
       const reservationsData = await reservationsResponse.json();
+      console.log("reservationsData:::", reservationsData);
       const petsData = await petsResponse.json();
 
       const filteredPets = petsData.filter(
