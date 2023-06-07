@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import MainPageNav from "./MainPageNav";
 import MainPageCover from "./MainPageCover";
 import MainPageArticles from "./MainPageArticles";
-import MainPageContact from "./MainPageContact";
 import MainpageFooter from "./MainpageFooter";
 
 
@@ -15,7 +14,6 @@ function Mainpage() {
           <MainPageNav />
           <MainPageCover />
           <MainPageArticles />
-          <MainPageContact />
           <MainpageFooter />
 
 
