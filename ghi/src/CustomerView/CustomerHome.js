@@ -83,13 +83,12 @@ const CustomerHome = () => {
                 </span>
               </NavLink>
               <div className="cs-header-right">
-                <div className="cs-welcome-container">
-                  <p className="text-slate-900">
-                    Welcome {user && `${user.first_name} ${user.last_name}`}!
-                  </p>
-                </div>
-
                 <ul className="nav-right-main">
+                  <li>
+                    <p className="text-slate-900 mr-2">
+                      Hello, {user && `${user.first_name}`}!
+                    </p>
+                  </li>
                   <li>
                     <div
                       className="h-10 w-10 hover:ring-4 user cursor-pointer relative ring-blue-700/30 rounded-full bg-cover bg-center mr-5"
