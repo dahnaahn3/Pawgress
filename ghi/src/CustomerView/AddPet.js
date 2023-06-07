@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function AddPet() {
   const navigate = useNavigate();
 
-  const [pet, setPet] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     breed: "",
@@ -17,81 +16,41 @@ function AddPet() {
     diet: "",
   });
 
-  // put this in the NAV
-  // const { token, logout } = useToken();
-  // const { user } = useUser(token);
-
-  const { user_id, pet_id } = useParams();
-  const fetchData = async () => {
-    const petURL = `http://localhost:8000/api/pets/${pet_id}/`;
-
-    const petResponse = await fetch(petURL);
-
-    if (petResponse.ok) {
-      const petData = await petResponse.json();
-      console.log(petData);
-      setPet(petData);
-    } else {
-      console.log("Error fetching data");
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    // Determine the fields that have changed
-    const updatedFields = {};
-    for (const key in formData) {
-      if (formData[key] !== "") {
-        updatedFields[key] = formData[key];
-      } else {
-        updatedFields[key] = pet[key];
-      }
-    }
-    updatedFields["pet_id"] = pet_id;
-    updatedFields["owner_id"] = user_id;
-
-    // If no fields have changed
-    if (updatedFields.length === 0) {
-      alert("No changes have been made.");
-      return;
-    } else {
-      const url = `http://localhost:8000/api/pets/${pet_id}`;
-
-      const fetchOptions = {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedFields),
-      };
-
-      const response = await fetch(url, fetchOptions);
-      if (response.ok) {
-        setFormData({
-          name: "",
-          breed: "",
-          gender: "",
-          age: "",
-          picture: "",
-          size: "",
-          weight: "",
-          diet: "",
-        });
-        navigate(`/customers/${user_id}/${pet_id}`);
-      }
-    }
-  };
+  const { user_id } = useParams();
 
   const handleFormChange = (e) => {
     const value = e.target.value;
     const inputName = e.target.name;
 
-    setFormData({ ...formData, [inputName]: value });
+    setFormData({ ...formData, [inputName]: value, owner_id: user_id });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const url = "http://localhost:8000/api/pets/";
+
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    };
+
+    const response = await fetch(url, fetchOptions);
+    if (response.ok) {
+      setFormData({
+        name: "",
+        breed: "",
+        gender: "",
+        age: "",
+        picture: "",
+        size: "",
+        weight: "",
+        diet: "",
+      });
+      navigate(`/customers/${user_id}/profile`);
+    }
   };
 
   return (
@@ -111,7 +70,7 @@ function AddPet() {
               type="text"
               name="name"
               id="name"
-              placeholder={pet.name}
+              placeholder="Name"
               className="form-input-container"
               value={formData.name}
             />
@@ -125,7 +84,7 @@ function AddPet() {
               type="text"
               name="breed"
               id="breed"
-              placeholder={pet.breed}
+              placeholder="Breed"
               className="form-input-container"
               value={formData.breed}
             />
@@ -139,7 +98,7 @@ function AddPet() {
               type="text"
               name="gender"
               id="gender"
-              placeholder={pet.gender}
+              placeholder="M or F"
               className="form-input-container"
               value={formData.gender}
             />
@@ -153,7 +112,7 @@ function AddPet() {
               type="number"
               name="age"
               id="age"
-              placeholder={pet.age}
+              placeholder="Age"
               className="form-input-container"
               value={formData.age}
             />
@@ -167,7 +126,7 @@ function AddPet() {
               type="text"
               name="picture"
               id="picture"
-              placeholder={pet.picture}
+              placeholder="Picture URL"
               className="form-input-container"
               value={formData.picture}
             />
@@ -181,7 +140,7 @@ function AddPet() {
               type="text"
               name="size"
               id="size"
-              placeholder={pet.size}
+              placeholder="Size (XXS - XXL)"
               className="form-input-container"
               value={formData.size}
             />
@@ -195,7 +154,7 @@ function AddPet() {
               type="number"
               name="weight"
               id="weight"
-              placeholder={pet.weight}
+              placeholder="Weight (in lbs)"
               className="form-input-container"
               value={formData.weight}
             />
@@ -209,7 +168,7 @@ function AddPet() {
               type="text"
               name="diet"
               id="diet"
-              placeholder={pet.diet}
+              placeholder="What does your doggo noms on?"
               className="form-input-container"
               value={formData.diet}
             />
