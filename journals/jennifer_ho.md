@@ -1,3 +1,25 @@
+## June 6, 2023
+
+[Today, I worked on:
+
+- Updated FAQ
+
+]
+
+## June 6, 2023
+
+[Today, I worked on:
+
+- Added unit test for users
+- Updated customer sign in to redirect to a landing page with upcoming reservations
+- Added a dropdown profile button to the nav bar
+- Updated styling of nav bar and landing pages
+
+Make sure you save as you go, so that when things break, you have a working version to reference back to.
+
+If something continues to re-render despite the dependency not changing, try going one level deeper within the dependency
+]
+
 ## June 5, 2023
 
 [Today, as a team we worked on:
