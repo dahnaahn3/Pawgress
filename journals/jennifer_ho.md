@@ -34,20 +34,6 @@ on the technology backend
 
 ]
 
-## June 5, 2023
-
-[Today, as a team we worked on:
-
-- Successful database, services, front-end deployment!
-
-Learn to ask for help when you need it for technologies that
-you don't understand (i.e. Galvanize Cloud). With different
-technologies, others may be able to support and help you
-figure out if the issue is with your code or something
-on the technology backend
-
-]
-
 ## June 2, 2023
 
 [Today, as a team we worked on:
