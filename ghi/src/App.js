@@ -51,19 +51,19 @@ function App() {
           <Route path="training/history/" element={<TrainingHistory />} />
           <Route path="boarding/history/" element={<BoardingHistory />} />
           <Route
-            path="/customers/:user_id/profile"
+            path=":user_id/profile"
             element={<CustomerProfile />}
           />
           <Route
-            path="/customers/:user_id/edit"
+            path=":user_id/edit"
             element={<CustomerProfile />}
           />
-          <Route path="/customers/:user_id/:pet_id/" element={<PetProfile />} />
+          <Route path=":user_id/:pet_id/" element={<PetProfile />} />
           <Route
-            path="/customers/:user_id/:pet_id/edit"
+            path=":user_id/:pet_id/edit"
             element={<EditPet />}
           />
-          <Route path="/customers/:user_id/" element={<LandingPage />} />
+          <Route path=":user_id/" element={<LandingPage />} />
         </Route>
 
         <Route path="/" element={<Mainpage />} />
