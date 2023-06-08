@@ -22,8 +22,14 @@ function EditCustomer() {
   // const { user } = useUser(token);
 
   const { user_id } = useParams();
+  console.log("useparams****", useParams());
+
   const fetchData = async () => {
-    const userURL = `${baseUrl}/api/accounts/${user_id}/`;
+
+    const userURL = `${baseUrl}/api/accounts/${user_id}`;
+
+    console.log('userURL***', userURL)
+
     const petsURL = `${baseUrl}/api/pets`;
 
     const [userResponse, petsResponse] = await Promise.all([

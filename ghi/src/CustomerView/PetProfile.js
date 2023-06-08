@@ -11,7 +11,7 @@ function PetProfile() {
   console.log("PET PROFILE PAGE");
   const { user_id, pet_id } = useParams();
   const fetchData = async () => {
-    const petURL = `${baseUrl}/api/pets/${pet_id}/`;
+    const petURL = `${baseUrl}/api/pets/${pet_id}`;
 
     const petResponse = await fetch(petURL, {
       headers: { Authorization: `Bearer ${token}` },

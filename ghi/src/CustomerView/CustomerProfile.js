@@ -13,7 +13,9 @@ function CustomerProfile() {
   const tokenUser = useUser(token);
   const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const fetchData = async () => {
-    const userURL = `${baseUrl}/api/accounts/${tokenUser.user.id}/`;
+
+    const userURL = `${baseUrl}/api/accounts/${tokenUser.user.id}`;
+
     const petsURL = `${baseUrl}/api/pets`;
 
     const [userResponse, petsResponse] = await Promise.all([

@@ -121,6 +121,7 @@ Ah ha moment: Use markdown cheat sheet for styling of the readme
 - Reformatted backend
 - Remove all console.log and print statements
 - Continuos troubleshoot of deployment
+- Successful deployment except for the customer's portfolio, add pet, and edit user information
 
 
 Ah ha moment: Had to apply pet_is instead of id for the unique keys
