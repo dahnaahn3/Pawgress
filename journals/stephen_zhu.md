@@ -138,4 +138,13 @@ Dahna, Jennifer, Jesse and I continued working on deployment.  We succesfully de
 ## June 6, 2023
 Today, I worked on:
 
-*Wrapping up unit tests
+*Wrapping up unit tests, and attempt deployment of our application
+
+I finished up my unit tests, and we attempted to deploy our application again after some help from instructors.  We eventually still hit a wall where there was still not connection between frontend and backed.
+
+## June 7, 2023
+Today, I worked on:
+
+*Applying Auth and locking endpoints behind valid user, working on deployment
+
+I worked on adding authorization into all the endpoints making them require a valid logged in user in order to access any of the requests both frontend and backend.  Dahna, Jesse, Jennifer and I continued working on attempting deployment.  After many failures we figured out our API HOST was still directing our fetches to localhost:8000 instead of the deployed fastapi backend.  After changing the hardcoded https:localhost:8000 urls to use an environment variable as our url the fetch calls were going to the correct urls.

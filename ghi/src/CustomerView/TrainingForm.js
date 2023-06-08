@@ -98,7 +98,7 @@ function TrainingForm() {
     if (token) {
       fetchData();
     }
-  }, [token]);
+  }, [baseUrl, token]);
 
   if (!token) {
     return null;

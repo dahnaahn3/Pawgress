@@ -17,7 +17,7 @@ const CustomerHome = () => {
   const { user } = useUser(token);
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
 
   const handleProfileClick = () => {
     setShowDropdown(true);

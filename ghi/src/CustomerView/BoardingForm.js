@@ -66,7 +66,7 @@ useEffect(() => {
     }
   };
   fetchData();
-}, []);
+}, [baseUrl, token]);
 
   if (!token) {
     return null;

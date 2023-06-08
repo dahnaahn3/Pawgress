@@ -7,6 +7,8 @@ function RoomsList() {
   const { token } = useToken();
   const [rooms, setRooms] = useState([]);
   const [pets, setPets] = useState([]);
+
+  useEffect(() => {
   const fetchData = async () => {
     const roomsURL = `${baseUrl}/api/rooms`;
     const petsURL = `${baseUrl}/api/pets`;
@@ -20,11 +22,11 @@ function RoomsList() {
     setPets(petsData);
   };
 
-  useEffect(() => {
+
     if (token) {
       fetchData();
     }
-  }, [token]);
+  }, [baseUrl, token]);
 
   if (!token) {
     return null;

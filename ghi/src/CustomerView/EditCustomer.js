@@ -8,7 +8,7 @@ function EditCustomer() {
   const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const navigate = useNavigate();
   const [user, setUser] = useState("");
-  const [pets,setPets] = useState("");
+  const [, setPets] = useState("");
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -43,7 +43,7 @@ function EditCustomer() {
   if (token) {
     fetchData();
   }
-}, [token]);
+}, [baseUrl, user_id, token]);
 
   const handlePassword = () => {
     navigate(`/customers/${user_id}/editpw`);

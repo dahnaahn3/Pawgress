@@ -41,7 +41,7 @@ function CustomerProfile() {
   if (tokenUser.user !== null) {
     fetchData();
   }
-}, [tokenUser.user]);
+}, [baseUrl,token, tokenUser.user]);
 
   return (
     <div className="w-full cs-main-component">

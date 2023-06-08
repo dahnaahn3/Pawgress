@@ -4,12 +4,12 @@ stages:
   - deploy
 
 # Run flake8 to check for code quality
-# lint-test-job:
-#   image: python:3-bullseye
-#   stage: test
-#   script:
-#     - pip install flake8
-#     - flake8 api
+lint-test-job:
+  image: python:3-bullseye
+  stage: test
+  script:
+    - pip install flake8
+    - flake8 api
 
 services:
   - docker:dind
@@ -28,16 +28,16 @@ build-fastapi-service-image:
   only:
     - main
 #
-# # Run the unit tests
-# api-unit-tests-job:
-#   image: python:3-bullseye
-#   stage: test
-#   needs:
-#     - lint-test-job
-#   script:
-#     - cd sample_service
-#     - pip install -r requirements.txt
-#     - python -m pytest
+# Run the unit tests
+api-unit-tests-job:
+  image: python:3-bullseye
+  stage: test
+  needs:
+    - lint-test-job
+  script:
+    - cd sample_service
+    - pip install -r requirements.txt
+    - python -m pytest
 
 # Build the React/JavaScript front-end
 build-front-end-job:
@@ -55,7 +55,7 @@ build-front-end-job:
   script:
     - cd ghi
     - npm install
-    - CI=false npm run build
+    - npm run build
     - cp build/index.html build/404.html
   artifacts:
     paths:

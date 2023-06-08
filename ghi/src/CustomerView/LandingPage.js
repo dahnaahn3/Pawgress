@@ -17,7 +17,7 @@ function LandingPage() {
 
   const { token } = useAuthContext();
   const tokenUser = useUser(token);
-  
+
   useEffect(() => {
   const fetchData = async () => {
     const reservationsURL = `${baseUrl}/api/reservation`;
@@ -69,7 +69,7 @@ function LandingPage() {
   if (token) {
     fetchData();
   }
-}, [tokenUser?.user]);
+}, [baseUrl, token, tokenUser, tokenUser?.user]);
 
   return (
     <>

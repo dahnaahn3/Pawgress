@@ -44,7 +44,7 @@ const TrainerHome = () => {
         <div className="tr-container-left">
           <div className="tr-container-right">
             <NavLink to="/" className="tr-header-left">
-              <img className="logo-icon" src="/WhitePawIcon.png" />
+              <img className="logo-icon" src="/WhitePawIcon.png" alt="Paw"/>
               <span className="home-title">Pawgress</span>
             </NavLink>
             <div className="tr-header-right">

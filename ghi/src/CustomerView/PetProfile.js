@@ -29,7 +29,7 @@ function PetProfile() {
     if (token) {
       fetchData();
     }
-  }, [token]);
+  }, [baseUrl, pet_id, token]);
 
   return (
     <div className="w-full cs-main-component">

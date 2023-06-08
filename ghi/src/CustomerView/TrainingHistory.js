@@ -33,7 +33,7 @@ function TrainingHistory() {
       if (token) {
         fetchData();
       }
-    }, [token]);
+    }, [baseUrl, token]);
 
   if (!token) {
     return null;

@@ -24,6 +24,8 @@ function EditPet() {
   // const { user } = useUser(token);
 
   const { user_id, pet_id } = useParams();
+
+  useEffect(() => {
   const fetchData = async () => {
     const petURL = `${baseUrl}/api/pets/${pet_id}`;
 
@@ -39,11 +41,11 @@ function EditPet() {
     }
   };
 
-  useEffect(() => {
+
     if (token) {
       fetchData();
     }
-  }, [token]);
+  }, [baseUrl, pet_id, token]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
