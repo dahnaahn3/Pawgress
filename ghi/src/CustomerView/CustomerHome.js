@@ -173,7 +173,7 @@ const CustomerHome = () => {
                       </div>
                     </li>
 
-                    <Link to={{ pathname: "boarding/history" }}>
+                    <Link to="./boarding/history">
                       <li>
                         <p className="cs-container">
                           <span className="cs-row">
@@ -210,7 +210,6 @@ const CustomerHome = () => {
         <Outlet />
       </>
     );
-
 };
 
 export default CustomerHome;

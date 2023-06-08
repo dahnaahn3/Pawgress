@@ -21,7 +21,7 @@ function AddPet() {
   const { user_id } = useParams();
 
   const handleFormChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.name === 'gender' || e.target.name === 'size' ? e.target.value.toUpperCase() : e.target.value;
     const inputName = e.target.name;
 
     setFormData({ ...formData, [inputName]: value, owner_id: user_id });

@@ -51,7 +51,7 @@ function TrainingHistory() {
     >
       <header className="px-3 py-4 border-b border-gray-100">
         <h2 className="font-semibold text-gray-800">Training History 🐾</h2>
-        <Link to={"/training"}>
+        <Link to={"/customers/training"}>
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
             Make a reservation
           </button>

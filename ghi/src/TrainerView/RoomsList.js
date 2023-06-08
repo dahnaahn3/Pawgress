@@ -51,7 +51,7 @@ function RoomsList() {
         <tbody className="room-body">
           {rooms.map((room) => {
             const pet = pets.find((pet) => pet.pet_id === room.pet_id);
-            let occupied = room.occupied ? "Yes ✅" : "No ❌";
+            let occupied = room.pet_id ? "Yes ✅" : "No ❌";
             let petName = pet ? pet.name : "";
 
             return (

@@ -34,11 +34,12 @@ function LandingPage() {
 
       const filteredPets = petsData.filter(
         (pet) => pet?.owner_id === parseInt(tokenUser?.user.id)
-      );
+        );
+        console.log(tokenUser)
       const filteredBoardings = reservationsData
         .filter(
           (reservation) =>
-            reservation.customer_id === parseInt(tokenUser.user.id) &&
+            reservation.customer_id === parseInt(tokenUser?.user.id) &&
             reservation.category === "BOARDING"
         )
         .map((boarding) => ({
@@ -49,7 +50,7 @@ function LandingPage() {
       const filteredTrainings = reservationsData
         .filter(
           (reservation) =>
-            reservation.customer_id === parseInt(tokenUser.user.id) &&
+            reservation.customer_id === parseInt(tokenUser?.user.id) &&
             reservation.category === "TRAINING"
         )
         .map((training) => ({
