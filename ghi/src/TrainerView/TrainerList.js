@@ -2,23 +2,23 @@ import React, { useEffect, useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function TrainerList() {
-    const [trainers, setTrainers] = useState([]);
+  const [trainers, setTrainers] = useState([]);
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
+  const { token } = useToken();
 
-    const { token } = useToken();
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = `${baseUrl}/api/accounts`;
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        setTrainers(data);
+      }
+    };
+    fetchData();
+  }, []);
 
-    useEffect(() => {
-      const fetchData = async () => {
-        const url = "http://localhost:8000/api/accounts";
-        const response = await fetch(url);
-        if (response.ok) {
-          const data = await response.json();
-          setTrainers(data);
-        }
-      };
-      fetchData();
-    }, []);
-
-    if (!token) {
+  if (!token) {
     return null;
   }
 
@@ -53,7 +53,6 @@ function TrainerList() {
       </table>
     </div>
   );
-
 }
 
 export default TrainerList;

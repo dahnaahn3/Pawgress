@@ -4,6 +4,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import getUser from "../useUser";
 
 function TrainingForm() {
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const { token } = useToken();
   const user = getUser(token);
   console.log(user?.user?.id);
@@ -56,13 +57,13 @@ function TrainingForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const reservationUrl = "http://localhost:8000/reservation";
+    const reservationUrl = `${baseUrl}/api/reservation`;
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(reservation),
       headers: {
         "Content-type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
@@ -81,14 +82,18 @@ function TrainingForm() {
 
   const [pets, setPets] = useState([]);
   const fetchData = async () => {
-    const url = "http://localhost:8000/api/pets";
-    const urlClasses = "http://localhost:8000/api/classes";
-    const response = await fetch(url, {headers: {"Authorization": `Bearer ${token}`,}, });
+    const url = `${baseUrl}/api/pets`;
+    const urlClasses = `${baseUrl}/api/classes`;
+    const response = await fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     if (response.ok) {
       const data = await response.json();
       setPets(data);
     }
-    const responseClasses = await fetch(urlClasses, {headers: {"Authorization": `Bearer ${token}`,}, });
+    const responseClasses = await fetch(urlClasses, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     if (responseClasses.ok) {
       const classesData = await responseClasses.json();
       setTrainingClasses(classesData);
@@ -98,8 +103,9 @@ function TrainingForm() {
 
   useEffect(() => {
     if (token) {
-    fetchData();
-  }}, [token]);
+      fetchData();
+    }
+  }, [token]);
 
   if (!token) {
     return null;

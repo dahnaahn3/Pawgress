@@ -1,27 +1,30 @@
-import React, {useEffect, useState} from "react"
+import React, { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
-function RoomsList(){
-        const { token } = useToken();
-        const [rooms, setRooms] = useState([]);
-        const [pets, setPets] = useState([]);
-        const fetchData = async () => {
-        const roomsURL = "http://localhost:8000/api/rooms";
-        const petsURL = "http://localhost:8000/api/pets";
-        const response = await Promise.all([fetch(roomsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
-        fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, })]);
-        const roomsData = await response[0].json();
-        const petsData = await response[1].json();
-        setRooms(roomsData);
-        setPets(petsData);
-
-        };
+function RoomsList() {
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
+  const { token } = useToken();
+  const [rooms, setRooms] = useState([]);
+  const [pets, setPets] = useState([]);
+  const fetchData = async () => {
+    const roomsURL = `${baseUrl}/api/rooms`;
+    const petsURL = `${baseUrl}/api/pets`;
+    const response = await Promise.all([
+      fetch(roomsURL, { headers: { Authorization: `Bearer ${token}` } }),
+      fetch(petsURL, { headers: { Authorization: `Bearer ${token}` } }),
+    ]);
+    const roomsData = await response[0].json();
+    const petsData = await response[1].json();
+    setRooms(roomsData);
+    setPets(petsData);
+  };
 
   useEffect(() => {
     if (token) {
-    fetchData();
-  }}, [token]);
+      fetchData();
+    }
+  }, [token]);
 
   if (!token) {
     return null;
@@ -34,9 +37,7 @@ function RoomsList(){
       <header className="room-ext">
         <h2 className="room-title">Rooms 🐾</h2>
         <NavLink to="./form">
-          <button className="new-room-button">
-            Create a new room
-          </button>
+          <button className="new-room-button">Create a new room</button>
         </NavLink>
       </header>
       <table className="room-box">
@@ -67,7 +68,6 @@ function RoomsList(){
       <Outlet />
     </div>
   );
-
 }
 
-export default RoomsList
+export default RoomsList;

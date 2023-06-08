@@ -29,7 +29,8 @@ function AddPet() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const url = "http://localhost:8000/api/pets/";
+    const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
+    const url = `${baseUrl}/api/pets`;
 
     const fetchOptions = {
       method: "POST",

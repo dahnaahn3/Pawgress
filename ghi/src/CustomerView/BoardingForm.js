@@ -26,11 +26,10 @@ function BoardingForm() {
   const navigate = useNavigate();
   const { token } = useToken();
   const user = getUser(token);
-
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const reservationUrl = "http://localhost:8000/reservation";
+    const reservationUrl = `${baseUrl}/api/reservation`;
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(reservation),
@@ -55,8 +54,10 @@ function BoardingForm() {
 
   const [pets, setPets] = useState([]);
   const fetchData = async () => {
-    const url = "http://localhost:8000/api/pets";
-    const response = await fetch(url, {headers: { Authorization: `Bearer ${token}` }});
+    const url = `${baseUrl}/api/pets`;
+    const response = await fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     if (response.ok) {
       const data = await response.json();
       setPets(data);

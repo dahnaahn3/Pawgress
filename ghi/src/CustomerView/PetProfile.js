@@ -7,13 +7,15 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 function PetProfile() {
   const [pet, setPet] = useState([]);
   const { token } = useToken();
-
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   console.log("PET PROFILE PAGE");
   const { user_id, pet_id } = useParams();
   const fetchData = async () => {
-    const petURL = `http://localhost:8000/api/pets/${pet_id}/`;
+    const petURL = `${baseUrl}/api/pets/${pet_id}/`;
 
-    const petResponse = await fetch(petURL, {headers: {"Authorization": `Bearer ${token}`,}, });
+    const petResponse = await fetch(petURL, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
     if (petResponse.ok) {
       const petData = await petResponse.json();
@@ -26,8 +28,9 @@ function PetProfile() {
 
   useEffect(() => {
     if (token) {
-    fetchData();
-  }}, [token]);
+      fetchData();
+    }
+  }, [token]);
 
   return (
     <div className="w-full cs-main-component">

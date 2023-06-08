@@ -5,6 +5,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 // import useUser from "./useUser";
 
 function EditPassword() {
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const navigate = useNavigate();
   const { token } = useToken();
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ function EditPassword() {
     event.preventDefault();
 
     if (formData.password === formData.password_confirm) {
-      const url = `http://localhost:8000/api/accounts/${user_id}/password`;
+      const url = `${baseUrl}/api/accounts/${user_id}/password`;
 
       const fetchOptions = {
         method: "PUT",

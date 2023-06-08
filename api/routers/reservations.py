@@ -15,7 +15,7 @@ from queries.common import Error
 router = APIRouter()
 
 
-@router.post("/reservation", response_model=Union[ReservationOut, Error])
+@router.post("/api/reservation", response_model=Union[ReservationOut, Error])
 def create_reservation(
     reservation: ReservationIn,
     response: Response,
@@ -30,7 +30,9 @@ def create_reservation(
     return result
 
 
-@router.get("/reservation", response_model=Union[List[ReservationOut], Error])
+@router.get(
+    "/api/reservation", response_model=Union[List[ReservationOut], Error]
+)
 def list_reservations(
     response: Response,
     account_data: dict = Depends(authenticator.get_current_account_data),

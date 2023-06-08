@@ -9,16 +9,20 @@ function TrainingHistory() {
   const [pets, setPets] = useState([]);
   const { token } = useAuthContext();
   const user = getUser(token);
-
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const fetchData = async () => {
-    const url = "http://localhost:8000/reservation";
-    const urlPets = "http://localhost:8000/api/pets";
-    const response = await fetch(url, {headers: {"Authorization": `Bearer ${token}`,}, });
+    const url = `${baseUrl}/api/reservation`;
+    const urlPets = `${baseUrl}/api/pets`;
+    const response = await fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     if (response.ok) {
       const data = await response.json();
       setHistory(data);
     }
-    const responsePets = await fetch(urlPets, {headers: {"Authorization": `Bearer ${token}`,}, });
+    const responsePets = await fetch(urlPets, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     if (responsePets.ok) {
       const petData = await responsePets.json();
       setPets(petData);
@@ -27,8 +31,9 @@ function TrainingHistory() {
 
   useEffect(() => {
     if (token) {
-    fetchData();
-  }}, [token]);
+      fetchData();
+    }
+  }, [token]);
 
   if (!token) {
     return null;

@@ -5,7 +5,6 @@ import { BsPersonCircle } from "react-icons/bs";
 import { BsHouse } from "react-icons/bs";
 import { HiOutlineUser } from "react-icons/hi";
 import { MdLogout } from "react-icons/md";
-import { RiArrowDropDownLine } from "react-icons/ri";
 import { NavLink, useNavigate, Outlet, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
@@ -211,7 +210,7 @@ const CustomerHome = () => {
         <Outlet />
       </>
     );
-  
+
 };
 
 export default CustomerHome;

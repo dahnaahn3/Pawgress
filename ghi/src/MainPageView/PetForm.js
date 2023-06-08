@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function PetForm() {
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const [name, setName] = useState("");
   const [breed, setBreed] = useState("");
   const [gender, setGender] = useState("");
@@ -15,7 +16,6 @@ function PetForm() {
   const [owners, setOwners] = useState([]);
   const navigation = useNavigate();
   const { token } = useToken();
-
 
   const nameChange = (event) => {
     const valueName = event.target.value;
@@ -77,13 +77,13 @@ function PetForm() {
     data.diet = diet;
     data.owner_id = owner;
 
-    const petUrl = "http://localhost:8000/api/pets";
+    const petUrl = `${baseUrl}/api/pets`;
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     const response = await fetch(petUrl, fetchConfig);
@@ -105,7 +105,7 @@ function PetForm() {
     }
   };
   const fetchData = async () => {
-    const userUrl = "http://localhost:8000/api/accounts";
+    const userUrl = `${baseUrl}/api/accounts`;
     const response = await fetch(userUrl);
 
     if (response.ok) {

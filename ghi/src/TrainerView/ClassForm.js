@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function ClassForm() {
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [attendees, setAttendees] = useState("0");
@@ -55,13 +56,13 @@ function ClassForm() {
     data.end_datetime = end;
     data.description = description;
 
-    const classUrl = "http://localhost:8000/api/classes";
+    const classUrl = `${baseUrl}/api/classes`;
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     const response = await fetch(classUrl, fetchConfig);

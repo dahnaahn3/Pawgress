@@ -2,19 +2,21 @@ import { useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
-
 function PetDetail() {
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const { pet_id } = useParams();
   const [pets, setPets] = useState([]);
   const [users, setUsers] = useState([]);
   const { token } = useToken();
 
   const fetchData = async () => {
-    const petsURL = `http://localhost:8000/api/pets/${pet_id}`;
-    const usersURL = "http://localhost:8000/api/accounts";
-    const response = await Promise.all([fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
-      fetch(usersURL, {headers: {"Authorization": `Bearer ${token}`,}, })]);
-      
+    const petsURL = `${baseUrl}/api/pets/${pet_id}`;
+    const usersURL = `${baseUrl}/api/accounts`;
+    const response = await Promise.all([
+      fetch(petsURL, { headers: { Authorization: `Bearer ${token}` } }),
+      fetch(usersURL, { headers: { Authorization: `Bearer ${token}` } }),
+    ]);
+
     const petsData = await response[0].json();
     const usersData = await response[1].json();
     setPets(petsData);
@@ -45,44 +47,27 @@ function PetDetail() {
       <div className="detail-container">
         <div className="card-container">
           <div>
-
-            <Link to="/trainer/pets" >
-              <span className="back-button">
-                Back to list
-              </span>
+            <Link to="/trainer/pets">
+              <span className="back-button">Back to list</span>
             </Link>
 
-            <h1 className="pet-name">
-              {pets.name}
-            </h1>
-            <p className="row-text">
-              {pets.breed}
-            </p>
+            <h1 className="pet-name">{pets.name}</h1>
+            <p className="row-text">{pets.breed}</p>
           </div>
 
           <img className="image" src={pets.picture} alt="" />
           <div className="h2-container">
             <div className="age-flex">
-              <h2 className="age-font">
-                Age: {pets.age}
-              </h2>
+              <h2 className="age-font">Age: {pets.age}</h2>
             </div>
             <div className="gender">
               {genderIcon && <img src={genderIcon} alt="Gender Icon" />}
             </div>
           </div>
-          <p className="row-text">
-            Weight: {pets.weight}
-          </p>
-          <p className="row-text">
-            Diet: {pets.diet}
-          </p>
-          <p className="row-text">
-            Size: {pets.size}
-          </p>
-          <p className="row-text">
-            Owner: {owner}
-          </p>
+          <p className="row-text">Weight: {pets.weight}</p>
+          <p className="row-text">Diet: {pets.diet}</p>
+          <p className="row-text">Size: {pets.size}</p>
+          <p className="row-text">Owner: {owner}</p>
         </div>
       </div>
     </div>

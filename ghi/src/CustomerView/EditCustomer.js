@@ -5,6 +5,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 // import useUser from "./useUser";
 
 function EditCustomer() {
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [pets, setPets] = useState("");
@@ -22,12 +23,12 @@ function EditCustomer() {
 
   const { user_id } = useParams();
   const fetchData = async () => {
-    const userURL = `http://localhost:8000/api/accounts/${user_id}/`;
-    const petsURL = "http://localhost:8000/api/pets";
+    const userURL = `${baseUrl}/api/accounts/${user_id}/`;
+    const petsURL = `${baseUrl}/api/pets`;
 
     const [userResponse, petsResponse] = await Promise.all([
-      fetch(userURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
-      fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+      fetch(userURL, { headers: { Authorization: `Bearer ${token}` } }),
+      fetch(petsURL, { headers: { Authorization: `Bearer ${token}` } }),
     ]);
 
     if (userResponse.ok && petsResponse.ok) {
@@ -42,8 +43,9 @@ function EditCustomer() {
 
   useEffect(() => {
     if (token) {
-    fetchData();
-  }}, [token]);
+      fetchData();
+    }
+  }, [token]);
 
   const handlePassword = () => {
     navigate(`/customers/${user_id}/editpw`);
@@ -69,7 +71,7 @@ function EditCustomer() {
       alert("No changes have been made.");
       return;
     } else {
-      const url = `http://localhost:8000/api/accounts/${user_id}`;
+      const url = `${baseUrl}/api/accounts/${user_id}`;
 
       const fetchOptions = {
         method: "PUT",

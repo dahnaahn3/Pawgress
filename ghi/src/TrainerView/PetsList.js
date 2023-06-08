@@ -7,14 +7,14 @@ function PetsList() {
   const [pets, setPets] = useState([]);
   const [users, setUsers] = useState([]);
   const { token } = useToken();
-
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
 
   const fetchData = async () => {
-    const petsURL = "http://localhost:8000/api/pets";
-    const userURL = "http://localhost:8000/api/accounts";
+    const petsURL = `${baseUrl}/api/pets`;
+    const userURL = `${baseUrl}/api/accounts`;
     const response = await Promise.all([fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
     fetch(userURL, {headers: {"Authorization": `Bearer ${token}`,}, })]);
-    
+
     const petsData = await response[0].json();
     const usersData = await response[1].json();
     setPets(petsData);

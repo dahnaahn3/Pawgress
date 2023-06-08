@@ -10,6 +10,7 @@ function formatDateTime(dateTime) {
 }
 
 function LandingPage() {
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const [pets, setPets] = useState([]);
   const [boardings, setBoardings] = useState([]);
   const [trainings, setTrainings] = useState([]);
@@ -18,12 +19,12 @@ function LandingPage() {
   const tokenUser = useUser(token);
 
   const fetchData = async () => {
-    const reservationsURL = "http://localhost:8000/reservation";
-    const petsURL = "http://localhost:8000/api/pets";
+    const reservationsURL = `${baseUrl}/api/reservation`;
+    const petsURL = `${baseUrl}/api/pets`;
 
     const [reservationsResponse, petsResponse] = await Promise.all([
-      fetch(reservationsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
-      fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
+      fetch(reservationsURL, { headers: { Authorization: `Bearer ${token}` } }),
+      fetch(petsURL, { headers: { Authorization: `Bearer ${token}` } }),
     ]);
 
     if (reservationsResponse.ok && petsResponse.ok && tokenUser) {
@@ -66,8 +67,9 @@ function LandingPage() {
 
   useEffect(() => {
     if (token) {
-    fetchData();
-  }}, [tokenUser.user]);
+      fetchData();
+    }
+  }, [tokenUser.user]);
 
   return (
     <>

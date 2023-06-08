@@ -6,7 +6,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 function EditPet() {
   const navigate = useNavigate();
   const { token } = useToken();
-
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const [pet, setPet] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
@@ -25,9 +25,11 @@ function EditPet() {
 
   const { user_id, pet_id } = useParams();
   const fetchData = async () => {
-    const petURL = `http://localhost:8000/api/pets/${pet_id}/`;
+    const petURL = `${baseUrl}/api/pets/${pet_id}/`;
 
-    const petResponse = await fetch(petURL, {headers: {"Authorization": `Bearer ${token}`,}, });
+    const petResponse = await fetch(petURL, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
     if (petResponse.ok) {
       const petData = await petResponse.json();
@@ -38,9 +40,10 @@ function EditPet() {
   };
 
   useEffect(() => {
-      if (token) {
+    if (token) {
       fetchData();
-    }}, [token]);
+    }
+  }, [token]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -62,7 +65,7 @@ function EditPet() {
       alert("No changes have been made.");
       return;
     } else {
-      const url = `http://localhost:8000/api/pets/${pet_id}`;
+      const url = `${baseUrl}/api/pets/${pet_id}`;
 
       const fetchOptions = {
         method: "PUT",

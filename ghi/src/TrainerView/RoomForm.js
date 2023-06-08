@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function RoomForm() {
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const [room, setRoom] = useState("");
   const [occupancy, setOccupancy] = useState(false);
   const [pet, setPet] = useState(null);
@@ -28,13 +29,13 @@ function RoomForm() {
     data.occupied = occupancy;
     data.pet_id = pet;
 
-    const roomUrl = "http://localhost:8000/api/rooms";
+    const roomUrl = `${baseUrl}/api/rooms`;
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     const response = await fetch(roomUrl, fetchConfig);
@@ -51,8 +52,10 @@ function RoomForm() {
     }
   };
   const fetchData = async () => {
-    const petUrl = "http://localhost:8000/api/pets";
-    const response = await fetch(petUrl, {headers: {"Authorization": `Bearer ${token}`,}, });
+    const petUrl = `${baseUrl}/api/pets`;
+    const response = await fetch(petUrl, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
     if (response.ok) {
       const data = await response.json();
@@ -62,9 +65,9 @@ function RoomForm() {
 
   useEffect(() => {
     if (token) {
-    fetchData();
-  }}, [token]);
-
+      fetchData();
+    }
+  }, [token]);
 
   if (!token) {
     return null;

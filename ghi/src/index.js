@@ -8,14 +8,13 @@ import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import "./Forms.css";
 import "./Listings.css";
 
+const domain = /https:\/\/[^/]+/;
+const basename = process.env.PUBLIC_URL.replace(domain, "");
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-
-
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="/pawgress">
+    <BrowserRouter basename={basename}>
       <AuthProvider baseUrl={process.env.REACT_APP_PAWGRESS_API_HOST}>
         <App />
       </AuthProvider>

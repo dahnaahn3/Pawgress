@@ -4,29 +4,30 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function TrainingClass() {
   const [classes, setClasses] = useState([]);
-
+  const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const { token } = useToken();
 
-    const formatDate = (input) => {
-      const date = new Date(input);
-      const options = {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-      };
-      return date.toLocaleString("en-US", options);
+  const formatDate = (input) => {
+    const date = new Date(input);
+    const options = {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
     };
+    return date.toLocaleString("en-US", options);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = "http://localhost:8000/api/classes";
-      const response = await fetch(url, {headers: {"Authorization": `Bearer ${token}`,}, });
+      const url = `${baseUrl}/api/classes`;
+      const response = await fetch(url, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       if (response.ok) {
         const data = await response.json();
         setClasses(data);
-
       }
     };
 
@@ -45,9 +46,7 @@ function TrainingClass() {
       <header className="c-ext">
         <h2 className="c-h2">Classes 🐾</h2>
         <NavLink to="./form">
-          <button className="new-class-button">
-            Create a new class
-          </button>
+          <button className="new-class-button">Create a new class</button>
         </NavLink>
       </header>
       <table className="c-box">
@@ -64,23 +63,23 @@ function TrainingClass() {
         </thead>
         <tbody className="c-b">
           {classes.map((c) => {
-            const formattedStartDateTime = formatDate(c.start_datetime)
-            const formattedEndDateTime = formatDate(c.end_datetime)
-            return(
-            <tr key={c.class_id}>
-              <td className="c-row">{c.name}</td>
-              <td className="c-row">{c.category}</td>
-              <td className="c-row">{c.attendees}</td>
-              <td className="c-row">{c.max_attendees}</td>
-              <td className="c-row">{formattedStartDateTime}</td>
-              <td className="c-row">{formattedEndDateTime}</td>
-              <td className="c-row">{c.description}</td>
-            </tr>
-          );
+            const formattedStartDateTime = formatDate(c.start_datetime);
+            const formattedEndDateTime = formatDate(c.end_datetime);
+            return (
+              <tr key={c.class_id}>
+                <td className="c-row">{c.name}</td>
+                <td className="c-row">{c.category}</td>
+                <td className="c-row">{c.attendees}</td>
+                <td className="c-row">{c.max_attendees}</td>
+                <td className="c-row">{formattedStartDateTime}</td>
+                <td className="c-row">{formattedEndDateTime}</td>
+                <td className="c-row">{c.description}</td>
+              </tr>
+            );
           })}
         </tbody>
       </table>
-      <Outlet/>
+      <Outlet />
     </div>
   );
 }
