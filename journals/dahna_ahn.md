@@ -120,6 +120,7 @@ Ah ha moment: Use markdown cheat sheet for styling of the readme
 [Today, I worked on:
 - Reformatted backend
 - Remove all console.log and print statements
+- Continuos troubleshoot of deployment
 
 
 Ah ha moment: Had to apply pet_is instead of id for the unique keys

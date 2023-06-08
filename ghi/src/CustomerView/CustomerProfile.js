@@ -3,6 +3,7 @@ import { BiEditAlt } from "react-icons/bi";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../useUser";
+import {Link} from 'react-router-dom'
 
 function CustomerProfile() {
   const [user, setUser] = useState([]);
@@ -104,21 +105,21 @@ function CustomerProfile() {
                   </a>
                 ))}
                 <div className="flex items-center">
-                  <a
-                    href={`/customers/${user.id}/addpet`}
+                  <Link
+                    to={`/customers/${user.id}/addpet`}
                     className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
                   >
                     <AiOutlinePlusCircle size={30} />
-                  </a>
+                  </Link>
                 </div>
               </div>
-              <a
-                href={`/customers/${user.id}/edit`}
+              <Link
+                to={`/customers/${user.id}/edit`}
                 className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
               >
                 <BiEditAlt />
                 <span>Edit</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
