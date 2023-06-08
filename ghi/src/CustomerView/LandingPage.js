@@ -29,17 +29,16 @@ function LandingPage() {
 
     if (reservationsResponse.ok && petsResponse.ok && tokenUser) {
       const reservationsData = await reservationsResponse.json();
-      console.log("reservationsData:::", reservationsData);
       const petsData = await petsResponse.json();
 
       const filteredPets = petsData.filter(
-        (pet) => pet?.owner_id === parseInt(tokenUser?.user.id)
-        );
-        console.log(tokenUser)
+        (pet) => pet?.owner_id === parseInt(tokenUser?.user?.id)
+      );
+
       const filteredBoardings = reservationsData
         .filter(
           (reservation) =>
-            reservation.customer_id === parseInt(tokenUser?.user.id) &&
+            reservation.customer_id === parseInt(tokenUser?.user?.id) &&
             reservation.category === "BOARDING"
         )
         .map((boarding) => ({
@@ -50,7 +49,7 @@ function LandingPage() {
       const filteredTrainings = reservationsData
         .filter(
           (reservation) =>
-            reservation.customer_id === parseInt(tokenUser?.user.id) &&
+            reservation.customer_id === parseInt(tokenUser?.user?.id) &&
             reservation.category === "TRAINING"
         )
         .map((training) => ({
@@ -70,7 +69,7 @@ function LandingPage() {
     if (token) {
       fetchData();
     }
-  }, [tokenUser.user]);
+  }, [tokenUser?.user]);
 
   return (
     <>

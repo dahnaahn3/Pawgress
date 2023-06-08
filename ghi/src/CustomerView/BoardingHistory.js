@@ -18,7 +18,6 @@ function BoardingHistory() {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    console.log(response);
     if (response.ok) {
       const data = await response.json();
       setHistory(data);
@@ -26,7 +25,6 @@ function BoardingHistory() {
     const responsePets = await fetch(urlPets, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log(responsePets);
     if (responsePets.ok) {
       const petData = await responsePets.json();
       setPets(petData);

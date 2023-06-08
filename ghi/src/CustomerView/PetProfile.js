@@ -8,7 +8,6 @@ function PetProfile() {
   const [pet, setPet] = useState([]);
   const { token } = useToken();
   const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
-  console.log("PET PROFILE PAGE");
   const { user_id, pet_id } = useParams();
   const fetchData = async () => {
     const petURL = `${baseUrl}/api/pets/${pet_id}`;
@@ -19,7 +18,6 @@ function PetProfile() {
 
     if (petResponse.ok) {
       const petData = await petResponse.json();
-      console.log(petData);
       setPet(petData);
     } else {
       console.log("Error fetching data");

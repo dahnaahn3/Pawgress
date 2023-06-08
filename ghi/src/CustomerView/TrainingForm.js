@@ -7,7 +7,6 @@ function TrainingForm() {
   const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const { token } = useToken();
   const user = getUser(token);
-  console.log(user?.user?.id);
   const [reservation, setReservation] = useState({
     start_datetime: "",
     end_datetime: "",
@@ -24,7 +23,6 @@ function TrainingForm() {
       ...reservation,
       [inputName]: value,
     });
-    console.log(reservation);
   };
 
   const getClassSelected = (class_id, trainingClasses) => {
@@ -38,18 +36,14 @@ function TrainingForm() {
   const handleClassSelect = (event) => {
     const class_id = event.target.value;
     const classSelected = getClassSelected(class_id, trainingClasses);
-    console.log(classSelected);
     const start_datetime = classSelected[0].start_datetime;
     const end_datetime = classSelected[0].end_datetime;
-    console.log(start_datetime);
-    console.log(end_datetime);
     setReservation({
       ...reservation,
       start_datetime: start_datetime,
       end_datetime: end_datetime,
       customer_id: user?.user?.id,
     });
-    console.log(reservation);
   };
 
   const navigate = useNavigate();
@@ -97,7 +91,6 @@ function TrainingForm() {
     if (responseClasses.ok) {
       const classesData = await responseClasses.json();
       setTrainingClasses(classesData);
-      console.log(classesData);
     }
   };
 
