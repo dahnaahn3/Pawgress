@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel
 from .pool import pool
 from .common import Error
 from typing import Union, List
@@ -76,15 +76,15 @@ class ReservationQueries:
                     db.execute(
                         """
                         SELECT
-                            reservations.reservation_id,
-                            reservations.start_datetime,
-                            reservations.end_datetime,
-                            reservations.category,
-                            reservations.customer_id,
+                            r.reservation_id,
+                            r.start_datetime,
+                            r.end_datetime,
+                            r.category,
+                            r.customer_id,
                             pet_reservations.pet_id
-                        FROM reservations
+                        FROM reservations AS r
                         INNER JOIN pet_reservations
-                        ON reservations.reservation_id = pet_reservations.reservation_id
+                        ON r.reservation_id = pet_reservations.reservation_id
                         ORDER BY start_datetime;
                         """
                     )

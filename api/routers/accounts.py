@@ -11,12 +11,11 @@ from jwtdown_fastapi.authentication import Token
 from authenticator import authenticator
 from typing import List, Union
 
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel
 
 from queries.accounts import (
     AccountIn,
     AccountOut,
-    AccountOutWithPassword,
     UserInWithoutPassword,
     UserOut,
     AccountQueries,

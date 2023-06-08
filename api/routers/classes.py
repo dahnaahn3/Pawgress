@@ -1,5 +1,5 @@
 from typing import Union, List, Optional
-from queries.classes import ClassIn, ClassOut, ClassQueries, Error
+from queries.classes import ClassIn, ClassOut, ClassQueries
 from authenticator import authenticator
 from queries.common import Error, Success
 from fastapi import (
@@ -25,6 +25,7 @@ def create_class(
         return {"message": "could not create class"}
     return result
 
+
 @router.get("/api/classes", response_model=Union[List[ClassOut], Error])
 def get_all_classes(
     response: Response,
@@ -40,6 +41,7 @@ def get_all_classes(
     except Exception:
         response.status_code = 400
         return {"message": "Error occurred while retrieving classes"}
+
 
 @router.get("/api/classes/{class_id}", response_model=Union[ClassOut, Error])
 def get_one_class(
@@ -57,7 +59,10 @@ def get_one_class(
             return {"message": "class does not exist"}
     except Exception:
         response.status_code = 400
-        return {"message" "error occured when trying to retrieve class details"}
+        return {
+            "message" "error occured when trying to retrieve class details"
+        }
+
 
 @router.put("/api/classes/{class_id}", response_model=Union[ClassOut, Error])
 def update_class(
@@ -77,6 +82,7 @@ def update_class(
     except Exception:
         response.status_code = 400
         return {"message": "updating class unsuccessful"}
+
 
 @router.delete("/api/classes/{class_id}")
 def delete_class(

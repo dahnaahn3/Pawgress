@@ -9,11 +9,13 @@ class RoomIn(BaseModel):
     occupied: bool
     pet_id: Optional[int]
 
+
 class RoomOut(BaseModel):
     room_id: int
     room_number: str
     occupied: bool
     pet_id: Optional[int]
+
 
 class RoomQueries:
     def create_room(self, room: RoomIn) -> Union[RoomOut, Error]:
@@ -30,21 +32,19 @@ class RoomQueries:
                             room.room_number,
                             room.occupied,
                             room.pet_id,
-                        ]
+                        ],
                     )
-
 
                     id = result.fetchone()[0]
                 return self.room_in_to_out(id, room)
         except Exception as e:
             raise e
 
-
     def get_all_rooms(self) -> Union[Error, List[RoomOut]]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
-                    result =db.execute(
+                    result = db.execute(
                         """
                         SELECT room_id, room_number, occupied, pet_id
                         FROM rooms
@@ -52,12 +52,10 @@ class RoomQueries:
                         """
                     )
                     return [
-                        self.record_to_room_out(record)
-                        for record in result
+                        self.record_to_room_out(record) for record in result
                     ]
         except Exception as e:
             raise e
-
 
     def update_room(self, room_id: int, room: RoomIn) -> Union[RoomOut, Error]:
         try:
@@ -72,17 +70,16 @@ class RoomQueries:
                         WHERE room_id=%s
                         """,
                         [
-                        room.room_number,
-                        room.occupied,
-                        room.pet_id,
-                        room_id
-                    ]
-                )
+                            room.room_number,
+                            room.occupied,
+                            room.pet_id,
+                            room_id,
+                        ],
+                    )
                 if result.rowcount != 0:
                     return self.room_in_to_out(room_id, room)
         except Exception as e:
             raise e
-
 
     def delete_room(self, room_id: int) -> bool:
         try:
@@ -93,10 +90,10 @@ class RoomQueries:
                         DELETE FROM rooms
                         where room_id=%s
                         """,
-                        [room_id]
+                        [room_id],
                     )
                     return True
-        except Exception as e:
+        except Exception:
             return False
 
     def room_in_to_out(self, room_id: int, room: RoomIn):
@@ -109,4 +106,4 @@ class RoomQueries:
             room_number=record[1],
             occupied=record[2],
             pet_id=record[3],
-            )
+        )

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { BiEditAlt } from "react-icons/bi";
 import useToken from "@galvanize-inc/jwtdown-for-react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function PetProfile() {
   const [pet, setPet] = useState([]);

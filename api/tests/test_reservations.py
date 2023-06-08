@@ -6,6 +6,7 @@ from authenticator import authenticator
 
 client = TestClient(app)
 
+
 class MockAuthenticator:
     def get_current_account_data(self):
         return {"id": 1, "username": "string", "role_id": 0}
@@ -29,10 +30,11 @@ class CreateReservationQueries:
 def test_get_all_reservations():
     # Arrange
     app.dependency_overrides[ReservationQueries] = EmptyReservationQueries
-    app.dependency_overrides[authenticator.get_current_account_data] = MockAuthenticator
+    app.dependency_overrides[
+        authenticator.get_current_account_data
+    ] = MockAuthenticator
 
-    # response = client.get("/api/reservation")
-    response = client.get("/reservation")
+    response = client.get("/api/reservation")
     # Act
     app.dependency_overrides = {}
     # Assert
@@ -46,7 +48,9 @@ def test_get_all_reservations():
 def test_create_reservation():
     # Arrange
     app.dependency_overrides[ReservationQueries] = CreateReservationQueries
-    app.dependency_overrides[authenticator.get_current_account_data] = MockAuthenticator
+    app.dependency_overrides[
+        authenticator.get_current_account_data
+    ] = MockAuthenticator
     # Act
     json = {
         "start_datetime": "2023-06-06T19:27:46.732000",
@@ -65,7 +69,7 @@ def test_create_reservation():
         "pet_id": 1,
     }
 
-    response = client.post("/reservation", json=json)
+    response = client.post("/api/reservation", json=json)
     app.dependency_overrides = {}
     # Assert
     assert response.status_code == 200

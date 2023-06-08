@@ -32,10 +32,14 @@ build-fastapi-service-image:
 api-unit-tests-job:
   image: python:3-bullseye
   stage: test
+  variables:
+    SIGNING_KEY: 1f7d454f0013de3f7b81d830c5b1c7b55bb8532821835e08b341de4f92fe1574
+    DATABASE_URL: postgresql://pawgress:pawgress@db/pawgress
+    WAIT_HOST: db:5432
   needs:
     - lint-test-job
   script:
-    - cd sample_service
+    - cd api
     - pip install -r requirements.txt
     - python -m pytest
 

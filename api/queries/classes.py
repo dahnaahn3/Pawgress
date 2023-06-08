@@ -51,8 +51,8 @@ class ClassQueries:
                             classes.max_attendees,
                             classes.start_datetime,
                             classes.end_datetime,
-                            classes.description
-                        ]
+                            classes.description,
+                        ],
                     )
                     id = result.fetchone()[0]
                     return self.class_in_to_out(id, classes)
@@ -79,7 +79,9 @@ class ClassQueries:
                         """
                     )
                     records = db.fetchall()
-                    return [self.record_to_class_out(record) for record in records]
+                    return [
+                        self.record_to_class_out(record) for record in records
+                    ]
         except Exception as e:
             raise e
 
@@ -101,7 +103,7 @@ class ClassQueries:
                         FROM classes
                         Where class_id = %s
                         """,
-                        [class_id]
+                        [class_id],
                     )
                     record = result.fetchone()
                     if record is not None:
@@ -109,7 +111,9 @@ class ClassQueries:
         except Exception as e:
             raise e
 
-    def update_class(self, class_id: int, classes: ClassIn) -> Union[ClassOut, Error]:
+    def update_class(
+        self, class_id: int, classes: ClassIn
+    ) -> Union[ClassOut, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -131,8 +135,8 @@ class ClassQueries:
                             classes.start_datetime,
                             classes.end_datetime,
                             classes.description,
-                            class_id
-                        ]
+                            class_id,
+                        ],
                     )
                     if result.rowcount != 0:
                         return self.class_in_to_out(class_id, classes)
@@ -148,7 +152,7 @@ class ClassQueries:
                         DELETE FROM classes
                         WHERE class_id = %s
                         """,
-                        [class_id]
+                        [class_id],
                     )
                     if result.rowcount == 0:
                         return "Class does not exist"

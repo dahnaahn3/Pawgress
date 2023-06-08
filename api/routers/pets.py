@@ -7,6 +7,7 @@ from typing import Union, List, Optional
 from queries.pets import PetIn, PetOut, PetQueries
 from authenticator import authenticator
 from queries.common import Error
+
 router = APIRouter()
 
 
@@ -23,6 +24,7 @@ def create_pet(
         response.status_code = 400
         return {"message": "could not create pet"}
     return result
+
 
 @router.get("/api/pets", response_model=Union[List[PetOut], Error])
 def get_all_pets(

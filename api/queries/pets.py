@@ -76,14 +76,23 @@ class PetQueries:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT pet_id, name, breed, gender, age, picture, size, weight, diet, owner_id
+                        SELECT
+                        pet_id,
+                        name,
+                        breed,
+                        gender,
+                        age,
+                        picture,
+                        size,
+                        weight,
+                        diet,
+                        owner_id
                         FROM pets
                         ORDER BY name;
                         """
                     )
                     return [
-                        self.record_to_pet_out(record)
-                        for record in result
+                        self.record_to_pet_out(record) for record in result
                     ]
         except Exception as e:
             raise e
@@ -94,11 +103,21 @@ class PetQueries:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT pet_id, name, breed, gender, age, picture, size, weight, diet, owner_id
+                        SELECT
+                        pet_id,
+                        name,
+                        breed,
+                        gender,
+                        age,
+                        picture,
+                        size,
+                        weight,
+                        diet,
+                        owner_id
                         FROM pets
                         WHERE pet_id = %s
                         """,
-                        [pet_id]
+                        [pet_id],
                     )
                     record = result.fetchone()
                     if record is None:
@@ -116,7 +135,7 @@ class PetQueries:
                         DELETE FROM pets
                         WHERE pet_id = %s
                         """,
-                        [pet_id]
+                        [pet_id],
                     )
                     return True
         except Exception:
@@ -150,8 +169,8 @@ class PetQueries:
                             pet.weight,
                             pet.diet,
                             pet.owner_id,
-                            pet_id
-                        ]
+                            pet_id,
+                        ],
                     )
                     return self.pet_in_to_out(pet_id, pet)
         except Exception as e:

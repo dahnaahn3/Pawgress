@@ -49,7 +49,7 @@ const CustomerHome = () => {
       }
     }
 
-  if (user) {
+    if (user) {
       setLoading(false);
       if (!token) {
         navigate("/");
@@ -57,7 +57,6 @@ const CustomerHome = () => {
         navigate("/trainer");
       }
     }
-
   }, [token, navigate, setToken, user]);
 
   return (
@@ -111,7 +110,8 @@ const CustomerHome = () => {
                               </Link>
                             </li>
                             <li>
-                              <Link to="/"
+                              <Link
+                                to="/"
                                 onClick={loggingOut}
                                 className="px-3 py-3 text-sm font-medium flex items-center space-x-2 hover:bg-slate-400"
                               >

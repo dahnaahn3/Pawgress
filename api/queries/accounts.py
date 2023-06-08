@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel
 from queries.pool import pool
 from typing import Union
 from queries.common import Error
@@ -156,7 +156,14 @@ class AccountQueries:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, first_name, last_name, address, email, phone_number, role
+                        SELECT
+                        id,
+                        first_name,
+                        last_name,
+                        address,
+                        email,
+                        phone_number,
+                        role
                         FROM users
                         ORDER BY last_name;
                         """
@@ -174,7 +181,14 @@ class AccountQueries:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, first_name, last_name, address, email, phone_number, role
+                        SELECT
+                        id,
+                        first_name,
+                        last_name,
+                        address,
+                        email,
+                        phone_number,
+                        role
                         FROM users
                         WHERE id = %s
                         """,
@@ -214,7 +228,6 @@ class AccountQueries:
                     )
                     return self.user_in_and_out(user_id, user)
         except Exception as e:
-
             raise e
 
     def update_password(self, user_id: int, hashed_password: str) -> str:

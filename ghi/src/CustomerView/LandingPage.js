@@ -19,57 +19,59 @@ function LandingPage() {
   const tokenUser = useUser(token);
 
   useEffect(() => {
-  const fetchData = async () => {
-    const reservationsURL = `${baseUrl}/api/reservation`;
-    const petsURL = `${baseUrl}/api/pets`;
+    const fetchData = async () => {
+      const reservationsURL = `${baseUrl}/api/reservation`;
+      const petsURL = `${baseUrl}/api/pets`;
 
-    const [reservationsResponse, petsResponse] = await Promise.all([
-      fetch(reservationsURL, { headers: { Authorization: `Bearer ${token}` } }),
-      fetch(petsURL, { headers: { Authorization: `Bearer ${token}` } }),
-    ]);
+      const [reservationsResponse, petsResponse] = await Promise.all([
+        fetch(reservationsURL, {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        fetch(petsURL, { headers: { Authorization: `Bearer ${token}` } }),
+      ]);
 
-    if (reservationsResponse.ok && petsResponse.ok && tokenUser) {
-      const reservationsData = await reservationsResponse.json();
-      const petsData = await petsResponse.json();
+      if (reservationsResponse.ok && petsResponse.ok && tokenUser) {
+        const reservationsData = await reservationsResponse.json();
+        const petsData = await petsResponse.json();
 
-      const filteredPets = petsData.filter(
-        (pet) => pet?.owner_id === parseInt(tokenUser?.user?.id)
-      );
+        const filteredPets = petsData.filter(
+          (pet) => pet?.owner_id === parseInt(tokenUser?.user?.id)
+        );
 
-      const filteredBoardings = reservationsData
-        .filter(
-          (reservation) =>
-            reservation.customer_id === parseInt(tokenUser?.user?.id) &&
-            reservation.category === "BOARDING"
-        )
-        .map((boarding) => ({
-          ...boarding,
-          pet: filteredPets.find((pet) => pet.pet_id === boarding.pet_id),
-        }));
+        const filteredBoardings = reservationsData
+          .filter(
+            (reservation) =>
+              reservation.customer_id === parseInt(tokenUser?.user?.id) &&
+              reservation.category === "BOARDING"
+          )
+          .map((boarding) => ({
+            ...boarding,
+            pet: filteredPets.find((pet) => pet.pet_id === boarding.pet_id),
+          }));
 
-      const filteredTrainings = reservationsData
-        .filter(
-          (reservation) =>
-            reservation.customer_id === parseInt(tokenUser?.user?.id) &&
-            reservation.category === "TRAINING"
-        )
-        .map((training) => ({
-          ...training,
-          pet: filteredPets.find((pet) => pet.pet_id === training.pet_id),
-        }));
+        const filteredTrainings = reservationsData
+          .filter(
+            (reservation) =>
+              reservation.customer_id === parseInt(tokenUser?.user?.id) &&
+              reservation.category === "TRAINING"
+          )
+          .map((training) => ({
+            ...training,
+            pet: filteredPets.find((pet) => pet.pet_id === training.pet_id),
+          }));
 
-      setPets(filteredPets);
-      setBoardings(filteredBoardings);
-      setTrainings(filteredTrainings);
-    } else {
-      console.log("Error fetching data");
+        setPets(filteredPets);
+        setBoardings(filteredBoardings);
+        setTrainings(filteredTrainings);
+      } else {
+        console.log("Error fetching data");
+      }
+    };
+
+    if (token) {
+      fetchData();
     }
-  };
-
-  if (token) {
-    fetchData();
-  }
-}, [baseUrl, token, tokenUser, tokenUser?.user]);
+  }, [baseUrl, token, tokenUser, tokenUser?.user]);
 
   return (
     <>
