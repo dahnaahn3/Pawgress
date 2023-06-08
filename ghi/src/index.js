@@ -9,13 +9,14 @@ import "./Forms.css";
 import "./Listings.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const domain = /https:\/\/[^/]+/;
+const basename = process.env.PUBLIC_URL.replace(domain, "");
 
-
-
+console.log(process.env);
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="/pawgress">
+    <BrowserRouter basename={basename}>
       <AuthProvider baseUrl={process.env.REACT_APP_PAWGRESS_API_HOST}>
         <App />
       </AuthProvider>
