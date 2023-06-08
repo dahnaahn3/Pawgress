@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
-import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import getUser from "../useUser";
 
 function BoardingHistory() {
   const [history, setHistory] = useState([]);
   const [pets, setPets] = useState([]);
-  const { token } = useAuthContext();
+  const { token } = useToken();
   const user = getUser(token);
   const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
+  
+useEffect(() => {
   const fetchData = async () => {
     const url = `${baseUrl}/api/reservation`;
     const urlPets = `${baseUrl}/api/pets`;
@@ -31,11 +32,10 @@ function BoardingHistory() {
     }
   };
 
-  useEffect(() => {
-    if (token) {
-      fetchData();
-    }
-  }, [token]);
+  if (token) {
+    fetchData();
+  }
+}, [token]);
 
   if (!token) {
     return null;

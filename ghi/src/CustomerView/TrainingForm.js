@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import getUser from "../useUser";
 
@@ -75,26 +75,26 @@ function TrainingForm() {
   };
 
   const [pets, setPets] = useState([]);
-  const fetchData = async () => {
-    const url = `${baseUrl}/api/pets`;
-    const urlClasses = `${baseUrl}/api/classes`;
-    const response = await fetch(url, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (response.ok) {
-      const data = await response.json();
-      setPets(data);
-    }
-    const responseClasses = await fetch(urlClasses, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (responseClasses.ok) {
-      const classesData = await responseClasses.json();
-      setTrainingClasses(classesData);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      const url = `${baseUrl}/api/pets`;
+      const urlClasses = `${baseUrl}/api/classes`;
+      const response = await fetch(url, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setPets(data);
+      }
+      const responseClasses = await fetch(urlClasses, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (responseClasses.ok) {
+        const classesData = await responseClasses.json();
+        setTrainingClasses(classesData);
+      }
+    };
+
     if (token) {
       fetchData();
     }

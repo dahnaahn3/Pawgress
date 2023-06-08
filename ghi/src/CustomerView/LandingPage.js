@@ -11,13 +11,14 @@ function formatDateTime(dateTime) {
 
 function LandingPage() {
   const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
-  const [pets, setPets] = useState([]);
+  const [, setPets] = useState([]);
   const [boardings, setBoardings] = useState([]);
   const [trainings, setTrainings] = useState([]);
 
   const { token } = useAuthContext();
   const tokenUser = useUser(token);
-
+  
+  useEffect(() => {
   const fetchData = async () => {
     const reservationsURL = `${baseUrl}/api/reservation`;
     const petsURL = `${baseUrl}/api/pets`;
@@ -65,11 +66,10 @@ function LandingPage() {
     }
   };
 
-  useEffect(() => {
-    if (token) {
-      fetchData();
-    }
-  }, [tokenUser?.user]);
+  if (token) {
+    fetchData();
+  }
+}, [tokenUser?.user]);
 
   return (
     <>

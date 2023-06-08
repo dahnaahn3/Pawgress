@@ -12,8 +12,9 @@ function CustomerProfile() {
   const { token } = useAuthContext();
   const tokenUser = useUser(token);
   const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
-  const fetchData = async () => {
 
+  useEffect(() => {
+  const fetchData = async () => {
     const userURL = `${baseUrl}/api/accounts/${tokenUser.user.id}`;
 
     const petsURL = `${baseUrl}/api/pets`;
@@ -37,11 +38,10 @@ function CustomerProfile() {
     }
   };
 
-  useEffect(() => {
-    if (tokenUser.user !== null) {
-      fetchData();
-    }
-  }, [tokenUser.user]);
+  if (tokenUser.user !== null) {
+    fetchData();
+  }
+}, [tokenUser.user]);
 
   return (
     <div className="w-full cs-main-component">
@@ -57,7 +57,7 @@ function CustomerProfile() {
         <img
           className="w-32 h-32 rounded-full mx-auto"
           src="https://picsum.photos/200"
-          alt="Profile picture"
+          alt="Profile"
         />
         <h2 className="text-center text-2xl font-semibold mt-3">
           {user.first_name} {user.last_name}
@@ -91,9 +91,9 @@ function CustomerProfile() {
               <h3 className="text-lg font-semibold">Pets</h3>
               <div className="flex flex-wrap justify-evenly items-center justify-between mt-2">
                 {pets.map((pet) => (
-                  <a
+                  <NavLink
                     key={"p" + pet.pet_id}
-                    href={`/pawgress/customers/${user.id}/${pet.pet_id}`}
+                    to={`/customers/${user.id}/${pet.pet_id}`}
                     className="flex flex-col items-center mt-2 m-4"
                   >
                     <img
@@ -104,7 +104,7 @@ function CustomerProfile() {
                     <p className="text-center text-xl font-semibold">
                       {pet.name}
                     </p>
-                  </a>
+                  </NavLink>
                 ))}
                 <div className="flex items-center">
                   <NavLink

@@ -1,39 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
-import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
+
 import getUser from "../useUser";
 
 function TrainingHistory() {
   const [history, setHistory] = useState([]);
   const [pets, setPets] = useState([]);
-  const { token } = useAuthContext();
+  const { token } = useToken();
   const user = getUser(token);
   const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
-  const fetchData = async () => {
-    const url = `${baseUrl}/api/reservation`;
-    const urlPets = `${baseUrl}/api/pets`;
-    const response = await fetch(url, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (response.ok) {
-      const data = await response.json();
-      setHistory(data);
-    }
-    const responsePets = await fetch(urlPets, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (responsePets.ok) {
-      const petData = await responsePets.json();
-      setPets(petData);
-    }
-  };
+    useEffect(() => {
+      const fetchData = async () => {
+        const url = `${baseUrl}/api/reservation`;
+        const urlPets = `${baseUrl}/api/pets`;
+        const response = await fetch(url, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setHistory(data);
+        }
+        const responsePets = await fetch(urlPets, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (responsePets.ok) {
+          const petData = await responsePets.json();
+          setPets(petData);
+        }
+      };
 
-  useEffect(() => {
-    if (token) {
-      fetchData();
-    }
-  }, [token]);
+      if (token) {
+        fetchData();
+      }
+    }, [token]);
 
   if (!token) {
     return null;

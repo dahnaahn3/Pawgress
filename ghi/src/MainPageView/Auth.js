@@ -15,7 +15,7 @@ function Auth() {
     if (token && tokenUser.user) {
       navigate(`/customers/${tokenUser.user.id}`);
     }
-  }, [tokenUser]);
+  }, [token, navigate, tokenUser]);
 
   const handleFormChange = (e) => {
     setFormData({

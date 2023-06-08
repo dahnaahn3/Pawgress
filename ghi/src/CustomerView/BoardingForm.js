@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import getUser from "../useUser";
 
@@ -53,6 +53,8 @@ function BoardingForm() {
   };
 
   const [pets, setPets] = useState([]);
+
+useEffect(() => {
   const fetchData = async () => {
     const url = `${baseUrl}/api/pets`;
     const response = await fetch(url, {
@@ -63,10 +65,8 @@ function BoardingForm() {
       setPets(data);
     }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  fetchData();
+}, []);
 
   if (!token) {
     return null;

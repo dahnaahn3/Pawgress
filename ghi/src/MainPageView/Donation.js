@@ -9,11 +9,11 @@ import {
 
 
 function Donation(){
-      const [number, setNumber] = useState("");
-      const [name, setName] = useState("");
-      const [expiry, setExpiry] = useState("");
-      const [cvc, setCvc] = useState("");
-      const [focused, setFocused] = useState("");
+      const [, setNumber] = useState("");
+      const [, setName] = useState("");
+      const [, setExpiry] = useState("");
+      const [, setCvc] = useState("");
+      const [, setFocused] = useState("");
       const [formData, setFormData] = useState(null);
 
         const handleInputFocus = ({ target }) => {

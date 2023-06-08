@@ -1,4 +1,4 @@
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import TrainerHome from "./TrainerView/TrainerHome";
@@ -43,7 +43,7 @@ function App() {
           <Route path=":user_id/profile" element={<CustomerProfile />} />
           <Route path=":user_id/edit" element={<EditCustomer />} />
           <Route path=":user_id/editpw" element={<EditPassword />} />
-          <Route path=":user_id/:pet_id/" element={<PetProfile />} />
+          <Route path=":user_id/:pet_id" element={<PetProfile />} />
           <Route path=":user_id/:pet_id/edit" element={<EditPet />} />
           <Route path=":user_id/addpet" element={<AddPet />} />
           <Route path="training/" element={<TrainingForm />} />

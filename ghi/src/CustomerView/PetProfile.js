@@ -2,29 +2,30 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { BiEditAlt } from "react-icons/bi";
 import useToken from "@galvanize-inc/jwtdown-for-react";
-// import useUser from "./useUser";
+import {Link} from 'react-router-dom'
 
 function PetProfile() {
   const [pet, setPet] = useState([]);
   const { token } = useToken();
   const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const { user_id, pet_id } = useParams();
-  const fetchData = async () => {
-    const petURL = `${baseUrl}/api/pets/${pet_id}`;
-
-    const petResponse = await fetch(petURL, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    if (petResponse.ok) {
-      const petData = await petResponse.json();
-      setPet(petData);
-    } else {
-      console.log("Error fetching data");
-    }
-  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      const petURL = `${baseUrl}/api/pets/${pet_id}`;
+
+      const petResponse = await fetch(petURL, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (petResponse.ok) {
+        const petData = await petResponse.json();
+        setPet(petData);
+      } else {
+        console.log("Error fetching data");
+      }
+    };
+
     if (token) {
       fetchData();
     }
@@ -36,7 +37,7 @@ function PetProfile() {
         <img
           className="w-32 h-32 rounded-full mx-auto"
           src={pet.picture}
-          alt="Profile picture"
+          alt="Profile "
         />
         <div> </div>
         <h2 className="text-center text-2xl font-semibold mt-3">{pet.name}</h2>
@@ -73,13 +74,13 @@ function PetProfile() {
             </div>
           </div>
         </div>
-        <a
-          href={`/pawgress/customers/${user_id}/${pet.pet_id}/edit`}
+        <Link
+          to={`/customers/${user_id}/${pet.pet_id}/edit`}
           className="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
         >
           <BiEditAlt />
           <span>Edit</span>
-        </a>
+        </Link>
       </div>
     </div>
   );

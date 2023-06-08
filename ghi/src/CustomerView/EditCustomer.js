@@ -8,7 +8,7 @@ function EditCustomer() {
   const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
   const navigate = useNavigate();
   const [user, setUser] = useState("");
-  const [pets, setPets] = useState("");
+  const [pets,setPets] = useState("");
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -21,6 +21,7 @@ function EditCustomer() {
 
   const { user_id } = useParams();
 
+  useEffect(() => {
   const fetchData = async () => {
     const userURL = `${baseUrl}/api/accounts/${user_id}`;
     const petsURL = `${baseUrl}/api/pets`;
@@ -39,11 +40,10 @@ function EditCustomer() {
     }
   };
 
-  useEffect(() => {
-    if (token) {
-      fetchData();
-    }
-  }, [token]);
+  if (token) {
+    fetchData();
+  }
+}, [token]);
 
   const handlePassword = () => {
     navigate(`/customers/${user_id}/editpw`);

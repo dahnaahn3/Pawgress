@@ -16,8 +16,8 @@ const CustomerHome = () => {
   const { logout } = useToken();
   const { user } = useUser(token);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const handleProfileClick = () => {
     setShowDropdown(true);
@@ -48,7 +48,8 @@ const CustomerHome = () => {
         setToken(currentToken);
       }
     }
-    if (user) {
+
+  if (user) {
       setLoading(false);
       if (!token) {
         navigate("/");
@@ -56,6 +57,7 @@ const CustomerHome = () => {
         navigate("/trainer");
       }
     }
+
   }, [token, navigate, setToken, user]);
 
   return (
@@ -109,13 +111,13 @@ const CustomerHome = () => {
                               </Link>
                             </li>
                             <li>
-                              <a
+                              <Link to="/"
                                 onClick={loggingOut}
                                 className="px-3 py-3 text-sm font-medium flex items-center space-x-2 hover:bg-slate-400"
                               >
                                 <MdLogout className="h-6 w-6 mr-2" />
                                 Sign Out
-                              </a>
+                              </Link>
                             </li>
                           </ul>
                         </div>
