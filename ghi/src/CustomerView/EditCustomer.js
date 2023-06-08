@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
-// import useUser from "./useUser";
+
 
 function EditCustomer() {
   const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
@@ -17,21 +17,13 @@ function EditCustomer() {
     phone_number: "",
   });
 
-  // put this in the NAV
   const { token } = useToken();
-  // const { user } = useUser(token);
 
   const { user_id } = useParams();
-  console.log("useparams****", useParams());
 
   const fetchData = async () => {
-
     const userURL = `${baseUrl}/api/accounts/${user_id}`;
-
-    console.log('userURL***', userURL)
-
     const petsURL = `${baseUrl}/api/pets`;
-
     const [userResponse, petsResponse] = await Promise.all([
       fetch(userURL, { headers: { Authorization: `Bearer ${token}` } }),
       fetch(petsURL, { headers: { Authorization: `Bearer ${token}` } }),
@@ -60,7 +52,7 @@ function EditCustomer() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Determine the fields that have changed
+
     const updatedFields = {};
     for (const key in formData) {
       if (formData[key] !== "") {
@@ -72,7 +64,6 @@ function EditCustomer() {
     updatedFields["role"] = user["role"];
     updatedFields["hashed_password"] = user["hashed_password"];
 
-    // If no fields have changed
     if (updatedFields.length === 0) {
       alert("No changes have been made.");
       return;
