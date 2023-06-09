@@ -9,23 +9,23 @@ function PetDetail() {
   const [users, setUsers] = useState([]);
   const { token } = useToken();
 
-  const fetchData = async () => {
-    const petsURL = `${baseUrl}/api/pets/${pet_id}`;
-    const usersURL = `${baseUrl}/api/accounts`;
-    const response = await Promise.all([
-      fetch(petsURL, { headers: { Authorization: `Bearer ${token}` } }),
-      fetch(usersURL, { headers: { Authorization: `Bearer ${token}` } }),
-    ]);
-
-    const petsData = await response[0].json();
-    const usersData = await response[1].json();
-    setPets(petsData);
-    setUsers(usersData);
-  };
-
   useEffect(() => {
-    fetchData();
-  }, [pet_id]);
+   const fetchData = async () => {
+     const petsURL = `${baseUrl}/api/pets/${pet_id}`;
+     const usersURL = `${baseUrl}/api/accounts`;
+     const response = await Promise.all([
+       fetch(petsURL, { headers: { Authorization: `Bearer ${token}` } }),
+       fetch(usersURL, { headers: { Authorization: `Bearer ${token}` } }),
+     ]);
+
+     const petsData = await response[0].json();
+     const usersData = await response[1].json();
+     setPets(petsData);
+     setUsers(usersData);
+   };
+
+   fetchData();
+ }, [pet_id, baseUrl, token]);
 
   let genderIcon;
   let gender = pets.gender;
@@ -36,7 +36,7 @@ function PetDetail() {
   }
 
   let owner = "";
-  users.map((user) => {
+  users.forEach((user) => {
     if (user.id === pets.owner_id) {
       owner = `${user.first_name} ${user.last_name}`;
     }

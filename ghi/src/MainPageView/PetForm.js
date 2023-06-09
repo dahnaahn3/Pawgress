@@ -101,21 +101,21 @@ function PetForm() {
       setOwner("");
       setOwners([]);
       navigation("/trainer/pets");
-      fetchData();
     }
   };
-  const fetchData = async () => {
-    const userUrl = `${baseUrl}/api/accounts`;
-    const response = await fetch(userUrl);
 
-    if (response.ok) {
-      const data = await response.json();
-      setOwners(data);
-    }
-  };
   useEffect(() => {
+    const fetchData = async () => {
+      const userUrl = `${baseUrl}/api/accounts`;
+      const response = await fetch(userUrl);
+
+      if (response.ok) {
+        const data = await response.json();
+        setOwners(data);
+      }
+    };
     fetchData();
-  }, []);
+  }, [baseUrl]);
 
   return (
     <div className="form-container" style={{ marginTop: "-55rem" }}>

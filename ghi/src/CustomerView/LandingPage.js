@@ -17,7 +17,6 @@ function LandingPage() {
 
   const { token } = useAuthContext();
   const tokenUser = useUser(token);
-
   useEffect(() => {
     const fetchData = async () => {
       const reservationsURL = `${baseUrl}/api/reservation`;

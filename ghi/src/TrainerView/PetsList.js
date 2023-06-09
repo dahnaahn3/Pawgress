@@ -9,11 +9,14 @@ function PetsList() {
   const { token } = useToken();
   const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
 
+useEffect(() => {
   const fetchData = async () => {
     const petsURL = `${baseUrl}/api/pets`;
     const userURL = `${baseUrl}/api/accounts`;
-    const response = await Promise.all([fetch(petsURL, {headers: {"Authorization": `Bearer ${token}`,}, }),
-    fetch(userURL, {headers: {"Authorization": `Bearer ${token}`,}, })]);
+    const response = await Promise.all([
+      fetch(petsURL, { headers: { Authorization: `Bearer ${token}` } }),
+      fetch(userURL, { headers: { Authorization: `Bearer ${token}` } }),
+    ]);
 
     const petsData = await response[0].json();
     const usersData = await response[1].json();
@@ -21,10 +24,10 @@ function PetsList() {
     setUsers(usersData);
   };
 
-  useEffect(() => {
-    if (token) {
+  if (token) {
     fetchData();
-  }}, [token]);
+  }
+}, [token, baseUrl]);
 
 
   return (
@@ -75,6 +78,7 @@ function PetsList() {
                     <td className="plist-info">{pet.age}</td>
                     <td className="plist-info">
                       <img
+                        alt=""
                         className="p-image"
                         style={{ maxWidth: "200px", maxHeight: "150px" }}
                         src={pet.picture}

@@ -20,57 +20,36 @@ function TrainingBoardingHistory() {
     return date.toLocaleString("en-US", options);
   };
 
-  const fetchData = async () => {
-    const historyURL = `${baseUrl}/api/reservation`;
-    const userURL = `${baseUrl}/api/accounts`;
-    const petsURL = `${baseUrl}/api/pets`;
-    const response = await Promise.all([
-      fetch(historyURL, { headers: { Authorization: `Bearer ${token}` } }),
-      fetch(userURL, { headers: { Authorization: `Bearer ${token}` } }),
-      fetch(petsURL, { headers: { Authorization: `Bearer ${token}` } }),
-    ]);
-
-    // if(response.ok){
-    const historydata = await response[0].json();
-    const userdata = await response[1].json();
-    const petdata = await response[2].json();
-    setHistory(historydata);
-    setUser(userdata);
-    setPet(petdata);
-    // }
-  };
-
-  let userName;
-  history.forEach((h) =>
-    user.forEach((u) => {
-      if (h.customer_id === u.id) {
-        userName = `${u.first_name} ${u.last_name}`;
-      }
-    })
-  );
-
-  let petName;
-  history.forEach((h) =>
-    pet.forEach((p) => {
-      if (h.pet_id === p.pet_id) {
-        petName = `${p.name}`;
-      }
-    })
-  );
-
   useEffect(() => {
+    const fetchData = async () => {
+      const historyURL = `${baseUrl}/api/reservation`;
+      const userURL = `${baseUrl}/api/accounts`;
+      const petsURL = `${baseUrl}/api/pets`;
+      const response = await Promise.all([
+        fetch(historyURL, { headers: { Authorization: `Bearer ${token}` } }),
+        fetch(userURL, { headers: { Authorization: `Bearer ${token}` } }),
+        fetch(petsURL, { headers: { Authorization: `Bearer ${token}` } }),
+      ]);
+
+      const [historyData, userData, petData] = await Promise.all(
+        response.map((res) => res.json())
+      );
+      setHistory(historyData);
+      setUser(userData);
+      setPet(petData);
+    };
+
     if (token) {
       fetchData();
     }
-  }, [token]);
+  }, [token, baseUrl]);
 
   if (!token) {
     return null;
   }
 
   return (
-    <div style={{ paddingLeft: "20rem", marginTop: "-70%" }}>
-      {/* {history && history.length ? ( */}
+    <div style={{ paddingLeft: "20rem", marginTop: "-80%" }}>
       <>
         <div>
           <header className="label-container">
@@ -88,17 +67,22 @@ function TrainingBoardingHistory() {
             <tbody className="info-container">
               {history.map((h) => {
                 if (h.category === "TRAINING") {
+                  const userName = user.find((u) => h.customer_id === u.id);
+                  const petName = pet.find((p) => h.pet_id === p.pet_id);
                   const formattedStartDateTime = formatDate(h.start_datetime);
                   const formattedEndDateTime = formatDate(h.end_datetime);
                   return (
                     <tr key={h.reservation_id}>
-                      <td className="h-row">{userName}</td>
-                      <td className="h-row">{petName} </td>
+                      <td className="h-row">
+                        {userName?.first_name} {userName?.last_name}
+                      </td>
+                      <td className="h-row">{petName?.name}</td>
                       <td className="h-row">{formattedStartDateTime}</td>
                       <td className="h-row">{formattedEndDateTime}</td>
                     </tr>
                   );
                 }
+                return null;
               })}
             </tbody>
           </table>
@@ -119,25 +103,27 @@ function TrainingBoardingHistory() {
             <tbody className="info-container">
               {history.map((h) => {
                 if (h.category === "BOARDING") {
+                  const userName = user.find((u) => h.customer_id === u.id);
+                  const petName = pet.find((p) => h.pet_id === p.pet_id);
                   const formattedStartDateTime = formatDate(h.start_datetime);
                   const formattedEndDateTime = formatDate(h.end_datetime);
                   return (
                     <tr key={h.reservation_id}>
-                      <td className="h-row">{userName}</td>
-                      <td className="h-row">{petName} </td>
+                      <td className="h-row">
+                        {userName?.first_name} {userName?.last_name}
+                      </td>
+                      <td className="h-row">{petName?.name}</td>
                       <td className="h-row">{formattedStartDateTime}</td>
                       <td className="h-row">{formattedEndDateTime}</td>
                     </tr>
                   );
                 }
+                return null;
               })}
             </tbody>
           </table>
         </div>
       </>
-      {/* ) : ( */}
-      {/* <p> No history to display! </p> */}
-      {/* )} */}
     </div>
   );
 }

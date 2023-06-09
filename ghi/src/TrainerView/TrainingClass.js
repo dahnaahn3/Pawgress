@@ -32,7 +32,7 @@ function TrainingClass() {
     };
 
     fetchData();
-  }, []);
+  }, [baseUrl, token]);
 
   if (!token) {
     return null;
@@ -63,8 +63,8 @@ function TrainingClass() {
         </thead>
         <tbody className="c-b">
           {classes.map((c) => {
-            const formattedStartDateTime = formatDate(c.start_datetime);
-            const formattedEndDateTime = formatDate(c.end_datetime);
+              const formattedStartDateTime = formatDate(c.start_datetime);
+              const formattedEndDateTime = formatDate(c.end_datetime);
             return (
               <tr key={c.class_id}>
                 <td className="c-row">{c.name}</td>

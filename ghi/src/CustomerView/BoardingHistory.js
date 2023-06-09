@@ -9,7 +9,6 @@ function BoardingHistory() {
   const { token } = useToken();
   const user = getUser(token);
   const baseUrl = process.env.REACT_APP_PAWGRESS_API_HOST;
-
 useEffect(() => {
   const fetchData = async () => {
     const url = `${baseUrl}/api/reservation`;

@@ -30,7 +30,6 @@ import EditCustomer from "./CustomerView/EditCustomer";
 import EditPassword from "./CustomerView/EditPassword";
 import ContactUs from "./MainPageView/ContactUs";
 import Donation from "./MainPageView/Donation";
-import BoardingModal from "./Modal";
 import FAQ from "./MainPageView/FAQ";
 import AddPet from "./CustomerView/AddPet";
 
@@ -71,7 +70,6 @@ function App() {
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/donate" element={<Donation />} />
         <Route path="/contact" element={<ContactUs />} />
-        <Route path="/modal" element={<BoardingModal />} />
         <Route path="contactus/" element={<ContactUs />} />
         <Route path="faq/" element={<FAQ />} />
         <Route path="/meettheteam" element={<Meettheteam />} />

@@ -16,7 +16,7 @@ function TrainerList() {
       }
     };
     fetchData();
-  }, []);
+  }, [baseUrl]);
 
   if (!token) {
     return null;

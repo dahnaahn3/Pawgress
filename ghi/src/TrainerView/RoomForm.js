@@ -48,26 +48,25 @@ function RoomForm() {
       setPets([]);
       navigate("/trainer/rooms");
 
-      fetchData();
     }
   };
-  const fetchData = async () => {
-    const petUrl = `${baseUrl}/api/pets`;
-    const response = await fetch(petUrl, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      setPets(data);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      const petUrl = `${baseUrl}/api/pets`;
+      const response = await fetch(petUrl, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setPets(data);
+      }
+    };
+
     if (token) {
       fetchData();
     }
-  }, [token]);
+  }, [token, baseUrl]);
 
   if (!token) {
     return null;
