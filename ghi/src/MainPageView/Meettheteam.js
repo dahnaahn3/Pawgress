@@ -6,7 +6,7 @@ function Meettheteam() {
     <div>
       <MainPageNav />
       <div className="flex items-center justify-center min-h-screen bg-white py-48">
-        <div className="flex flex-col" style={{ marginLeft: "13rem" }}>
+        <div className="flex flex-col" style={{ marginLeft: "15%" }}>
           <div className="flex flex-col mt-8">
             <div className="container max-w-7xl px-4">
               <div className="flex flex-wrap justify-center text-center mb-24">
@@ -31,9 +31,9 @@ function Meettheteam() {
                   <div className="flex flex-col">
                     <div className="mx-auto">
                       <img
-                        className="rounded-2xl drop-shadow-md hover:drop-shadow-xl transition-all duration-200 delay-100"
-                        src="https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?fit=clamp&w=400&h=400&q=80"
-                      alt="ImageA"
+                        className="rounded-2xl drop-shadow-md hover:drop-shadow-xl transition-all duration-200 delay-100 "
+                        src="https://i.pinimg.com/564x/b2/61/72/b26172932eba3d3e12b511c19b248ce9--brindle-french-bulldog-post-card.jpg"
+                        alt="ImageA"
                       />
                     </div>
 
@@ -73,7 +73,7 @@ function Meettheteam() {
                     <div className="mx-auto">
                       <img
                         className="rounded-2xl drop-shadow-md hover:drop-shadow-xl transition-all duration-200 delay-100"
-                        src="https://images.unsplash.com/photo-1634896941598-b6b500a502a7?fit=clamp&w=400&h=400&q=80"
+                        src="https://t4.ftcdn.net/jpg/02/72/88/85/360_F_272888522_Pzamjz0t0HZgcu6mWnxVVaVtjMYZkPn0.jpg"
                         alt="ImageB"
                       />
                     </div>
@@ -114,7 +114,7 @@ function Meettheteam() {
                     <div className="mx-auto">
                       <img
                         className="rounded-2xl drop-shadow-md hover:drop-shadow-xl transition-all duration-200 delay-100"
-                        src="https://images.unsplash.com/photo-1634193295627-1cdddf751ebf?fit=clamp&w=400&h=400&q=80"
+                        src="https://img.freepik.com/premium-vector/cute-orange-cat-paws-up-wall-cartoon-vector_42750-800.jpg?w=2000"
                         alt="ImageC"
                       />
                     </div>
@@ -155,7 +155,7 @@ function Meettheteam() {
                     <div className="mx-auto">
                       <img
                         className="rounded-2xl drop-shadow-md hover:drop-shadow-xl transition-all duration-200 delay-100"
-                        src="https://images.unsplash.com/photo-1635003913011-95971abba560?fit=clamp&w=400&h=400&q=80"
+                        src="https://static.vecteezy.com/system/resources/previews/006/241/030/original/cute-cartoon-puppy-funny-dog-illustration-for-kids-illustration-with-black-outline-happy-cartoon-puppy-sits-portrait-of-a-cute-dog-a-dog-friend-with-love-free-vector.jpg"
                         alt="ImageD"
                       />
                     </div>

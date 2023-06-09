@@ -126,3 +126,13 @@ Ah ha moment: Use markdown cheat sheet for styling of the readme
 
 Ah ha moment: Had to apply pet_is instead of id for the unique keys
 ]
+
+## June 8 2023
+[Today, I worked on:
+- Completed full deployment
+- Passed all eslint tests
+- worked on styling pages
+
+
+Ah ha moment: ESlint is very picky
+]
