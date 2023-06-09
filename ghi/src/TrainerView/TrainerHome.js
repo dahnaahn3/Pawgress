@@ -3,17 +3,28 @@ import { HiListBullet, HiOutlineUserGroup } from "react-icons/hi2";
 import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
 import { RiHistoryFill } from "react-icons/ri";
 import { TiMortarBoard } from "react-icons/ti";
-import { GrLogout } from "react-icons/gr";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import useUser from "../useUser";
+import { MdLogout } from "react-icons/md";
+import { BsPersonCircle } from "react-icons/bs";
+
 
 const TrainerHome = () => {
   const { token, setToken } = useAuthContext();
   const { logout } = useToken();
   const { user } = useUser(token);
   const navigate = useNavigate();
+  const [showDropdown, setShowDropdown] = useState(false);
+
+    const handleProfileClick = () => {
+      setShowDropdown(true);
+    };
+
+    const handleMouseLeave = () => {
+      setShowDropdown(false);
+    };
 
   const loggingOut = () => {
     localStorage.removeItem("token");
@@ -44,8 +55,19 @@ const TrainerHome = () => {
         <div className="tr-container-left">
           <div className="tr-container-right">
             <NavLink to="/" className="tr-header-left">
-              <img className="logo-icon" src="/WhitePawIcon.png" alt="Paw"/>
-              <span className="home-title">Pawgress</span>
+              <img
+                src={
+                  "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/853274/dog-paw-prints-clipart-xl.png"
+                }
+                className="h-8 mr-3"
+                alt="Flowbite Logo"
+              />
+              <span
+                style={{ color: "white" }}
+                className="self-center text-2xl font-semibold whitespace-nowrap text-slate-700"
+              >
+                Pawgress
+              </span>
             </NavLink>
             <div className="tr-header-right">
               <div className="tr-welcome-container">
@@ -53,17 +75,37 @@ const TrainerHome = () => {
               </div>
 
               <ul className="nav-right-main">
-                <li style={{ marginRight: "10rem" }}>
-                  <NavLink
-                    to="/"
-                    onClick={loggingOut}
-                    className="tr-nav-container"
+                <li>
+                  <div
+                    className="h-10 w-10 hover:ring-4 user cursor-pointer relative ring-blue-700/30 rounded-full bg-cover bg-center mr-5"
+                    onClick={handleProfileClick}
                   >
-                    <span className="tr-nav-flex">
-                      <GrLogout />
-                    </span>
-                    Sign out
-                  </NavLink>
+                    <BsPersonCircle
+                      className="h-10 w-10"
+                      style={{ color: "#FFFFFF" }}
+                    />
+                    {showDropdown && (
+                      <div>
+                        <div
+                          className="drop-down w-48 overflow-hidden bg-grey rounded-md shadow absolute top-12 right-3"
+                          onMouseLeave={handleMouseLeave}
+                        >
+                          <ul>
+                            <li>
+                              <NavLink
+                                to="/"
+                                onClick={loggingOut}
+                                className="px-3 py-3 text-sm font-medium flex items-center space-x-2 bg-gray-700 hover:bg-grey-400"
+                              >
+                                <MdLogout className="h-6 w-6 mr-2" />
+                                Sign Out
+                              </NavLink>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </li>
               </ul>
             </div>

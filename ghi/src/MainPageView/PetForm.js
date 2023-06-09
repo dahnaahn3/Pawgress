@@ -118,7 +118,7 @@ function PetForm() {
   }, [baseUrl]);
 
   return (
-    <div className="form-container" style={{ marginTop: "-55rem" }}>
+    <div className="form-container" style={{ marginTop: "-80%" }}>
       <div className="secondary-container">
         <form onSubmit={handleSubmit} id="create-user-form">
           <div className="mb-5">

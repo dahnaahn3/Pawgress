@@ -43,7 +43,7 @@ function PetDetail() {
   });
 
   return (
-    <div style={{ paddingLeft: "20rem", marginTop: "-30rem" }}>
+    <div style={{ paddingLeft: "40rem", marginTop: "-45rem" }}>
       <div className="detail-container">
         <div className="card-container">
           <div>

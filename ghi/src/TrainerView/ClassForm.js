@@ -87,7 +87,7 @@ function ClassForm() {
   return (
     <div
       className="form-container"
-      style={{ paddingLeft: "20rem", marginTop: "-50rem" }}
+      style={{ paddingLeft: "10%", marginTop: "-75%" }}
     >
       <div className="secondary-container">
         <form onSubmit={handleSubmit} id="create-user-form">

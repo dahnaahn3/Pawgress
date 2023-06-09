@@ -49,7 +49,7 @@ function TrainingBoardingHistory() {
   }
 
   return (
-    <div style={{ paddingLeft: "20rem", marginTop: "-80%" }}>
+    <div style={{ paddingLeft: "20rem", marginTop: "-75%" }}>
       <>
         <div>
           <header className="label-container">

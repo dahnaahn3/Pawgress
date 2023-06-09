@@ -52,6 +52,7 @@
 
 .tr-header-left {
   @apply flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-gray-600 border-none;
+  color: white
 }
 
 .tr-header-right {
